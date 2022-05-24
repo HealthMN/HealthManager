@@ -1,4 +1,237 @@
+Last login: Tue May 24 15:20:33 on ttys005
+ mindohyeon  ~
+ Documents
+ mindohyeon  ~/Documents
+ HealthManager
+ mindohyeon  ~/Documents/HealthManager
+
+ mindohyeon  ~/Documents/HealthManager
+ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /Users/mindohyeon/Documents/HealthManager/.git/
+ mindohyeon  ~/Documents/HealthManager   master
+ gaa
+ mindohyeon  ~/Documents/HealthManager   master ✚
+ gc -m "commit"
+[master (root-commit) 917f111] commit
+ 14 files changed, 683 insertions(+)
+ create mode 100644 HealthManager.xcodeproj/project.pbxproj
+ create mode 100644 HealthManager.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+ create mode 100644 HealthManager.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 HealthManager.xcodeproj/project.xcworkspace/xcuserdata/mindohyeon.xcuserdatad/UserInterfaceState.xcuserstate
+ create mode 100644 HealthManager.xcodeproj/xcuserdata/mindohyeon.xcuserdatad/xcschemes/xcschememanagement.plist
+ create mode 100644 HealthManager/AppDelegate.swift
+ create mode 100644 HealthManager/Assets.xcassets/AccentColor.colorset/Contents.json
+DerivedData/
+!default.mode2v3
+*.perspectivev3
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+
+# CocoaPods
+# We recommend against adding the Pods directory to your .gitignore. However
+# Carthage
+fastlane/report.xml
+ create mode 100644 HealthManager/Assets.xcassets/AppIcon.appiconset/Contents.json
+ create mode 100644 HealthManager/Assets.xcassets/Contents.json
+ create mode 100644 HealthManager/Base.lproj/LaunchScreen.storyboard
+ create mode 100644 HealthManager/Base.lproj/Main.storyboard
+ create mode 100644 HealthManager/Info.plist
+ create mode 100644 HealthManager/SceneDelegate.swift
+ create mode 100644 HealthManager/ViewController.swift
+ mindohyeon  ~/Documents/HealthManager   master
+ git remote add origin https://github.com/Mindohyeon/HealthManager.git
+ mindohyeon  ~/Documents/HealthManager   master
+ git push -u origin master
+Enumerating objects: 29, done.
+Counting objects: 100% (29/29), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (24/24), done.
+Writing objects: 100% (29/29), 13.92 KiB | 6.96 MiB/s, done.
+Total 29 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/Mindohyeon/HealthManager.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+ mindohyeon  ~/Documents/HealthManager   master
+ vim .gitignore
+ mindohyeon  ~/Documents/HealthManager   master
+ gitp ush
+zsh: command not found: gitp
+ ✘ mindohyeon  ~/Documents/HealthManager   master
+ git push
+Everything up-to-date
+ mindohyeon  ~/Documents/HealthManager   master
+ gaa
+ mindohyeon  ~/Documents/HealthManager   master ✚
+ gc -m "[Add] .gitignore"
+[master 409ebbd] [Add] .gitignore
+ 2 files changed, 100 insertions(+)
+ create mode 100644 .gitignore
+ mindohyeon  ~/Documents/HealthManager   master ±
+ gp
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 1.77 KiB | 1.77 MiB/s, done.
+Total 8 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Mindohyeon/HealthManager.git
+   917f111..409ebbd  master -> master
+ mindohyeon  ~/Documents/HealthManager   master ±
+ tuist init --platform ios
+Can't initialize a project in the non-empty directory at path /Users/mindohyeon/Documents/HealthManager.
+Consider creating an issue using the following link: https://github.com/tuist/tuist/issues/new/choose
+ ✘ mindohyeon  ~/Documents/HealthManager   master ±
+ cd ..
+ mindohyeon  ~/Documents
+ cd ..
+ mindohyeon  ~
+ cd /Users/mindohyeon/Downloads/tuist-template-master/TuistBasic
+ mindohyeon  ~/Downloads/tuist-template-master/TuistBasic
+ tuist generate
+Resolved cache profile 'Development' from Tuist's defaults
+Generating workspace HealthManager.xcworkspace
+Generating project HealthManager
+Project generated.
+Total time taken: 4.414s
+ mindohyeon  ~/Downloads/tuist-template-master/TuistBasic
+ /Users/mindohyeon/Downloads/tuist-template-master/HealthManager
+ mindohyeon  ~/Downloads/tuist-template-master/HealthManager
+ tuist generate
+Resolved cache profile 'Development' from Tuist's defaults
+The 'swift' command exited with error code 1 and message:
+/Users/mindohyeon/Downloads/tuist-template-master/HealthManager/Project.swift:7:22: error: expected ',' separator
+    name: projectName
+                     ^
+                     ,
+
+Consider creating an issue using the following link: https://github.com/tuist/tuist/issues/new/choose
+ ✘ mindohyeon  ~/Downloads/tuist-template-master/HealthManager
+ tuist generate
+Resolved cache profile 'Development' from Tuist's defaults
+Generating workspace HealthManager.xcworkspace
+Generating project HealthManager
+Project generated.
+Total time taken: 0.571s
+ mindohyeon  ~/Downloads/tuist-template-master/HealthManager
+ cd ..
+ mindohyeon  ~/Documents
+ HealthManager
+ mindohyeon  ~/Documents/HealthManager
+ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /Users/mindohyeon/Documents/HealthManager/.git/
+ mindohyeon  ~/Documents/HealthManager   master
+ git add .
+ mindohyeon  ~/Documents/HealthManager   master ✚
+ git commit -m "commit"
+[master (root-commit) 954f530] commit
+ 28 files changed, 1036 insertions(+)
+ create mode 100644 .DS_Store
+ create mode 100644 Derived/Sources/Assets+HealthManager.swift
+ create mode 100644 Derived/Sources/Bundle+HealthManager.swift
+ create mode 100644 HealthManager.xcodeproj/project.pbxproj
+ create mode 100644 HealthManager.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+ create mode 100644 HealthManager.xcodeproj/xcshareddata/xcschemes/HealthManager.xcscheme
+ create mode 100644 HealthManager.xcodeproj/xcuserdata/mindohyeon.xcuserdatad/xcschemes/xcschememanagement.plist
+ create mode 100644 HealthManager.xcworkspace/.tuist-generated
+ create mode 100644 HealthManager.xcworkspace/contents.xcworkspacedata
+ create mode 100644 HealthManager.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 HealthManager.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+ create mode 100644 HealthManager.xcworkspace/xcshareddata/xcschemes/HealthManager-Workspace.xcscheme
+ create mode 100644 HealthManager.xcworkspace/xcuserdata/mindohyeon.xcuserdatad/UserInterfaceState.xcuserstate
+ create mode 100644 HealthManager.xcworkspace/xcuserdata/mindohyeon.xcuserdatad/xcschemes/xcschememanagement.plist
+ create mode 100644 Makefile
+ create mode 100644 Podfile
+ create mode 100644 Project.swift
+ create mode 100644 Resource/.DS_Store
+ create mode 100644 Resource/Assets.xcassets/.DS_Store
+ create mode 100644 Resource/Assets.xcassets/AccentColor.colorset/Contents.json
+ create mode 100644 Resource/Assets.xcassets/AppIcon.appiconset/Contents.json
+ create mode 100644 Resource/Assets.xcassets/Contents.json
+ create mode 100644 Resource/LaunchScreen.storyboard
+ create mode 100644 Source/.DS_Store
+ create mode 100644 Source/App/AppDelegate.swift
+ create mode 100644 Source/App/SceneDelegate.swift
+ create mode 100644 Source/ViewController.swift
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,swift
+*.dSYM.zip
+*.dSYM
+
+.build/
+
+# CocoaPods
+# We recommend against adding the Pods directory to your .gitignore. However
+
+# Carthage
+fastlane/report.xml
+ create mode 100644 Support/Info.plist
+ mindohyeon  ~/Documents/HealthManager   master
+ git remote add origin https://github.com/Mindohyeon/HealthManager
+ mindohyeon  ~/Documents/HealthManager   master
+ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+ ✘ mindohyeon  ~/Documents/HealthManager   master
+ git push --set-upstream origin master
+Enumerating objects: 52, done.
+Counting objects: 100% (52/52), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (43/43), done.
+Writing objects: 100% (52/52), 17.36 KiB | 5.79 MiB/s, done.
+Total 52 (delta 8), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (8/8), done.
+To https://github.com/Mindohyeon/HealthManager
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+ mindohyeon  ~/Documents/HealthManager   master
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,swift
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift
+
+### Swift ###
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## User settings
+xcuserdata/
+
+## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
+*.xcscmblueprint
+*.xccheckout
+
+## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+-- INSERT --# Created by https://www.toptal.com/developers/gitignore/api/xcode,swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift
 
 ### Swift ###
