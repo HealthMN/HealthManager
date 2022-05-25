@@ -6,7 +6,7 @@ class BaseVC: UIViewController{
     @available(*, unavailable)
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .init(cgColor: CGColor(red: 1.0, green: 0.98, blue: 0.984, alpha: 1))
+        view.backgroundColor = .white
         setup()
         addView()
         setLayout()
