@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/xcode,swift,objective-c,macos,swiftpackagemanager,swiftpm,cocoapods,git,fastlane,homebrew
-# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift,objective-c,macos,swiftpackagemanager,swiftpm,cocoapods,git,fastlane,homebrew
+
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,macos,swift,cocoapods,git,objective-c,swiftpm,swiftpackagemanager
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,macos,swift,cocoapods,git,objective-c,swiftpm,swiftpackagemanager
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
@@ -8,30 +9,6 @@
 #           - Also handy if you have a large number of dependant pods
 #           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
-
-### fastlane ###
-# fastlane - A streamlined workflow tool for Cocoa deployment
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-# fastlane specific
-fastlane/report.xml
-
-# deliver temporary files
-fastlane/Preview.html
-
-# snapshot generated screenshots
-fastlane/screenshots/**/*.png
-fastlane/screenshots/screenshots.html
-
-# scan temporary files
-fastlane/test_output
-
-# Fastlane.swift runner binary
-fastlane/FastlaneRunner
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
@@ -48,15 +25,11 @@ fastlane/FastlaneRunner
 *_LOCAL_*.txt
 *_REMOTE_*.txt
 
-### Homebrew ###
-Brewfile.lock.json
-
 ### macOS ###
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
-ENV.swift
 
 # Icon must end with two \r
 Icon
@@ -81,8 +54,13 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
 ### Objective-C ###
 # Xcode
+#
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
@@ -133,6 +111,10 @@ Carthage/Build/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
 
 # Code Injection
 # After new code Injection tools there's a generated folder /iOSInjectionProject
@@ -171,27 +153,14 @@ playground.xcworkspace
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-Pods/
+# Pods/
 # Add this line if you want to avoid checking in source code from the Xcode workspace
-*.xcworkspace
+# *.xcworkspace
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
-# Created by https://www.toptal.com/developers/gitignore/api/firebase
-# Edit at https://www.toptal.com/developers/gitignore?templates=firebase
-
-### Firebase ###
-.idea
-**/node_modules/*
-**/.firebaserc
-
-### Firebase Patch ###
-.runtimeconfig.json
-.firebase/
-GoogleService-Info.plist
-# End of https://www.toptal.com/developers/gitignore/api/firebase
 
 # Accio dependency management
 Dependencies/
@@ -219,20 +188,15 @@ xcuserdata
 
 
 ### Xcode ###
-# Xcode
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-
-
-
-## Gcc Patch
-/*.gcno
+## Xcode 8 and earlier
 
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
+/*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.toptal.com/developers/gitignore/api/xcode,swift,objective-c,macos,swiftpackagemanager,swiftpm,cocoapods,git,fastlane,homebrew
+# End of https://www.toptal.com/developers/gitignore/api/xcode,macos,swift,cocoapods,git,objective-c,swiftpm,swiftpackagemanager
