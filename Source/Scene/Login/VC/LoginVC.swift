@@ -37,6 +37,12 @@ class LoginVC: BaseVC {
         $0.contentMode = .scaleAspectFit
     }
     
+    let findPaaswordBtn = UIButton().then {
+        $0.setTitle("비밀번호를 잊으셨나요?", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
+        $0.setTitleColor(.gray, for: .normal)
+    }
+    
     let loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
@@ -44,7 +50,7 @@ class LoginVC: BaseVC {
         $0.layer.cornerRadius = 10
     }
     
-    let notAccount = UIButton().then {
+    let notAccountBtn = UIButton().then {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
@@ -52,12 +58,12 @@ class LoginVC: BaseVC {
     
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
-                         passwordTextField, eyeIconBtn, loginBtn, notAccount)
+                         passwordTextField, eyeIconBtn, findPaaswordBtn, loginBtn, notAccountBtn)
     }
     
     override func setLayout() {
         loginTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(142)
+            $0.top.equalToSuperview().inset(160)
             $0.centerX.equalToSuperview()
         }
         
@@ -86,6 +92,11 @@ class LoginVC: BaseVC {
             $0.trailing.equalTo(passwordTextField.snp.trailing)
         }
         
+        findPaaswordBtn.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(15)
+            $0.leading.equalTo(passwordTextField.snp.leading)
+        }
+        
         loginBtn.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(96)
             $0.centerX.equalToSuperview()
@@ -93,7 +104,7 @@ class LoginVC: BaseVC {
             $0.height.equalTo(45)
         }
         
-        notAccount.snp.makeConstraints {
+        notAccountBtn.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(68)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(92)
