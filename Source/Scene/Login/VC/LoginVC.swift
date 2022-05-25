@@ -32,15 +32,17 @@ class LoginVC: BaseVC {
     }
     
     let eyeIconBtn = UIButton().then {
-        $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 25), for: .normal)
+        $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.tintColor = .gray
         $0.contentMode = .scaleAspectFit
     }
     
     let loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.tintColor = .white
         $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.layer.cornerRadius = 10
     }
     
     override func addView() {
@@ -79,9 +81,10 @@ class LoginVC: BaseVC {
         }
         
         loginBtn.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(252)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(96)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(255)
+            $0.height.equalTo(45)
         }
     }
 }
