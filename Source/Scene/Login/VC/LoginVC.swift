@@ -32,8 +32,9 @@ class LoginVC: BaseVC {
     }
     
     let eyeIconBtn = UIButton().then {
-        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 25), for: .normal)
         $0.tintColor = .gray
+        $0.contentMode = .scaleAspectFit
     }
     
     override func addView() {
