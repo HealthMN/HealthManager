@@ -125,6 +125,7 @@ iOSInjectionProject/
 ### Objective-C Patch ###
 
 HealthManager.xcworkspace
+HealthManager.xcodeproj
 
 ### Swift ###
 # Xcode
