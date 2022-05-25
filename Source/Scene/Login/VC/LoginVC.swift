@@ -31,8 +31,13 @@ class LoginVC: BaseVC {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
     }
     
+    let eyeIconBtn = UIButton().then {
+        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.tintColor = .gray
+    }
+    
     override func addView() {
-        view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField)
+        view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, eyeIconBtn)
     }
     
     override func setLayout() {
@@ -59,6 +64,11 @@ class LoginVC: BaseVC {
         passwordTextField.snp.makeConstraints {
             $0.top.equalTo(passwordTextLabel.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview().inset(60)
+        }
+        
+        eyeIconBtn.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.top)
+            $0.trailing.equalTo(passwordTextField.snp.trailing)
         }
     }
 }
