@@ -1,4 +1,5 @@
 import UIKit
+import Inject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,8 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
+        let vc = Inject.ViewControllerHost(LoginVC())
 
-        window?.rootViewController = LoginVC()
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }
 

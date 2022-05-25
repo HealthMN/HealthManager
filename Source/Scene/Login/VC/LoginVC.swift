@@ -37,8 +37,14 @@ class LoginVC: BaseVC {
         $0.contentMode = .scaleAspectFit
     }
     
+    let loginBtn = UIButton().then {
+        $0.setTitle("로그인", for: .normal)
+        $0.tintColor = .white
+        $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+    }
+    
     override func addView() {
-        view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, eyeIconBtn)
+        view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, eyeIconBtn, loginBtn)
     }
     
     override func setLayout() {
@@ -70,6 +76,12 @@ class LoginVC: BaseVC {
         eyeIconBtn.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.top)
             $0.trailing.equalTo(passwordTextField.snp.trailing)
+        }
+        
+        loginBtn.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(252)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(255)
         }
     }
 }
