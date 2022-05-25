@@ -40,13 +40,19 @@ class LoginVC: BaseVC {
     let loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
-        $0.tintColor = .white
         $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
         $0.layer.cornerRadius = 10
     }
     
+    let notAccount = UIButton().then {
+        $0.setTitle("계정이 없으신가요?", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
+        $0.setTitleColor(.gray, for: .normal)
+    }
+    
     override func addView() {
-        view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, eyeIconBtn, loginBtn)
+        view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
+                         passwordTextField, eyeIconBtn, loginBtn, notAccount)
     }
     
     override func setLayout() {
@@ -85,6 +91,13 @@ class LoginVC: BaseVC {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(255)
             $0.height.equalTo(45)
+        }
+        
+        notAccount.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(68)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(92)
+            $0.height.equalTo(14)
         }
     }
 }
