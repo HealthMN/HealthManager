@@ -14,9 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
-        let vc = Inject.ViewControllerHost(SignUpVC())
-        
-        window?.rootViewController = vc
+        let vc = Inject.ViewControllerHost(LoginVC())
+        window?.rootViewController = UINavigationController(rootViewController: vc)
         window?.makeKeyAndVisible()
     }
 

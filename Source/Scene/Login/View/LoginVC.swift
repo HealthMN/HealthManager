@@ -129,7 +129,6 @@ class LoginVC: BaseVC {
         print("here")
         let vc = SignUpVC()
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
 
