@@ -5,29 +5,29 @@ import SnapKit
 
 class SignUpVC: BaseVC {
     
-    let signUpTitleLabel = UILabel().then {
+    private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
         $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
     }
     
-    let emailTextLabel = UILabel().then {
+    private let emailTextLabel = UILabel().then {
         $0.text = "Email"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
     }
     
-    let emailTextField = UnderLineTextField().then {
+    private let emailTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "이메일을 입력해주세요.")
     }
     
-    let passwordTextLabel = UILabel().then {
+    private let passwordTextLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
     }
     
-    let passwordTextField = UnderLineTextField().then {
+    private let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
         $0.isSecureTextEntry = true
     }
