@@ -5,56 +5,56 @@ import SnapKit
 
 class LoginVC: BaseVC {
     
-    var passwordEyeIconBool = true
+    private lazy var passwordEyeIconBool = true
     
-    let loginTitleLabel = UILabel().then {
+    private let loginTitleLabel = UILabel().then {
         $0.text = "Login"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
         $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
     }
     
-    let emailTextLabel = UILabel().then {
+    private let emailTextLabel = UILabel().then {
         $0.text = "Email"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
     }
     
-    let emailTextField = UnderLineTextField().then {
+    private let emailTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "이메일을 입력해주세요.")
     }
     
-    let passwordTextLabel = UILabel().then {
+    private let passwordTextLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
     }
     
-    let passwordTextField = UnderLineTextField().then {
+    private let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
         $0.isSecureTextEntry = true
     }
     
-    let eyeIconBtn = UIButton().then {
+    private let eyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
     }
     
-    let findPaaswordBtn = UIButton().then {
+    private let findPaaswordBtn = UIButton().then {
         $0.setTitle("비밀번호를 잊으셨나요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
     }
     
-    let loginBtn = UIButton().then {
+    private let loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
         $0.layer.cornerRadius = 10
     }
     
-    let notAccountBtn = UIButton().then {
+    private let notAccountBtn = UIButton().then {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
