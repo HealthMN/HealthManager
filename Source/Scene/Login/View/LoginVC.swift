@@ -58,6 +58,7 @@ class LoginVC: BaseVC {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
+        $0.addTarget(self, action: #selector(pushSignUpVC(_:)), for: .touchUpInside)
     }
     
     override func addView() {
@@ -122,6 +123,13 @@ class LoginVC: BaseVC {
         
         passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
         eyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
+    @objc func pushSignUpVC(_ sender: UIButton) {
+        print("here")
+        let vc = SignUpVC()
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 }
 
