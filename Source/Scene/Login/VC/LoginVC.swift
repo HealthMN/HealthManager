@@ -5,6 +5,8 @@ import SnapKit
 
 class LoginVC: BaseVC {
     
+    var passwordEyeIconBool = true
+    
     let loginTitleLabel = UILabel().then {
         $0.text = "Login"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
@@ -29,12 +31,14 @@ class LoginVC: BaseVC {
     
     let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
+        $0.isSecureTextEntry = true
     }
     
     let eyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
-        $0.tintColor = .gray
+        $0.setTitleColor(.black, for: .normal)
         $0.contentMode = .scaleAspectFit
+        $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
     }
     
     let findPaaswordBtn = UIButton().then {
@@ -110,6 +114,14 @@ class LoginVC: BaseVC {
             $0.width.equalTo(92)
             $0.height.equalTo(14)
         }
+    }
+    
+    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
+        passwordEyeIconBool.toggle()
+        print(passwordEyeIconBool)
+        
+        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
+        eyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
     }
 }
 
