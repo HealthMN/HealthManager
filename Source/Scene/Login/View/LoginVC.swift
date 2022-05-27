@@ -104,8 +104,7 @@ class LoginVC: BaseVC {
         
         loginBtn.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(96)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(255)
+            $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
         }
         

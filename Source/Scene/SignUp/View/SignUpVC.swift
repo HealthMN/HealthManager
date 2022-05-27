@@ -32,6 +32,12 @@ class SignUpVC: BaseVC {
         $0.isSecureTextEntry = true
     }
     
+    private let passwordEyeIconBtn = UIButton().then {
+        $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
     private let checkPasswordTextLabel = UILabel().then {
         $0.text = "Password Check"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
@@ -43,9 +49,21 @@ class SignUpVC: BaseVC {
         $0.isSecureTextEntry = true
     }
     
+    private let checkPasswordEyeIconBtn = UIButton().then {
+        $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private let signUpBtn = UIButton().then {
+        $0.setTitle("회원가입", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
+        $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.layer.cornerRadius = 10
+    }
+    
     override func addView() {
-        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
-                         passwordTextField, checkPasswordTextLabel, checkPasswordTextField)
+        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordEyeIconBtn, passwordTextLabel, passwordTextField, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn)
     }
     
     override func setLayout() {
@@ -74,6 +92,11 @@ class SignUpVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(60)
         }
         
+        passwordEyeIconBtn.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.top)
+            $0.trailing.equalTo(passwordTextField.snp.trailing)
+        }
+        
         checkPasswordTextLabel.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(40)
             $0.leading.equalTo(passwordTextLabel.snp.leading)
@@ -82,6 +105,17 @@ class SignUpVC: BaseVC {
         checkPasswordTextField.snp.makeConstraints {
             $0.top.equalTo(checkPasswordTextLabel.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview().inset(60)
+        }
+        
+        checkPasswordEyeIconBtn.snp.makeConstraints {
+            $0.top.equalTo(checkPasswordTextField.snp.top)
+            $0.trailing.equalTo(checkPasswordTextField.snp.trailing)
+        }
+        
+        signUpBtn.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(212)
+            $0.leading.trailing.equalToSuperview().inset(60)
+            $0.height.equalTo(45)
         }
     }
 }
