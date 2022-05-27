@@ -15,7 +15,12 @@ let project = Project(
             deploymentTarget: .iOS(targetVersion: "13.0", devices: .iphone),
             infoPlist: .file(path: Path("Support/Info.plist")),
             sources: ["Source/**"],
-            resources: ["Resource/**"]
+            resources: ["Resource/**"],
+            dependencies: [
+                .external(name: "Then"),
+                .external(name: "SnapKit"),
+                .external(name: "Inject")
+            ]
         )
     ]
 )
