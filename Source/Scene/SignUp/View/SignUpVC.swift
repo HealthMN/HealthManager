@@ -113,7 +113,7 @@ class SignUpVC: BaseVC {
         }
         
         signUpBtn.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(212)
+            $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
         }
