@@ -37,6 +37,7 @@ class MainCalendarVC: BaseVC {
         $0.appearance.headerTitleColor = .clear
         $0.appearance.titleWeekendColor = .red
         $0.appearance.caseOptions = FSCalendarCaseOptions.weekdayUsesSingleUpperCase
+        $0.appearance.weekdayTextColor = .black
     }
     
     override func addView() {
@@ -64,9 +65,9 @@ class MainCalendarVC: BaseVC {
         }
         
         fsCalendar.snp.makeConstraints {
-            $0.top.equalTo(todayDateLabel.snp.bottom).offset(16)
+            $0.top.equalTo(todayDateLabel.snp.bottom).offset(-16)
             $0.leading.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().inset(350)
+            $0.height.equalTo(278)
         }
     }
 }
