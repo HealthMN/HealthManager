@@ -2,7 +2,6 @@ import UIKit
 import Then
 import SnapKit
 
-
 class LoginVC: BaseVC {
     
     private lazy var passwordEyeIconBool = true

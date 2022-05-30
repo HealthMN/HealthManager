@@ -14,11 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
-        let vc = Inject.ViewControllerHost(LoginVC())
+        let vc = Inject.ViewControllerHost(MainCalendarVC())
         window?.rootViewController = UINavigationController(rootViewController: vc)
         
-        vc.navigationController?.navigationBar.tintColor = .init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-        vc.navigationItem.backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: nil, action: nil)
+        let back = UIBarButtonItem(title: "뒤로가기", style: .plain, target: nil, action: nil)
+        back.tintColor = .init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+        vc.navigationItem.backBarButtonItem = back
         window?.makeKeyAndVisible()
     }
 
