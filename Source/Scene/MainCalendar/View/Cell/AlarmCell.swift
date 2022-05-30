@@ -22,6 +22,7 @@ class AlarmCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addView()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {

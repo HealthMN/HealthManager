@@ -40,12 +40,18 @@ class MainCalendarVC: BaseVC {
         $0.appearance.weekdayTextColor = .black
     }
     
+    private let alarmTableView = UITableView().then {
+        $0.register(AlarmCell.self, forCellReuseIdentifier: "AlarmCell")
+    }
+    
     override func addView() {
-        view.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar)
+        view.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar, alarmTableView)
     }
     
     override func configureVC() {
         todayDateLabel.text = calendarViewModel.getTodayTime()
+        alarmTableView.delegate = self
+        alarmTableView.dataSource = self
     }
     
     override func setLayout() {
@@ -69,9 +75,26 @@ class MainCalendarVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(278)
         }
+        
+        alarmTableView.snp.makeConstraints {
+            $0.top.equalTo(fsCalendar.snp.bottom).offset(12)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(37)
+            $0.leading.trailing.equalToSuperview().inset(27)
+        }
     }
 }
 
-//extension MainCalendarVC: FSCalendarDelegate, FSCalendarDataSource {
-//
-//}
+extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath)
+        cell.selectionStyle = .none
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+}
