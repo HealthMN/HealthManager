@@ -11,8 +11,9 @@ import UIKit
 import SnapKit
 import Inject
 
+private let calendarViewModel = CalendarViewModel()
+
 class MainCalendarVC: BaseVC {
-    let calendarViewModel = CalendarViewModel()
     
     private let smallTitleLabel = UILabel().then {
         $0.text =  "오늘 운동 일정을 확인하세요!"
@@ -20,8 +21,8 @@ class MainCalendarVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 15)
     }
     
-    let todayDateLabel = UILabel().then {
-        $0.text = "00월 00일 0요일"
+    private let todayDateLabel = UILabel().then {
+        $0.text = calendarViewModel.getTodayTime()
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 23)
     }
     

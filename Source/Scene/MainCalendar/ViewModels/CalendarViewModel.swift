@@ -15,7 +15,7 @@ class CalendarViewModel: BaseVC {
         let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "ko")
-        dateFormatter.dateFormat = "M월 dd일"
+        dateFormatter.dateFormat = "M월 dd일 EEEE"
         let dateStr = dateFormatter.string(from: date)
         
         return dateStr
