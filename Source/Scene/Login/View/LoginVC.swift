@@ -10,13 +10,13 @@ class LoginVC: BaseVC {
     private let loginTitleLabel = UILabel().then {
         $0.text = "Login"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
-        $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
     private let emailTextLabel = UILabel().then {
         $0.text = "Email"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
-        $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
     private let emailTextField = UnderLineTextField().then {
@@ -26,7 +26,7 @@ class LoginVC: BaseVC {
     private let passwordTextLabel = UILabel().then {
         $0.text = "Password"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
-        $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
     private let passwordTextField = UnderLineTextField().then {
@@ -36,7 +36,6 @@ class LoginVC: BaseVC {
     
     private let eyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
-        $0.setTitleColor(.black, for: .normal)
         $0.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
     }
@@ -50,7 +49,7 @@ class LoginVC: BaseVC {
     private let loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
-        $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.backgroundColor = HealthManagerAsset.hmPrimary.color
         $0.layer.cornerRadius = 10
     }
     
@@ -105,6 +104,7 @@ class LoginVC: BaseVC {
         loginBtn.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalToSuperview().inset(60)
+
             $0.height.equalTo(45)
         }
         

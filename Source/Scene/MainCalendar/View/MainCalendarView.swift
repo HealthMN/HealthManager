@@ -17,7 +17,7 @@ class MainCalendarVC: BaseVC {
     
     private let smallTitleLabel = UILabel().then {
         $0.text =  "오늘 운동 일정을 확인하세요!"
-        $0.textColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
+        $0.textColor = HealthManagerAsset.hmPrimary.color
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 15)
     }
     
@@ -26,12 +26,12 @@ class MainCalendarVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 23)
     }
     
-    override func addView() {
-        view.addSubviews(smallTitleLabel, todayDateLabel)
+    private let profileBtn = UIButton().then {
+        $0.setImage(UIImage(systemName: "person.crop.circle")?.resize(newWidth: 37), for: .normal)
     }
     
-    override func configureVC() {
-        print("asdf = \(calendarViewModel.getTodayTime())")
+    override func addView() {
+        view.addSubviews(smallTitleLabel, todayDateLabel, profileBtn)
     }
     
     override func setLayout() {
@@ -43,6 +43,11 @@ class MainCalendarVC: BaseVC {
         todayDateLabel.snp.makeConstraints {
             $0.top.equalTo(smallTitleLabel.snp.bottom).offset(8)
             $0.leading.equalTo(smallTitleLabel.snp.leading)
+        }
+        
+        profileBtn.snp.makeConstraints {
+            $0.top.equalTo(smallTitleLabel.snp.top)
+            $0.trailing.equalToSuperview().inset(24)
         }
     }
 }

@@ -34,7 +34,6 @@ class SignUpVC: BaseVC {
     
     private let passwordEyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
-        $0.setTitleColor(.black, for: .normal)
         $0.contentMode = .scaleAspectFit
     }
     
