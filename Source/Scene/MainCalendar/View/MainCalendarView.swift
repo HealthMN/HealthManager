@@ -42,6 +42,7 @@ class MainCalendarVC: BaseVC {
     
     private let alarmTableView = UITableView().then {
         $0.register(AlarmCell.self, forCellReuseIdentifier: "AlarmCell")
+        $0.rowHeight = 80
     }
     
     override func addView() {

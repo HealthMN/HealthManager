@@ -15,12 +15,15 @@ class AlarmCell: UITableViewCell {
     
     private let emojiLabel = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-        $0.layer.cornerRadius = $0.layer.bounds.width/2
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 2
+        $0.backgroundColor = .green
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = .orange
         addView()
         setLayout()
     }
