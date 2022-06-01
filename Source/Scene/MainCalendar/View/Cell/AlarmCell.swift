@@ -17,8 +17,10 @@ class AlarmCell: UITableViewCell {
         $0.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.layer.bounds.width/2 - 2
-        $0.backgroundColor = .green
+        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
     }
+    
+    private let switchLabel = UISwitch()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,7 +35,7 @@ class AlarmCell: UITableViewCell {
     }
     
     func addView() {
-        contentView.addSubviews(emojiLabel)
+        contentView.addSubviews(emojiLabel, switchLabel)
     }
     
     func setLayout() {
@@ -41,6 +43,11 @@ class AlarmCell: UITableViewCell {
             $0.size.equalTo(56)
             $0.leading.equalTo(30)
             $0.top.equalTo(14)
+        }
+        
+        switchLabel.snp.makeConstraints {
+            $0.trailing.equalTo(-26)
+            $0.top.equalTo(21)
         }
     }
 }
