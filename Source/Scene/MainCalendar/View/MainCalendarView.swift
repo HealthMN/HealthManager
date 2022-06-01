@@ -12,7 +12,6 @@ import SnapKit
 import Inject
 import FSCalendar
 
-
 class MainCalendarVC: BaseVC {
     private let calendarViewModel = CalendarViewModel()
     
@@ -43,6 +42,7 @@ class MainCalendarVC: BaseVC {
     private let addBtn = UIButton().then {
         $0.setTitle("+ 알람 추가하기", for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 15)
+        $0.setTitleColor(.black, for: .normal)
     }
     
     private let alarmTableView = UITableView().then {
@@ -83,8 +83,8 @@ class MainCalendarVC: BaseVC {
         }
         
         addBtn.snp.makeConstraints {
-            $0.top.equalTo(fsCalendar.snp.bottom).offset(24)
-            $0.trailing.equalToSuperview().inset(26)
+            $0.top.equalTo(fsCalendar.snp.bottom).offset(21)
+            $0.trailing.equalTo(alarmTableView.snp.trailing)
         }
         
         alarmTableView.snp.makeConstraints {
@@ -102,7 +102,6 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
