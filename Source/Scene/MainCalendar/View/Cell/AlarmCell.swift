@@ -22,13 +22,13 @@ class AlarmCell: UITableViewCell {
     
     private let timeLabel = UILabel().then {
         $0.text = "6시 30분"
-        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        $0.font = .systemFont(ofSize: 12)
         $0.textColor = .blue
     }
     
     private let descriptionLabel = UILabel().then {
         $0.text = "헬스가기"
-        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
+        $0.font = .systemFont(ofSize: 14)
     }
     
     private let switchLabel = UISwitch().then {

@@ -40,13 +40,17 @@ class MainCalendarVC: BaseVC {
         $0.appearance.weekdayTextColor = .black
     }
     
+    private let addBtn = UIButton().then {
+        $0.setTitle("+ 알람 추가하기", for: .normal)
+    }
+    
     private let alarmTableView = UITableView().then {
         $0.register(AlarmCell.self, forCellReuseIdentifier: "AlarmCell")
         $0.rowHeight = 80
     }
     
     override func addView() {
-        view.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar, alarmTableView)
+        view.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar, addBtn, alarmTableView)
     }
     
     override func configureVC() {
@@ -75,6 +79,11 @@ class MainCalendarVC: BaseVC {
             $0.top.equalTo(todayDateLabel.snp.bottom).offset(-16)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(278)
+        }
+        
+        addBtn.snp.makeConstraints {
+            $0.top.equalTo(fsCalendar.snp.bottom).offset(24)
+            $0.trailing.equalToSuperview().inset(26)
         }
         
         alarmTableView.snp.makeConstraints {
