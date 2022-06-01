@@ -20,7 +20,20 @@ class AlarmCell: UITableViewCell {
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
     }
     
-    private let switchLabel = UISwitch()
+    private let timeLabel = UILabel().then {
+        $0.text = "6시 30분"
+        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        $0.textColor = .blue
+    }
+    
+    private let descriptionLabel = UILabel().then {
+        $0.text = "헬스가기"
+        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
+    }
+    
+    private let switchLabel = UISwitch().then {
+        $0.onTintColor = HealthManagerAsset.hmPrimary.color
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,7 +48,7 @@ class AlarmCell: UITableViewCell {
     }
     
     func addView() {
-        contentView.addSubviews(emojiLabel, switchLabel)
+        contentView.addSubviews(emojiLabel, timeLabel, descriptionLabel, switchLabel)
     }
     
     func setLayout() {
@@ -43,6 +56,16 @@ class AlarmCell: UITableViewCell {
             $0.size.equalTo(56)
             $0.leading.equalTo(30)
             $0.top.equalTo(14)
+        }
+        
+        timeLabel.snp.makeConstraints {
+            $0.leading.equalTo(emojiLabel.snp.trailing).offset(18)
+            $0.top.equalTo(22)
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.leading.equalTo(timeLabel)
+            $0.top.equalTo(timeLabel.snp.bottom).offset(2)
         }
         
         switchLabel.snp.makeConstraints {
