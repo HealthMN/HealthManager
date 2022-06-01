@@ -42,6 +42,7 @@ class MainCalendarVC: BaseVC {
     
     private let addBtn = UIButton().then {
         $0.setTitle("+ 알람 추가하기", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 15)
     }
     
     private let alarmTableView = UITableView().then {
@@ -87,7 +88,7 @@ class MainCalendarVC: BaseVC {
         }
         
         alarmTableView.snp.makeConstraints {
-            $0.top.equalTo(fsCalendar.snp.bottom).offset(12)
+            $0.top.equalTo(addBtn.snp.bottom).offset(12)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(37)
             $0.leading.trailing.equalToSuperview().inset(27)
         }
@@ -106,5 +107,4 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
 }
