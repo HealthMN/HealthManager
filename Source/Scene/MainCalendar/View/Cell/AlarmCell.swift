@@ -14,10 +14,15 @@ import Then
 class AlarmCell: UITableViewCell {
     
     private let emojiCircleLabel = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.layer.bounds.width/2 - 2
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+    }
+    
+    private let emojiLabel = UILabel().then {
+        $0.text = "⏰"
+        $0.font = .systemFont(ofSize: 28)
     }
     
     private let timeLabel = UILabel().then {
@@ -48,7 +53,7 @@ class AlarmCell: UITableViewCell {
     }
     
     func addView() {
-        contentView.addSubviews(emojiCircleLabel, timeLabel, descriptionLabel, switchLabel)
+        contentView.addSubviews(emojiCircleLabel, emojiLabel, timeLabel, descriptionLabel, switchLabel)
     }
     
     func setLayout() {
@@ -56,6 +61,12 @@ class AlarmCell: UITableViewCell {
             $0.size.equalTo(56)
             $0.leading.equalTo(30)
             $0.top.equalTo(14)
+        }
+        
+        emojiLabel.snp.makeConstraints {
+            $0.size.equalTo(30)
+            $0.leading.equalTo(emojiCircleLabel.snp.leading).offset(12)
+            $0.top.equalTo(emojiCircleLabel.snp.top).offset(12)
         }
         
         timeLabel.snp.makeConstraints {
