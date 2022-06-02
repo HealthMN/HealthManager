@@ -33,6 +33,7 @@ class AlarmCell: UITableViewCell {
     
     private let switchLabel = UISwitch().then {
         $0.onTintColor = HealthManagerAsset.hmPrimary.color
+        $0.setSwitch(width: 60, height: 34)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
