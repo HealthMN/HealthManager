@@ -15,6 +15,15 @@ import FSCalendar
 class MainCalendarVC: BaseVC {
     private let calendarViewModel = CalendarViewModel()
     
+    private let contentView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    
+    private let contentScrollView = UIScrollView().then {
+        $0.backgroundColor = .brown
+    }
+    
     private let smallTitleLabel = UILabel().then {
         $0.text =  "오늘 운동 일정을 확인하세요!"
         $0.textColor = HealthManagerAsset.hmPrimary.color
@@ -51,7 +60,9 @@ class MainCalendarVC: BaseVC {
     }
     
     override func addView() {
-        view.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar, addBtn, alarmTableView)
+        view.addSubviews(contentScrollView)
+        contentScrollView.addSubviews(contentView)
+        contentView.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar, addBtn, alarmTableView)
     }
     
     override func configureVC() {
@@ -61,6 +72,15 @@ class MainCalendarVC: BaseVC {
     }
     
     override func setLayout() {
+        contentView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.width.equalTo(contentScrollView.snp.width)
+        }
+        
+        contentScrollView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        
         smallTitleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             $0.leading.equalToSuperview().inset(26)
@@ -83,7 +103,7 @@ class MainCalendarVC: BaseVC {
         }
         
         addBtn.snp.makeConstraints {
-            $0.top.equalTo(fsCalendar.snp.bottom).offset(21)
+            $0.top.equalTo(fsCalendar.snp.bottom).offset(13)
             $0.trailing.equalTo(alarmTableView.snp.trailing)
         }
         
@@ -104,6 +124,12 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 5
+    }
+}
+
+extension MainCalendarVC: UIScrollViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("scrolled..")
     }
 }
