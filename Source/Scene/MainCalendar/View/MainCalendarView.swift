@@ -19,9 +19,7 @@ class MainCalendarVC: BaseVC {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private let contentScrollView = UIScrollView().then {
-        $0.backgroundColor = .brown
-    }
+    private let contentScrollView = UIScrollView()
     
     private let smallTitleLabel = UILabel().then {
         $0.text =  "오늘 운동 일정을 확인하세요!"
