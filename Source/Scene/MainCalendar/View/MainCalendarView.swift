@@ -17,7 +17,6 @@ class MainCalendarVC: BaseVC {
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     private let contentScrollView = UIScrollView().then {
@@ -60,8 +59,8 @@ class MainCalendarVC: BaseVC {
     }
     
     override func addView() {
-        view.addSubviews(contentScrollView)
-        contentScrollView.addSubviews(contentView)
+        view.addSubview(contentScrollView)
+        contentScrollView.addSubview(contentView)
         contentView.addSubviews(smallTitleLabel, todayDateLabel, profileBtn, fsCalendar, addBtn, alarmTableView)
     }
     
@@ -72,17 +71,16 @@ class MainCalendarVC: BaseVC {
     }
     
     override func setLayout() {
-        contentView.snp.makeConstraints {
-            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(contentScrollView.snp.width)
-        }
-        
         contentScrollView.snp.makeConstraints {
             $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         
+        contentView.snp.makeConstraints {
+            $0.centerX.width.top.bottom.equalToSuperview()
+        }
+        
         smallTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.top.equalToSuperview().offset(20)
             $0.leading.equalToSuperview().inset(26)
         }
         
@@ -109,7 +107,8 @@ class MainCalendarVC: BaseVC {
         
         alarmTableView.snp.makeConstraints {
             $0.top.equalTo(addBtn.snp.bottom).offset(12)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(37)
+            $0.height.equalTo(750)
+            $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(27)
         }
     }
