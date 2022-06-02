@@ -33,7 +33,7 @@ class AlarmCell: UITableViewCell {
     
     private let descriptionLabel = UILabel().then {
         $0.text = "헬스가기"
-        $0.font = .systemFont(ofSize: 14)
+        $0.font = .systemFont(ofSize: 18)
     }
     
     private let switchLabel = UISwitch().then {
@@ -71,7 +71,7 @@ class AlarmCell: UITableViewCell {
         
         timeLabel.snp.makeConstraints {
             $0.leading.equalTo(emojiCircleLabel.snp.trailing).offset(18)
-            $0.top.equalTo(22)
+            $0.top.equalTo(20)
         }
         
         descriptionLabel.snp.makeConstraints {
