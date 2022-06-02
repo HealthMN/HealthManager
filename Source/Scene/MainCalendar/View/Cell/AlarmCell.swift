@@ -13,7 +13,7 @@ import Then
 
 class AlarmCell: UITableViewCell {
     
-    private let emojiLabel = UIView().then {
+    private let emojiCircleLabel = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.layer.bounds.width/2 - 2
@@ -48,18 +48,18 @@ class AlarmCell: UITableViewCell {
     }
     
     func addView() {
-        contentView.addSubviews(emojiLabel, timeLabel, descriptionLabel, switchLabel)
+        contentView.addSubviews(emojiCircleLabel, timeLabel, descriptionLabel, switchLabel)
     }
     
     func setLayout() {
-        emojiLabel.snp.makeConstraints {
+        emojiCircleLabel.snp.makeConstraints {
             $0.size.equalTo(56)
             $0.leading.equalTo(30)
             $0.top.equalTo(14)
         }
         
         timeLabel.snp.makeConstraints {
-            $0.leading.equalTo(emojiLabel.snp.trailing).offset(18)
+            $0.leading.equalTo(emojiCircleLabel.snp.trailing).offset(18)
             $0.top.equalTo(22)
         }
         
