@@ -39,7 +39,8 @@ class MainCalendarVC: BaseVC {
     private var fsCalendar = FSCalendar().then {
         $0.locale = Locale(identifier: "En")
         $0.scrollDirection = .vertical
-        $0.appearance.headerTitleColor = .clear
+        $0.appearance.headerDateFormat = "MMMM"
+        $0.appearance.headerTitleColor = HealthManagerAsset.hmPrimary.color
         $0.appearance.titleWeekendColor = .red
         $0.appearance.caseOptions = FSCalendarCaseOptions.weekdayUsesSingleUpperCase
         $0.appearance.weekdayTextColor = .black
@@ -93,7 +94,7 @@ class MainCalendarVC: BaseVC {
         }
         
         fsCalendar.snp.makeConstraints {
-            $0.top.equalTo(todayDateLabel.snp.bottom).offset(-16)
+            $0.top.equalTo(todayDateLabel.snp.bottom).offset(-6)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(278)
         }
@@ -105,7 +106,7 @@ class MainCalendarVC: BaseVC {
         
         alarmTableView.snp.makeConstraints {
             $0.top.equalTo(addBtn.snp.bottom).offset(12)
-            $0.height.equalTo(750)
+            $0.height.equalTo(500)
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(27)
         }
@@ -121,7 +122,7 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
 }
 
