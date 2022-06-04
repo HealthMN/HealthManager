@@ -20,7 +20,7 @@ class AddAlarmView: BaseVC {
     private let selectIcon1 = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 5
+        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         $0.backgroundColor = .orange
     }
@@ -28,7 +28,7 @@ class AddAlarmView: BaseVC {
     private let selectIcon2 = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 5
+        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         $0.backgroundColor = .orange
     }
@@ -36,7 +36,7 @@ class AddAlarmView: BaseVC {
     private let selectIcon3 = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 5
+        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         $0.backgroundColor = .orange
     }
@@ -44,14 +44,15 @@ class AddAlarmView: BaseVC {
     private let selectIcon4 = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 5
+        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         $0.backgroundColor = .orange
     }
     
     private let selectIcon5 = UIView().then {
-//        $0.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
+        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
         print($0.layer.cornerRadius)
         $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         $0.backgroundColor = .orange
@@ -71,13 +72,31 @@ class AddAlarmView: BaseVC {
         selectIcon1.snp.makeConstraints {
             $0.size.equalTo(55)
             $0.top.equalTo(datepickerView.snp.bottom).offset(12)
-            $0.leading.equalToSuperview().inset(15)
+            $0.leading.equalToSuperview().inset(20)
         }
         
         selectIcon2.snp.makeConstraints {
             $0.size.equalTo(55)
             $0.top.equalTo(selectIcon1.snp.top)
             $0.leading.equalTo(selectIcon1.snp.trailing).offset(20)
+        }
+        
+        selectIcon3.snp.makeConstraints {
+            $0.size.equalTo(55)
+            $0.top.equalTo(selectIcon1.snp.top)
+            $0.centerX.equalToSuperview()
+        }
+        
+        selectIcon4.snp.makeConstraints {
+            $0.size.equalTo(55)
+            $0.top.equalTo(selectIcon1.snp.top)
+            $0.leading.equalTo(selectIcon3.snp.trailing).offset(20)
+        }
+        
+        selectIcon5.snp.makeConstraints {
+            $0.size.equalTo(55)
+            $0.top.equalTo(selectIcon1.snp.top)
+            $0.trailing.equalToSuperview().inset(20)
         }
     }
 }
