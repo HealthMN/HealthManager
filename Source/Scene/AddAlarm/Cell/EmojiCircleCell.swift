@@ -11,15 +11,15 @@ import UIKit
 import SnapKit
 import Then
 
-class EmojiCricleCell: UIView {
+class EmojiCricleCell: UIButton {
     
-    private lazy var emojiCircle = UIView().then {
+    private let emojiCircle = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.layer.bounds.width/2
     }
     
-    private var emojiLabel = UILabel().then {
+    private let emojiLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 28)
     }
     

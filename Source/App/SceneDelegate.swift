@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
-        let vc = Inject.ViewControllerHost(AddAlarmView())
+        let vc = Inject.ViewControllerHost(LoginVC())
         window?.rootViewController = UINavigationController(rootViewController: vc)
         
         let back = UIBarButtonItem(title: "뒤로가기", style: .plain, target: nil, action: nil)

@@ -5,6 +5,10 @@ import SnapKit
 
 class SignUpVC: BaseVC {
     
+    private lazy var passwordEyeIconBool = true
+    private lazy var checkPasswordEyeIconBool = true
+
+    
     private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
@@ -35,6 +39,7 @@ class SignUpVC: BaseVC {
     private let passwordEyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.contentMode = .scaleAspectFit
+        $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
     }
     
     private let checkPasswordTextLabel = UILabel().then {
@@ -50,7 +55,6 @@ class SignUpVC: BaseVC {
     
     private let checkPasswordEyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
-        $0.setTitleColor(.black, for: .normal)
         $0.contentMode = .scaleAspectFit
     }
     
@@ -117,4 +121,22 @@ class SignUpVC: BaseVC {
             $0.height.equalTo(45)
         }
     }
+    
+    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
+        passwordEyeIconBool.toggle()
+        print(passwordEyeIconBool)
+        
+        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
+        passwordEyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
+    @objc func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
+        checkPasswordEyeIconBool.toggle()
+        print(passwordEyeIconBool)
+        
+        checkPasswordTextField.isSecureTextEntry = checkPasswordEyeIconBool ? true : false
+        checkPasswordEyeIconBtn.setImage(UIImage(named: checkPasswordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
+    
 }
