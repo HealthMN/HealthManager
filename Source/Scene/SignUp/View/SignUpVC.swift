@@ -66,7 +66,7 @@ class SignUpVC: BaseVC {
     }
     
     override func addView() {
-        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordEyeIconBtn, passwordTextLabel, passwordTextField, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn)
+        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, passwordEyeIconBtn, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn)
     }
     
     override func setLayout() {
@@ -137,6 +137,4 @@ class SignUpVC: BaseVC {
         checkPasswordTextField.isSecureTextEntry = checkPasswordEyeIconBool ? true : false
         checkPasswordEyeIconBtn.setImage(UIImage(named: checkPasswordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
     }
-    
-    
 }
