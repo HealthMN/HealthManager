@@ -17,45 +17,24 @@ class AddAlarmView: BaseVC {
         $0.preferredDatePickerStyle = .wheels
     }
     
-    private let selectIcon1 = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
-        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        $0.backgroundColor = .orange
+    private let selectIcon1 = EmojiCricleCell().then {
+        $0.setPlaceholder(placeholder: "asdf")
     }
     
-    private let selectIcon2 = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
-        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        $0.backgroundColor = .orange
+    private let selectIcon2 = EmojiCricleCell().then {
+        $0.setPlaceholder(placeholder: "asss")
     }
     
-    private let selectIcon3 = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
-        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        $0.backgroundColor = .orange
+    private let selectIcon3 = EmojiCricleCell().then {
+        $0.setPlaceholder(placeholder: "asdfff")
     }
     
-    private let selectIcon4 = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
-        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        $0.backgroundColor = .orange
+    private let selectIcon4 = EmojiCricleCell().then {
+        $0.setPlaceholder(placeholder: "qwrf")
     }
     
-    private let selectIcon5 = UIView().then {
-        $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 8
-        print($0.layer.cornerRadius)
-        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        $0.backgroundColor = .orange
+    private let selectIcon5 = EmojiCricleCell().then {
+        $0.setPlaceholder(placeholder: "asdfsa")
     }
     
     override func addView() {
