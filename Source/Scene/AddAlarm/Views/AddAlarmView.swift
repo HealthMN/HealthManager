@@ -18,23 +18,23 @@ class AddAlarmView: BaseVC {
     }
     
     private let selectIcon1 = EmojiCricleCell().then {
-        $0.setPlaceholder(placeholder: "🥺")
+        $0.setPlaceholder(placeholder: "⏰")
     }
     
     private let selectIcon2 = EmojiCricleCell().then {
-        $0.setPlaceholder(placeholder: "asss")
+        $0.setPlaceholder(placeholder: "👟")
     }
     
     private let selectIcon3 = EmojiCricleCell().then {
-        $0.setPlaceholder(placeholder: "asdfff")
+        $0.setPlaceholder(placeholder: "🍖")
     }
     
     private let selectIcon4 = EmojiCricleCell().then {
-        $0.setPlaceholder(placeholder: "qwrf")
+        $0.setPlaceholder(placeholder: "💊")
     }
     
     private let selectIcon5 = EmojiCricleCell().then {
-        $0.setPlaceholder(placeholder: "asdfsa")
+        $0.setPlaceholder(placeholder: "💪🏻")
     }
     
     override func addView() {

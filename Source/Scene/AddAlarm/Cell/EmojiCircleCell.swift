@@ -38,10 +38,8 @@ class EmojiCricleCell: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func setPlaceholder(placeholder: String) {
-        emojiCircle.backgroundColor = .orange
+        emojiCircle.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         emojiLabel.text = placeholder
-        
     }
 }
