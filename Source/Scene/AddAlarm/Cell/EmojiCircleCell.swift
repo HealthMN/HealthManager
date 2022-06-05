@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 import Then
 
 class EmojiCricleCell: UIView {
@@ -18,26 +19,29 @@ class EmojiCricleCell: UIView {
         $0.layer.cornerRadius = $0.layer.bounds.width/2
     }
     
-    private lazy var emojiLabel = UILabel().then {
+    private var emojiLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 28)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(emojiCircle)
+        addSubviews(emojiCircle, emojiLabel)
+        
+        emojiLabel.snp.makeConstraints {
+            $0.top.equalTo(self.snp.top).offset(12)
+            $0.leading.equalTo(12)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func setPlaceholder(placeholder: String) {
         emojiCircle.backgroundColor = .orange
-        self.accessibilityAttributedLabel = NSAttributedString(
-            string: placeholder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        )
+        emojiLabel.text = placeholder
         
     }
 }

@@ -18,7 +18,7 @@ class AddAlarmView: BaseVC {
     }
     
     private let selectIcon1 = EmojiCricleCell().then {
-        $0.setPlaceholder(placeholder: "asdf")
+        $0.setPlaceholder(placeholder: "🥺")
     }
     
     private let selectIcon2 = EmojiCricleCell().then {
