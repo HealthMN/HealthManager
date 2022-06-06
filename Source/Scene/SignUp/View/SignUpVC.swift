@@ -56,6 +56,7 @@ class SignUpVC: BaseVC {
     private let checkPasswordEyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.contentMode = .scaleAspectFit
+        $0.addTarget(self, action: #selector(checkPasswordEyeIconClickEvent(_:)), for: .touchUpInside)
     }
     
     private let signUpBtn = UIButton().then {
