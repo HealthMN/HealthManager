@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 import Then
 
-class EmojiCricleCell: UIButton {
+class EmojiCircle: UIButton {
     
     private let emojiCircle = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 55, height: 55)

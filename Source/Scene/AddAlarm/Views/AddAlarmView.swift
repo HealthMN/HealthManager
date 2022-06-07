@@ -20,23 +20,23 @@ class AddAlarmView: BaseVC {
         $0.preferredDatePickerStyle = .wheels
     }
     
-    private let clockEmoji = EmojiCricleCell().then {
+    private let clockEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "⏰")
     }
     
-    private let runEmoji = EmojiCricleCell().then {
+    private let runEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "👟")
     }
     
-    private let foodEmoji = EmojiCricleCell().then {
+    private let foodEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "🍖")
     }
     
-    private let pillEmoji = EmojiCricleCell().then {
+    private let pillEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💊")
     }
     
-    private lazy var muscleEmoji = EmojiCricleCell().then {
+    private lazy var muscleEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💪🏻")
         $0.addTarget(self, action: #selector(muscleEmojiClick(_:)), for: .touchUpInside)
     }
@@ -55,9 +55,12 @@ class AddAlarmView: BaseVC {
         $0.font = .systemFont(ofSize: 15)
     }
     
+    private let repeatDaytableView = UITableView().then {
+        $0.rowHeight = 30
+    }
+    
     override func addView() {
-        view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,
-                         muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion)
+        view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
     }
     
     @objc func muscleEmojiClick(_ sender: UIButton) {
@@ -116,7 +119,12 @@ class AddAlarmView: BaseVC {
             $0.top.equalTo(descriptionTextField.snp.bottom).offset(35)
         }
         
-        
+        repeatDaytableView.snp.makeConstraints {
+            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(500)
+            $0.bottom.equalToSuperview().inset(28)
+        }
     }
 }
 
@@ -129,6 +137,4 @@ extension AddAlarmView: UITableViewDataSource {
         let cell = cells[indexPath.row]
         return cell
     }
-    
-    
 }
