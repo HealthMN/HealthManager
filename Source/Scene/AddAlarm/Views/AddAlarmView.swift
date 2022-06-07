@@ -13,6 +13,8 @@ import SnapKit
 import SwiftUI
 
 class AddAlarmView: BaseVC {
+    private let cells: [UITableViewCell] = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"] as! [UITableViewCell]
+    
     private let datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
         $0.preferredDatePickerStyle = .wheels
@@ -113,5 +115,20 @@ class AddAlarmView: BaseVC {
             $0.leading.equalTo(descriptionLabel.snp.leading)
             $0.top.equalTo(descriptionTextField.snp.bottom).offset(35)
         }
+        
+        
     }
+}
+
+extension AddAlarmView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cells.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = cells[indexPath.row]
+        return cell
+    }
+    
+    
 }
