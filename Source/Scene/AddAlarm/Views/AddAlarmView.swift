@@ -48,9 +48,14 @@ class AddAlarmView: BaseVC {
         $0.setPlaceholder(placeholder: "내용을 입력해주세요.")
     }
     
+    private let repeatDayQuestion = UILabel().then {
+        $0.text = "반복할 요일을 선택해주세요!"
+        $0.font = .systemFont(ofSize: 15)
+    }
+    
     override func addView() {
         view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,
-                         muscleEmoji, descriptionLabel, descriptionTextField)
+                         muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion)
     }
     
     @objc func muscleEmojiClick(_ sender: UIButton) {
@@ -102,6 +107,11 @@ class AddAlarmView: BaseVC {
         descriptionTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(31)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(16)
+        }
+        
+        repeatDayQuestion.snp.makeConstraints {
+            $0.leading.equalTo(descriptionLabel.snp.leading)
+            $0.top.equalTo(descriptionTextField.snp.bottom).offset(35)
         }
     }
 }
