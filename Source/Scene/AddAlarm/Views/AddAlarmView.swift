@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Then
 import SnapKit
+import SwiftUI
 
 class AddAlarmView: BaseVC {
     private let datepickerView = UIDatePicker().then {
@@ -38,8 +39,18 @@ class AddAlarmView: BaseVC {
         $0.addTarget(self, action: #selector(muscleEmojiClick(_:)), for: .touchUpInside)
     }
     
+    private let descriptionLabel = UILabel().then {
+        $0.text = "내용"
+        $0.font = .systemFont(ofSize: 15)
+    }
+    
+    private let descriptionTextField = UnderLineTextField().then {
+        $0.setPlaceholder(placeholder: "내용을 입력해주세요.")
+    }
+    
     override func addView() {
-        view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji, muscleEmoji)
+        view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,
+                         muscleEmoji, descriptionLabel, descriptionTextField)
     }
     
     @objc func muscleEmojiClick(_ sender: UIButton) {
@@ -81,6 +92,16 @@ class AddAlarmView: BaseVC {
             $0.size.equalTo(55)
             $0.top.equalTo(clockEmoji.snp.top)
             $0.trailing.equalToSuperview().inset(20)
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(31)
+            $0.top.equalTo(clockEmoji.snp.bottom).offset(32)
+        }
+        
+        descriptionTextField.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(31)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(16)
         }
     }
 }

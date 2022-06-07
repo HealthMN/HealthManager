@@ -48,8 +48,8 @@ class MainCalendarVC: BaseVC {
     
     private let addBtn = UIButton().then {
         $0.setTitle("+ 알람 추가하기", for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 15)
         $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 15)
         $0.addTarget(self, action: #selector(addAlarmBtnClick(_:)), for: .touchUpInside)
     }
     
