@@ -12,7 +12,7 @@ import SnapKit
 
 class AddAlarmViewCell: UITableViewCell {
     
-    private let dayLabel = UILabel().then {
+    public let dayLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 14)
     }
     

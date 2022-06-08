@@ -140,9 +140,11 @@ extension AddAlarmView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddAlarmViewCell", for: indexPath)
-        cell.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddAlarmViewCell", for: indexPath) as? AddAlarmViewCell else { return UITableViewCell()}
+    
         
+        cell.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
+        cell.dayLabel.text = cells[indexPath.row]
         return cell
     }
 }
