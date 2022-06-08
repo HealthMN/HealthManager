@@ -28,7 +28,7 @@ class AddAlarmViewCell: UITableViewCell {
     }
     
     func addView() {
-        addSubview(dayLabel)
+        contentView.addSubview(dayLabel)
     }
     
     func setLayout() {
