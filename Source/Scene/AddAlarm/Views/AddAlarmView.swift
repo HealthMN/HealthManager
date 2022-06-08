@@ -57,7 +57,7 @@ class AddAlarmView: BaseVC {
     
     private let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
-        $0.rowHeight = 60
+        $0.rowHeight = 45
         $0.layer.cornerRadius = 10
     }
     
@@ -113,7 +113,7 @@ class AddAlarmView: BaseVC {
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(31)
-            $0.top.equalTo(clockEmoji.snp.bottom).offset(32)
+            $0.top.equalTo(clockEmoji.snp.bottom).offset(20)
         }
         
         descriptionTextField.snp.makeConstraints {

@@ -33,8 +33,8 @@ class AddAlarmViewCell: UITableViewCell {
     
     func setLayout() {
         dayLabel.snp.makeConstraints {
-            $0.top.equalTo(7)
-            $0.leading.equalTo(5)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(25)
         }
     }
 }
