@@ -126,7 +126,7 @@ class AddAlarmView: BaseVC {
         }
         
         repeatDaytableView.snp.makeConstraints {
-            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(20)
+            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(28)
         }
