@@ -13,7 +13,7 @@ import SnapKit
 
 class AddAlarmView: BaseVC {
     
-    private let cells: [UITableViewCell] = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"] as! [UITableViewCell]
+    private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
     private let datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
@@ -57,15 +57,20 @@ class AddAlarmView: BaseVC {
     
     private let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
-        $0.rowHeight = 30
+        $0.rowHeight = 60
+    }
+    
+    @objc func muscleEmojiClick(_ sender: UIButton) {
+        print("clcik!!")
     }
     
     override func addView() {
         view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
     }
     
-    @objc func muscleEmojiClick(_ sender: UIButton) {
-        print("clcik!!")
+    override func configureVC() {
+        repeatDaytableView.delegate = self
+        repeatDaytableView.dataSource = self
     }
     
     override func setLayout() {
@@ -121,15 +126,14 @@ class AddAlarmView: BaseVC {
         }
         
         repeatDaytableView.snp.makeConstraints {
-            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(10)
+            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(500)
             $0.bottom.equalToSuperview().inset(28)
         }
     }
 }
 
-extension AddAlarmView: UITableViewDataSource {
+extension AddAlarmView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
