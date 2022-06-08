@@ -58,6 +58,7 @@ class AddAlarmView: BaseVC {
     private let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
         $0.rowHeight = 60
+        $0.layer.cornerRadius = 10
     }
     
     @objc func muscleEmojiClick(_ sender: UIButton) {
