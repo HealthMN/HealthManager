@@ -6,7 +6,6 @@
 //  Copyright © 2022 com.tm. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 import Then

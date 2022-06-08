@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import Then
 import SnapKit
-import SwiftUI
 
 class AddAlarmView: BaseVC {
+    
     private let cells: [UITableViewCell] = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"] as! [UITableViewCell]
     
     private let datepickerView = UIDatePicker().then {
@@ -56,6 +56,7 @@ class AddAlarmView: BaseVC {
     }
     
     private let repeatDaytableView = UITableView().then {
+        $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
         $0.rowHeight = 30
     }
     
@@ -134,7 +135,8 @@ extension AddAlarmView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = cells[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddAlarmViewCell", for: indexPath)
+        
         return cell
     }
 }
