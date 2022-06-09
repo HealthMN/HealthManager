@@ -13,6 +13,12 @@ import SnapKit
 
 class AddAlarmView: BaseVC {
     
+    private let contentView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private let contentScrollView = UIScrollView()
+    
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
     private let datepickerView = UIDatePicker().then {
@@ -38,7 +44,7 @@ class AddAlarmView: BaseVC {
     
     private lazy var muscleEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💪🏻")
-        $0.addTarget(self, action: #selector(muscleEmojiClick(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
     
     private let descriptionLabel = UILabel().then {
@@ -61,20 +67,33 @@ class AddAlarmView: BaseVC {
         $0.layer.cornerRadius = 10
     }
     
-    @objc func muscleEmojiClick(_ sender: UIButton) {
-        print("clcik!!")
+    @objc func clickMuscle(_ sender: UIButton) {
+        print("asdf")
     }
     
     override func addView() {
-        view.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
+        
+        view.addSubview(contentScrollView)
+        contentScrollView.addSubview(contentView)
+        contentView.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
     }
     
     override func configureVC() {
         repeatDaytableView.delegate = self
         repeatDaytableView.dataSource = self
+        
+        navigationController?.navigationItem.title = "asdf"
     }
     
     override func setLayout() {
+        contentScrollView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.centerX.width.top.bottom.equalToSuperview()
+        }
+        
         datepickerView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(50)
             $0.leading.trailing.equalToSuperview().inset(10)
@@ -83,7 +102,7 @@ class AddAlarmView: BaseVC {
         
         clockEmoji.snp.makeConstraints {
             $0.size.equalTo(55)
-            $0.top.equalTo(datepickerView.snp.bottom).offset(12)
+            $0.top.equalTo(datepickerView.snp.bottom).offset(32)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -112,8 +131,8 @@ class AddAlarmView: BaseVC {
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(31)
-            $0.top.equalTo(clockEmoji.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(32)
+            $0.top.equalTo(clockEmoji.snp.bottom).offset(32)
         }
         
         descriptionTextField.snp.makeConstraints {
@@ -123,13 +142,14 @@ class AddAlarmView: BaseVC {
         
         repeatDayQuestion.snp.makeConstraints {
             $0.leading.equalTo(descriptionLabel.snp.leading)
-            $0.top.equalTo(descriptionTextField.snp.bottom).offset(35)
+            $0.top.equalTo(descriptionTextField.snp.bottom).offset(45)
         }
         
         repeatDaytableView.snp.makeConstraints {
             $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(28)
+            $0.height.equalTo(300)
         }
     }
 }
@@ -141,7 +161,6 @@ extension AddAlarmView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddAlarmViewCell", for: indexPath) as? AddAlarmViewCell else { return UITableViewCell()}
-    
         
         cell.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         cell.dayLabel.text = cells[indexPath.row]
