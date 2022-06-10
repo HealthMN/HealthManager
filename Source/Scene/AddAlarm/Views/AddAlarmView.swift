@@ -24,6 +24,7 @@ class AddAlarmView: BaseVC {
     private let datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
         $0.preferredDatePickerStyle = .wheels
+        $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
     }
     
     private let clockEmoji = EmojiCircle().then {
@@ -69,6 +70,13 @@ class AddAlarmView: BaseVC {
     
     @objc func clickMuscle(_ sender: UIButton) {
         print("asdf")
+    }
+    
+    @objc func changedTimer(_ sender: Any?) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        print(dateFormatter.string(from: datepickerView.date))
     }
     
     override func addView() {
