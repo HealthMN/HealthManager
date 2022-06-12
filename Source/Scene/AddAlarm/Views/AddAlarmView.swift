@@ -16,10 +16,20 @@ class AddAlarmView: BaseVC {
     private let titleViewLabel = UILabel().then {
         $0.text = "알람 추가"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-        $0.sizeToFit()
     }
     
+    private lazy var cancelBtn = UIButton().then {
+        $0.setTitle("취소", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        $0.addTarget(self, action: #selector(clickCancelBtn(_:)), for: .touchUpInside)
+    }
     
+    private let okayBtn = UIButton().then() {
+        $0.setTitle("확인", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+    }
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -87,26 +97,41 @@ class AddAlarmView: BaseVC {
         print(dateFormatter.string(from: datepickerView.date))
     }
     
+    @objc func clickCancelBtn(_ sender: UIButton) {
+        print("dismiss")
+        self.dismiss(animated: true)
+    }
+    
     override func addView() {
         
         view.addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews(titleViewLabel, datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
+        contentView.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
     }
     
     override func configureVC() {
         repeatDaytableView.delegate = self
         repeatDaytableView.dataSource = self
         
-        self.navigationItem.titleView = titleViewLabel
-        
-        
+        navigationItem.titleView = titleViewLabel
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
     }
     
     override func setLayout() {
         titleViewLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(24)
             $0.centerX.equalToSuperview()
+        }
+        
+        cancelBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.leading.equalToSuperview().inset(16)
+        }
+        
+        okayBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.trailing.equalToSuperview().inset(16)
         }
         
         contentScrollView.snp.makeConstraints {
