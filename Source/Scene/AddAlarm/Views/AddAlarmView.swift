@@ -13,6 +13,14 @@ import SnapKit
 
 class AddAlarmView: BaseVC {
     
+    private let titleViewLabel = UILabel().then {
+        $0.text = "알람 추가"
+        $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        $0.sizeToFit()
+    }
+    
+    
+    
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -83,17 +91,24 @@ class AddAlarmView: BaseVC {
         
         view.addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews(datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
+        contentView.addSubviews(titleViewLabel, datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
     }
     
     override func configureVC() {
         repeatDaytableView.delegate = self
         repeatDaytableView.dataSource = self
         
-        navigationController?.navigationItem.title = "asdf"
+        self.navigationItem.titleView = titleViewLabel
+        
+        
     }
     
     override func setLayout() {
+        titleViewLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
         contentScrollView.snp.makeConstraints {
             $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
         }
@@ -103,7 +118,7 @@ class AddAlarmView: BaseVC {
         }
         
         datepickerView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(50)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             $0.leading.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(190)
         }
