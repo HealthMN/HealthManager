@@ -114,8 +114,11 @@ class AddAlarmView: BaseVC {
         repeatDaytableView.dataSource = self
         
         navigationItem.titleView = titleViewLabel
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
+        
+        let barbuttonItem = UIBarButtonItem(title: "여기", style: .plain, target: self, action: #selector(clickCancelBtn(_:)))
+        self.navigationItem.leftBarButtonItem = barbuttonItem
     }
     
     override func setLayout() {
@@ -123,16 +126,16 @@ class AddAlarmView: BaseVC {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(24)
             $0.centerX.equalToSuperview()
         }
-        
-        cancelBtn.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(14)
-            $0.leading.equalToSuperview().inset(16)
-        }
-        
-        okayBtn.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(14)
-            $0.trailing.equalToSuperview().inset(16)
-        }
+//
+//        cancelBtn.snp.makeConstraints {
+//            $0.top.equalToSuperview().inset(14)
+//            $0.leading.equalToSuperview().inset(16)
+//        }
+//
+//        okayBtn.snp.makeConstraints {
+//            $0.top.equalToSuperview().inset(14)
+//            $0.trailing.equalToSuperview().inset(16)
+//        }
         
         contentScrollView.snp.makeConstraints {
             $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
