@@ -116,9 +116,7 @@ class AddAlarmView: BaseVC {
         navigationItem.titleView = titleViewLabel
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
-        
-        let barbuttonItem = UIBarButtonItem(title: "여기", style: .plain, target: self, action: #selector(clickCancelBtn(_:)))
-        self.navigationItem.leftBarButtonItem = barbuttonItem
+    
     }
     
     override func setLayout() {
@@ -216,5 +214,17 @@ extension AddAlarmView: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         cell.dayLabel.text = cells[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
+        }
     }
 }
