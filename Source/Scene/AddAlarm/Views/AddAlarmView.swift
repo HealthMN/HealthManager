@@ -31,12 +31,6 @@ class AddAlarmView: BaseVC {
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
     
-    private let contentView = UIView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private let contentScrollView = UIScrollView()
-    
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
     private let datepickerView = UIDatePicker().then {
