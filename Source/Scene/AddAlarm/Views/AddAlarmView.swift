@@ -13,6 +13,8 @@ import SnapKit
 
 class AddAlarmView: BaseVC {
     
+    private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
+    
     private let titleViewLabel = UILabel().then {
         $0.text = "알람 추가"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
@@ -30,8 +32,6 @@ class AddAlarmView: BaseVC {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
-    
-    private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
     private let datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
@@ -131,7 +131,7 @@ class AddAlarmView: BaseVC {
         
         clockEmoji.snp.makeConstraints {
             $0.size.equalTo(55)
-            $0.top.equalTo(datepickerView.snp.bottom).offset(27)
+            $0.top.equalTo(datepickerView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(20)
         }
         
