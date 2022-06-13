@@ -109,7 +109,7 @@ class AddAlarmView: BaseVC {
     
     override func setLayout() {
         titleViewLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalToSuperview().inset(20)
             $0.centerX.equalToSuperview()
         }
 
