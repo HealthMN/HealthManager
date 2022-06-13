@@ -219,6 +219,7 @@ extension AddAlarmView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
+            cell.tintColor = HealthManagerAsset.hmPrimary.color
         }
     }
     
