@@ -75,7 +75,7 @@ class AddAlarmView: BaseVC {
         $0.setPlaceholder(placeholder: "내용을 입력해주세요.")
     }
     
-    private let repeatDayQuestion = UILabel().then {
+    private let repeatDayQuestionLabel = UILabel().then {
         $0.text = "반복할 요일을 선택해주세요!"
         $0.font = .systemFont(ofSize: 15)
     }
@@ -104,9 +104,9 @@ class AddAlarmView: BaseVC {
     
     override func addView() {
         
-        view.addSubview(contentScrollView)
-        contentScrollView.addSubview(contentView)
-        contentView.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
+//        view.addSubview(contentScrollView)
+//        contentScrollView.addSubview(contentView)
+        view.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
     }
     
     override func configureVC() {
@@ -114,44 +114,33 @@ class AddAlarmView: BaseVC {
         repeatDaytableView.dataSource = self
         
         navigationItem.titleView = titleViewLabel
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
-    
     }
     
     override func setLayout() {
         titleViewLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.centerX.equalToSuperview()
         }
-//
-//        cancelBtn.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(14)
-//            $0.leading.equalToSuperview().inset(16)
-//        }
-//
-//        okayBtn.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(14)
-//            $0.trailing.equalToSuperview().inset(16)
-//        }
-        
-        contentScrollView.snp.makeConstraints {
-            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+
+        cancelBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.leading.equalToSuperview().inset(16)
         }
-        
-        contentView.snp.makeConstraints {
-            $0.centerX.width.top.bottom.equalToSuperview()
+
+        okayBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.trailing.equalToSuperview().inset(16)
         }
         
         datepickerView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            $0.top.equalTo(titleViewLabel.snp.bottom).offset(27)
             $0.leading.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(190)
         }
         
         clockEmoji.snp.makeConstraints {
             $0.size.equalTo(55)
-            $0.top.equalTo(datepickerView.snp.bottom).offset(32)
+            $0.top.equalTo(datepickerView.snp.bottom).offset(27)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -181,7 +170,7 @@ class AddAlarmView: BaseVC {
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(32)
-            $0.top.equalTo(clockEmoji.snp.bottom).offset(32)
+            $0.top.equalTo(clockEmoji.snp.bottom).offset(27)
         }
         
         descriptionTextField.snp.makeConstraints {
@@ -189,13 +178,13 @@ class AddAlarmView: BaseVC {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(16)
         }
         
-        repeatDayQuestion.snp.makeConstraints {
+        repeatDayQuestionLabel.snp.makeConstraints {
             $0.leading.equalTo(descriptionLabel.snp.leading)
-            $0.top.equalTo(descriptionTextField.snp.bottom).offset(45)
+            $0.top.equalTo(descriptionTextField.snp.bottom).offset(27)
         }
         
         repeatDaytableView.snp.makeConstraints {
-            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(10)
+            $0.top.equalTo(repeatDayQuestionLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(28)
             $0.height.equalTo(300)
