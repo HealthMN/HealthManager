@@ -82,7 +82,7 @@ class AddAlarmView: BaseVC {
     
     private let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
-        $0.rowHeight = 45
+        $0.rowHeight = UITableView.automaticDimension
         $0.layer.cornerRadius = 10
     }
     
@@ -103,9 +103,6 @@ class AddAlarmView: BaseVC {
     }
     
     override func addView() {
-        
-//        view.addSubview(contentScrollView)
-//        contentScrollView.addSubview(contentView)
         view.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
     }
     
@@ -133,7 +130,7 @@ class AddAlarmView: BaseVC {
         }
         
         datepickerView.snp.makeConstraints {
-            $0.top.equalTo(titleViewLabel.snp.bottom).offset(27)
+            $0.top.equalTo(titleViewLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(190)
         }
@@ -180,14 +177,13 @@ class AddAlarmView: BaseVC {
         
         repeatDayQuestionLabel.snp.makeConstraints {
             $0.leading.equalTo(descriptionLabel.snp.leading)
-            $0.top.equalTo(descriptionTextField.snp.bottom).offset(27)
+            $0.top.equalTo(descriptionTextField.snp.bottom).offset(24)
         }
         
         repeatDaytableView.snp.makeConstraints {
             $0.top.equalTo(repeatDayQuestionLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(28)
-            $0.height.equalTo(300)
         }
     }
 }
