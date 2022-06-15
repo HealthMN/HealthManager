@@ -69,6 +69,7 @@ class SignUpVC: BaseVC {
         $0.addTarget(self, action: #selector(clickSignUpBtn(_:)), for: .touchUpInside)
     }
     
+    // MARK: - method
     @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
         passwordEyeIconBool.toggle()
         print(passwordEyeIconBool)

@@ -52,6 +52,7 @@ class LoginVC: BaseVC {
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = HealthManagerAsset.hmPrimary.color
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(clickLoginBtn(_:)), for: .touchUpInside)
     }
     
     private let notAccountBtn = UIButton().then {
@@ -61,6 +62,7 @@ class LoginVC: BaseVC {
         $0.addTarget(self, action: #selector(pushSignUpVC(_:)), for: .touchUpInside)
     }
     
+    // MARK: - method
     @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
         passwordEyeIconBool.toggle()
         print(passwordEyeIconBool)
@@ -70,9 +72,25 @@ class LoginVC: BaseVC {
     }
     
     @objc func pushSignUpVC(_ sender: UIButton) {
-        print("here")
         let vc = SignUpVC()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func clickLoginBtn(_ sender: UIButton) {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
+            if result != nil {
+                let vc = MainCalendarVC()
+                vc.modalPresentationStyle = .fullScreen
+                self?.present(vc, animated: true)
+                
+            } else {
+                print("Login Filed")
+            }
+            
+        }
     }
     
     override func addView() {

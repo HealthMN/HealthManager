@@ -74,7 +74,7 @@ class AddAlarmView: BaseVC {
         $0.font = .systemFont(ofSize: 15)
     }
     
-    let repeatDaytableView = UITableView().then {
+    private let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
         $0.rowHeight = UITableView.automaticDimension
         $0.layer.cornerRadius = 10
