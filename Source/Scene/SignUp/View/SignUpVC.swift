@@ -66,6 +66,22 @@ class SignUpVC: BaseVC {
         $0.layer.cornerRadius = 10
     }
     
+    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
+        passwordEyeIconBool.toggle()
+        print(passwordEyeIconBool)
+        
+        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
+        passwordEyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
+    @objc func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
+        checkPasswordEyeIconBool.toggle()
+        print(passwordEyeIconBool)
+        
+        checkPasswordTextField.isSecureTextEntry = checkPasswordEyeIconBool ? true : false
+        checkPasswordEyeIconBtn.setImage(UIImage(named: checkPasswordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
     override func addView() {
         view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, passwordEyeIconBtn, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn)
     }
@@ -121,21 +137,5 @@ class SignUpVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
         }
-    }
-    
-    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
-        passwordEyeIconBool.toggle()
-        print(passwordEyeIconBool)
-        
-        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
-        passwordEyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
-    }
-    
-    @objc func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
-        checkPasswordEyeIconBool.toggle()
-        print(passwordEyeIconBool)
-        
-        checkPasswordTextField.isSecureTextEntry = checkPasswordEyeIconBool ? true : false
-        checkPasswordEyeIconBtn.setImage(UIImage(named: checkPasswordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
     }
 }
