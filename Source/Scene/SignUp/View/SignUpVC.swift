@@ -2,12 +2,14 @@ import Foundation
 import UIKit
 import Then
 import SnapKit
+import Firebase
+import FirebaseAuth
 
 class SignUpVC: BaseVC {
     
     private lazy var passwordEyeIconBool = true
     private lazy var checkPasswordEyeIconBool = true
-
+    
     
     private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
@@ -64,6 +66,7 @@ class SignUpVC: BaseVC {
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
         $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(clickSignUpBtn(_:)), for: .touchUpInside)
     }
     
     @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
@@ -80,6 +83,20 @@ class SignUpVC: BaseVC {
         
         checkPasswordTextField.isSecureTextEntry = checkPasswordEyeIconBool ? true : false
         checkPasswordEyeIconBtn.setImage(UIImage(named: checkPasswordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
+    @objc func clickSignUpBtn(_ sender: UIButton) {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            guard let user = result?.user else {
+                // 실패시
+                return print("error = \(error?.localizedDescription)")
+            }
+            
+            print("Success SignUp = \(user)")
+        }
     }
     
     override func addView() {
