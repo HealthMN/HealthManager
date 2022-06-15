@@ -139,6 +139,8 @@ class MainCalendarVC: BaseVC {
     @objc func addAlarmBtnClick(_ sender: UIButton) {
         navigationController?.present(AddAlarmView(), animated: true)
     }
+    
+    
 }
 
 extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
@@ -150,7 +152,7 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 5
     }
 }
 
