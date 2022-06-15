@@ -91,8 +91,9 @@ class SignUpVC: BaseVC {
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             guard let user = result?.user else {
-                // 실패시
-                return print("error = \(error?.localizedDescription)")
+                // 실패
+                print("error = \(error?.localizedDescription)")
+                return
             }
             
             print("Success SignUp = \(user)")
