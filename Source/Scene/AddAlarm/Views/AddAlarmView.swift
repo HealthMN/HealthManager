@@ -74,13 +74,13 @@ class AddAlarmView: BaseVC {
         $0.font = .systemFont(ofSize: 15)
     }
     
-    private let repeatDaytableView = UITableView().then {
+    let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
         $0.rowHeight = UITableView.automaticDimension
         $0.layer.cornerRadius = 10
     }
     
-    @objc func clickMuscle(_ sender: UIButton) {
+    @objc func clickMuscle(_ sender: Any?) {
         print("asdf")
     }
     
@@ -105,6 +105,7 @@ class AddAlarmView: BaseVC {
         repeatDaytableView.dataSource = self
         
         navigationItem.titleView = titleViewLabel
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
     }
     
     override func setLayout() {

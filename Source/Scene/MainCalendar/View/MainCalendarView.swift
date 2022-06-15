@@ -58,6 +58,29 @@ class MainCalendarVC: BaseVC {
         $0.rowHeight = 80
     }
     
+    //뷰가 나타나기 직전
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.alarmTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+    }
+
+    //화면에 나타난 직후
+    override func viewWillDisappear(_ animated: Bool) {
+        self.alarmTableView.removeObserver(self, forKeyPath: "contentSize")
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if object is UITableView {
+                if let newValue = change?[.newKey] as? CGSize {
+                    alarmTableView.snp.updateConstraints {
+                        $0.height.equalTo(newValue.height + 50)
+                    }
+                }
+            }
+        }
+    }
+
     override func addView() {
         view.addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
@@ -107,8 +130,8 @@ class MainCalendarVC: BaseVC {
         
         alarmTableView.snp.makeConstraints {
             $0.top.equalTo(addBtn.snp.bottom).offset(10)
+            $0.bottom.equalToSuperview().inset(3)
             $0.height.equalTo(500)
-            $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
@@ -127,7 +150,7 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 18
     }
 }
 
