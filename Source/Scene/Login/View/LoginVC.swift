@@ -1,6 +1,7 @@
 import UIKit
 import Then
 import SnapKit
+import Firebase
 
 class LoginVC: BaseVC {
     
@@ -59,6 +60,20 @@ class LoginVC: BaseVC {
         $0.addTarget(self, action: #selector(pushSignUpVC(_:)), for: .touchUpInside)
     }
     
+    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
+        passwordEyeIconBool.toggle()
+        print(passwordEyeIconBool)
+        
+        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
+        eyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    }
+    
+    @objc func pushSignUpVC(_ sender: UIButton) {
+        print("here")
+        let vc = SignUpVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
                          passwordTextField, eyeIconBtn, findPaaswordBtn, loginBtn, notAccountBtn)
@@ -112,20 +127,6 @@ class LoginVC: BaseVC {
             $0.width.equalTo(92)
             $0.height.equalTo(14)
         }
-    }
-    
-    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
-        passwordEyeIconBool.toggle()
-        print(passwordEyeIconBool)
-        
-        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
-        eyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
-    }
-    
-    @objc func pushSignUpVC(_ sender: UIButton) {
-        print("here")
-        let vc = SignUpVC()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

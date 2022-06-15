@@ -13,8 +13,10 @@ import SnapKit
 
 class AddAlarmView: BaseVC {
     
+    private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
+    
     private let titleViewLabel = UILabel().then {
-        $0.text = "알람 추가"
+        $0.text = "알림 추가"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
     
@@ -30,14 +32,6 @@ class AddAlarmView: BaseVC {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
-    
-    private let contentView = UIView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private let contentScrollView = UIScrollView()
-    
-    private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
     private let datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
@@ -75,18 +69,18 @@ class AddAlarmView: BaseVC {
         $0.setPlaceholder(placeholder: "내용을 입력해주세요.")
     }
     
-    private let repeatDayQuestion = UILabel().then {
+    private let repeatDayQuestionLabel = UILabel().then {
         $0.text = "반복할 요일을 선택해주세요!"
         $0.font = .systemFont(ofSize: 15)
     }
     
-    private let repeatDaytableView = UITableView().then {
+    let repeatDaytableView = UITableView().then {
         $0.register(AddAlarmViewCell.self, forCellReuseIdentifier: "AddAlarmViewCell")
-        $0.rowHeight = 45
+        $0.rowHeight = UITableView.automaticDimension
         $0.layer.cornerRadius = 10
     }
     
-    @objc func clickMuscle(_ sender: UIButton) {
+    @objc func clickMuscle(_ sender: Any?) {
         print("asdf")
     }
     
@@ -103,10 +97,7 @@ class AddAlarmView: BaseVC {
     }
     
     override func addView() {
-        
-        view.addSubview(contentScrollView)
-        contentScrollView.addSubview(contentView)
-        contentView.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestion, repeatDaytableView)
+        view.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
     }
     
     override func configureVC() {
@@ -114,44 +105,35 @@ class AddAlarmView: BaseVC {
         repeatDaytableView.dataSource = self
         
         navigationItem.titleView = titleViewLabel
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
-    
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
     }
     
     override func setLayout() {
         titleViewLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.top.equalToSuperview().inset(20)
             $0.centerX.equalToSuperview()
         }
-//
-//        cancelBtn.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(14)
-//            $0.leading.equalToSuperview().inset(16)
-//        }
-//
-//        okayBtn.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(14)
-//            $0.trailing.equalToSuperview().inset(16)
-//        }
-        
-        contentScrollView.snp.makeConstraints {
-            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+
+        cancelBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.leading.equalToSuperview().inset(16)
         }
-        
-        contentView.snp.makeConstraints {
-            $0.centerX.width.top.bottom.equalToSuperview()
+
+        okayBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(14)
+            $0.trailing.equalToSuperview().inset(16)
         }
         
         datepickerView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            $0.top.equalTo(titleViewLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(190)
         }
         
         clockEmoji.snp.makeConstraints {
             $0.size.equalTo(55)
-            $0.top.equalTo(datepickerView.snp.bottom).offset(32)
+            $0.top.equalTo(datepickerView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -181,7 +163,7 @@ class AddAlarmView: BaseVC {
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(32)
-            $0.top.equalTo(clockEmoji.snp.bottom).offset(32)
+            $0.top.equalTo(clockEmoji.snp.bottom).offset(27)
         }
         
         descriptionTextField.snp.makeConstraints {
@@ -189,16 +171,15 @@ class AddAlarmView: BaseVC {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(16)
         }
         
-        repeatDayQuestion.snp.makeConstraints {
+        repeatDayQuestionLabel.snp.makeConstraints {
             $0.leading.equalTo(descriptionLabel.snp.leading)
-            $0.top.equalTo(descriptionTextField.snp.bottom).offset(45)
+            $0.top.equalTo(descriptionTextField.snp.bottom).offset(24)
         }
         
         repeatDaytableView.snp.makeConstraints {
-            $0.top.equalTo(repeatDayQuestion.snp.bottom).offset(10)
+            $0.top.equalTo(repeatDayQuestionLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(28)
-            $0.height.equalTo(300)
         }
     }
 }
