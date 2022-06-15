@@ -106,6 +106,7 @@ class AddAlarmView: BaseVC {
         
         navigationItem.titleView = titleViewLabel
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
     }
     
     override func setLayout() {
