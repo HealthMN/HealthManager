@@ -131,7 +131,7 @@ class MainCalendarVC: BaseVC {
         alarmTableView.snp.makeConstraints {
             $0.top.equalTo(addBtn.snp.bottom).offset(10)
             $0.bottom.equalToSuperview().inset(3)
-            $0.height.equalTo(500)
+            $0.height.equalTo(100)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
@@ -150,7 +150,7 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 18
+        return 1
     }
 }
 
