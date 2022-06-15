@@ -93,7 +93,7 @@ class SignUpVC: BaseVC {
             guard let user = result?.user else {
                 // 실패
                 print("error = \(error?.localizedDescription)")
-                return
+                return self.emailTextField.shake()
             }
             
             print("Success SignUp = \(user)")

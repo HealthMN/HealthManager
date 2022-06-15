@@ -19,7 +19,7 @@ extension UIImage {
     func resize(newWidth: CGFloat) -> UIImage {
         let scale = newWidth / self.size.width
         let newHeight = self.size.height * scale
-
+        
         let size = CGSize(width: newWidth, height: newHeight)
         let render = UIGraphicsImageRenderer(size: size)
         let renderImage = render.image { context in
@@ -33,17 +33,18 @@ extension UIImage {
     }
 }
 
-extension UIView { // textField 흔들기
+extension UITextField { // textField 흔들기
     func shake() {
         UIView.animate(withDuration: 0.6, animations: {
             
-            for sub in self.subviews{
-                if sub.backgroundColor == UIColor.red{
-                    sub.removeFromSuperview()
-                }
+            for _ in self.subviews {
+                self.subviews[0].backgroundColor = .red
             }
         })
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        print("subview = \(self.subviews.count)")
+        print("asfas")
+        
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.6
         animation.values = [-10.0, 10.0, -10.0, 10.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
@@ -52,15 +53,15 @@ extension UIView { // textField 흔들기
 }
 
 extension UISwitch {
-
+    
     func setSwitch(width: CGFloat, height: CGFloat) {
-
+        
         let standardHeight: CGFloat = 31
         let standardWidth: CGFloat = 51
-
+        
         let heightRatio = height / standardHeight
         let widthRatio = width / standardWidth
-
+        
         transform = CGAffineTransform(scaleX: widthRatio, y: heightRatio)
     }
 }
