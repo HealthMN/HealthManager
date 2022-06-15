@@ -20,7 +20,7 @@ class AddAlarmView: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
     
-    private lazy var cancelBtn = UIButton().then {
+    private let cancelBtn = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
@@ -55,8 +55,9 @@ class AddAlarmView: BaseVC {
         $0.setPlaceholder(placeholder: "💊")
     }
     
-    private lazy var muscleEmoji = EmojiCircle().then {
-        $0.setPlaceholder(placeholder: "💪🏻")
+    private let muscleEmoji = EmojiCircle().then {
+//        $0.setPlaceholder(placeholder: "💪🏻")
+        $0.backgroundColor = .red
         $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
     
