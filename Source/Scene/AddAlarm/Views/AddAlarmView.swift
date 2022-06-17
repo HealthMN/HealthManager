@@ -82,8 +82,11 @@ class AddAlarmView: BaseVC {
         $0.layer.cornerRadius = 10
     }
     
+    // MARK: - method
+    
     @objc func clickMuscle(_ sender: Any?) {
         print("asdf")
+        muscleEmoji.
     }
     
     @objc func changedTimer(_ sender: Any?) {

@@ -13,7 +13,7 @@ import Then
 
 class EmojiCircle: UIButton {
     
-    private let emojiCircle = UIView().then {
+    private let emojiCircle = UILabel().then {
         $0.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.layer.bounds.width/2
@@ -30,7 +30,7 @@ class EmojiCircle: UIButton {
         addSubviews(emojiCircle, emojiLabel)
         
         emojiCircle.snp.makeConstraints {
-            $0.size.equalTo(20)
+            $0.size.equalTo(55)
         }
         
         emojiLabel.snp.makeConstraints {
