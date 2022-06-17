@@ -82,6 +82,7 @@ class LoginVC: BaseVC {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
+                
                 let vc = MainCalendarVC()
                 vc.modalPresentationStyle = .fullScreen
                 self?.present(vc, animated: true)
@@ -89,7 +90,6 @@ class LoginVC: BaseVC {
             } else {
                 print("Login Filed")
             }
-            
         }
     }
     

@@ -39,8 +39,9 @@ class AddAlarmView: BaseVC {
         $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
     }
     
-    private let clockEmoji = EmojiCircle().then {
+    private lazy var clockEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "⏰")
+        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
     
     private let runEmoji = EmojiCircle().then {
@@ -51,13 +52,13 @@ class AddAlarmView: BaseVC {
         $0.setPlaceholder(placeholder: "🍖")
     }
     
-    private let pillEmoji = EmojiCircle().then {
+    private lazy var pillEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💊")
+        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
     
-    private let muscleEmoji = EmojiCircle().then {
-//        $0.setPlaceholder(placeholder: "💪🏻")
-        $0.backgroundColor = .red
+    private lazy var muscleEmoji = EmojiCircle().then {
+        $0.setPlaceholder(placeholder: "💪🏻")
         $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
     
