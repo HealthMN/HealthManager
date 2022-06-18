@@ -46,10 +46,12 @@ class AddAlarmView: BaseVC {
     
     private let runEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "👟")
+        $0.addTarget(self, action: #selector(clickRun(_:)), for: .touchUpInside)
     }
     
     private let foodEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "🍖")
+        $0.addTarget(self, action: #selector(clickFood(_:)), for: .touchUpInside)
     }
     
     private let pillEmoji = EmojiCircle().then {
@@ -82,11 +84,19 @@ class AddAlarmView: BaseVC {
     }
     
     // MARK: - method
-    @objc func clickClock(_ sender: Any?) {
+    @objc func clickClock(_ sender: UIButton) {
         clockEmoji.setColor(circleColor: .init(red: 0.66, green: 0.75, blue: 1, alpha: 1))
     }
     
-    @objc func clickMuscle(_ sender: Any?) {
+    @objc func clickRun(_ sender: UIButton) {
+        runEmoji.setColor(circleColor: .init(red: 0.78, green: 1, blue: 0.68, alpha: 1))
+    }
+    
+    @objc func clickFood(_ sender: UIButton) {
+        foodEmoji.setColor(circleColor: .init(red: 1, green: 0.82, blue: 0.69, alpha: 1))
+    }
+    
+    @objc func clickMuscle(_ sender: UIButton) {
         muscleEmoji.setColor(circleColor: .init(red: 1, green: 0.65, blue: 0.65, alpha: 1))
     }
     
