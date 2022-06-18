@@ -17,7 +17,7 @@ class EmojiCircle: UIButton {
         $0.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
         $0.clipsToBounds = true
         $0.layer.cornerRadius = $0.layer.bounds.width/2
-        $0.backgroundColor = .red
+        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
     }
     
     private let emojiLabel = UILabel().then {
@@ -44,7 +44,10 @@ class EmojiCircle: UIButton {
     }
     
     func setPlaceholder(placeholder: String) {
-        emojiCircle.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
         emojiLabel.text = placeholder
+    }
+    
+    func setColor(circleColor: UIColor) {
+        emojiCircle.backgroundColor = circleColor
     }
 }

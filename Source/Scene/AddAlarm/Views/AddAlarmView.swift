@@ -39,9 +39,9 @@ class AddAlarmView: BaseVC {
         $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
     }
     
-    private lazy var clockEmoji = EmojiCircle().then {
+    private let clockEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "⏰")
-        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(clickClock(_:)), for: .touchUpInside)
     }
     
     private let runEmoji = EmojiCircle().then {
@@ -52,12 +52,11 @@ class AddAlarmView: BaseVC {
         $0.setPlaceholder(placeholder: "🍖")
     }
     
-    private lazy var pillEmoji = EmojiCircle().then {
+    private let pillEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💊")
-        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
     
-    private lazy var muscleEmoji = EmojiCircle().then {
+    private let muscleEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💪🏻")
         $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
     }
@@ -83,10 +82,12 @@ class AddAlarmView: BaseVC {
     }
     
     // MARK: - method
+    @objc func clickClock(_ sender: Any?) {
+        clockEmoji.setColor(circleColor: .init(red: 0.66, green: 0.75, blue: 1, alpha: 1))
+    }
     
     @objc func clickMuscle(_ sender: Any?) {
-        print("asdf")
-        muscleEmoji.
+        muscleEmoji.setColor(circleColor: .init(red: 1, green: 0.65, blue: 0.65, alpha: 1))
     }
     
     @objc func changedTimer(_ sender: Any?) {
