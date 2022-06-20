@@ -97,16 +97,22 @@ class SignUpVC: BaseVC {
 //            }
             
             if let error = error as NSError? {
-                guard let errorCode = AuthErrorCode(_bridgedNSError: error) else {
-                    return
-                }
-
                 print("error = \(error.localizedDescription)")
                 
                 switch AuthErrorCode(_nsError: error).code {
+                    
+                case .emailAlreadyInUse:
+                    print("이미 이메일 사용중")
+                    
                 case .invalidEmail:
                     print("이메일 형식이 틀림")
                     self.emailTextField.shake()
+                    
+                case .operationNotAllowed:
+                    print("사용할 수 없는 이메일 및 비밀번호")
+                    
+                case .weakPassword:
+                    print("안정성이 낮은 비밀번호 형식")
                     
                 default:
                     print("asf")
