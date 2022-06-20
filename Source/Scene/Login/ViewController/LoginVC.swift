@@ -84,7 +84,7 @@ class LoginVC: BaseVC {
             if result != nil {
                 
                 let vc = MainCalendarVC()
-                self?.navigationController?.pushViewController(vc, animated: true)
+                self?.navigationController?.setViewControllers([vc], animated: true)
                 
             } else {
                 print("Login Filed")
