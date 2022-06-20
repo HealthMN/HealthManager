@@ -19,4 +19,7 @@ class SignUpViewModel {
     func checkPasswordVisibleButtonDidTap() {
         checkPasswordIsVisible.value.toggle()
     }
+    
+    var emailTextCheck = Observable(false)
+    var passwordTextCheck = Observable(false)
 }

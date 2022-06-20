@@ -188,5 +188,11 @@ class SignUpVC: BaseVC {
                 self?.checkPasswordTextField.isSecureTextEntry = visible ? false : true
             }
         }
+        
+        viewModel.emailTextCheck.bind { [weak self] check in
+            DispatchQueue.main.async {
+                self?.email
+            }
+        }
     }
 }
