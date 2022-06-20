@@ -19,10 +19,7 @@ class SignUpViewModel {
     func checkPasswordVisibleButtonDidTap() {
         checkPasswordIsVisible.value.toggle()
     }
-    
-    var emailTextCheck = Observable(false)
-    var passwordTextCheck = Observable(false)
-    
+
     func signUpFetch(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             //error

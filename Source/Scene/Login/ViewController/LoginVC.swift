@@ -85,7 +85,7 @@ class LoginVC: BaseVC {
                 
                 let vc = MainCalendarVC()
                 vc.modalPresentationStyle = .fullScreen
-                self?.present(vc, animated: true)
+                self?.navigationController?.pushViewController(vc, animated: true)
 
                 
             } else {

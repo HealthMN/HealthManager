@@ -80,6 +80,11 @@ class MainCalendarVC: BaseVC {
             }
         }
     }
+    
+    @objc func addAlarmBtnClick(_ sender: UIButton) {
+        print("asdf")
+        navigationController?.present(AddAlarmVC(), animated: true)
+    }
 
     override func addView() {
         view.addSubview(contentScrollView)
@@ -134,10 +139,6 @@ class MainCalendarVC: BaseVC {
             $0.height.equalTo(100)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
-    }
-    
-    @objc func addAlarmBtnClick(_ sender: UIButton) {
-        navigationController?.present(AddAlarmVC(), animated: true)
     }
 }
 
