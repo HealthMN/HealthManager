@@ -10,9 +10,6 @@ class SignUpVC: BaseVC {
     private lazy var passwordEyeIconBool = true
     private lazy var checkPasswordEyeIconBool = true
     
-    private let viewModel = SignUpViewModel()
-    
-    
     private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
@@ -89,19 +86,34 @@ class SignUpVC: BaseVC {
     }
     
     @objc func clickSignUpBtn(_ sender: UIButton) {
-//        guard let email = emailTextField.text else { return }
-//        guard let password = passwordTextField.text else { return }
-//
-//        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
 //            guard let user = result?.user else {
 //                // 실패
 //                print("error = \(error?.localizedDescription)")
 //                return self.emailTextField.shake()
 //            }
-//            print("Success SignUp = \(user)")
-//        }
-        viewModel.singUpAuth()
-        
+            
+            if let error = error as NSError? {
+                guard let errorCode = AuthErrorCode(_bridgedNSError: error) else {
+                    return
+                }
+
+                print("error = \(error.localizedDescription)")
+                
+                switch AuthErrorCode(_nsError: error).code {
+                case .invalidEmail:
+                    print("이메일 형식이 틀림")
+                    self.emailTextField.shake()
+                    
+                default:
+                    print("asf")
+                }
+            }
+        }
+
     }
     
     override func addView() {
