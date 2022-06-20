@@ -30,7 +30,7 @@ class SignUpVC: BaseVC {
         $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
-    let emailTextField = UnderLineTextField().then {
+    private let emailTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "이메일을 입력해주세요.")
     }
     
@@ -40,7 +40,7 @@ class SignUpVC: BaseVC {
         $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
-    let passwordTextField = UnderLineTextField().then {
+    private let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
         $0.isSecureTextEntry = true
     }
