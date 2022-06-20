@@ -176,17 +176,16 @@ class SignUpVC: BaseVC {
     override func bindState() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
-                self?.passwordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon"), for: .normal)
-                print("visible  = \(visible)")
+                self?.passwordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
                 
-                self?.passwordTextField.isSecureTextEntry = visible ? true : false
+                self?.passwordTextField.isSecureTextEntry = visible ? false : true
             }
         }
         viewModel.checkPasswordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
-                self?.checkPasswordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon"), for: .normal)
+                self?.checkPasswordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
                 
-                self?.passwordTextField.isSecureTextEntry = visible ? true : false
+                self?.checkPasswordTextField.isSecureTextEntry = visible ? false : true
             }
         }
     }
