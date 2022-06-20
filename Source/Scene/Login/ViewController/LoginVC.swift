@@ -32,7 +32,6 @@ class LoginVC: BaseVC {
     
     private let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
-        $0.isSecureTextEntry = true
     }
     
     private let eyeIconBtn = UIButton().then {
@@ -84,9 +83,7 @@ class LoginVC: BaseVC {
             if result != nil {
                 
                 let vc = MainCalendarVC()
-                vc.modalPresentationStyle = .fullScreen
                 self?.navigationController?.pushViewController(vc, animated: true)
-
                 
             } else {
                 print("Login Filed")
