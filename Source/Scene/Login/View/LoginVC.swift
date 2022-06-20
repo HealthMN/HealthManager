@@ -72,7 +72,7 @@ class LoginVC: BaseVC {
     }
     
     @objc func pushSignUpVC(_ sender: UIButton) {
-        let vc = SignUpVC()
+        let vc = SignUpVC(viewModel: .init())
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -10,5 +10,13 @@ import Foundation
 import FirebaseAuth
 
 class SignUpViewModel {
+    var passwordIsVisible = Observable(false)
+    var checkPasswordIsVisible = Observable(false)
     
+    func passwordVisibleButtonDidTap() {
+        passwordIsVisible.value.toggle()
+    }
+    func checkPasswordVisibleButtonDidTap() {
+        checkPasswordIsVisible.value.toggle()
+    }
 }

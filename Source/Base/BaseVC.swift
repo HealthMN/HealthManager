@@ -11,10 +11,12 @@ class BaseVC: UIViewController{
         addView()
         setLayout()
         configureVC()
+        bindState()
     }
 
     func setup(){}
     func addView(){}
     func setLayout(){}
     func configureVC(){}
+    func bindState(){}
 }
