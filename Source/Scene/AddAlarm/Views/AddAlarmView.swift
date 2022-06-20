@@ -56,6 +56,7 @@ class AddAlarmView: BaseVC {
     
     private let pillEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💊")
+        $0.addTarget(self, action: #selector(clickPill(_:)), for: .touchUpInside)
     }
     
     private let muscleEmoji = EmojiCircle().then {
@@ -94,6 +95,10 @@ class AddAlarmView: BaseVC {
     
     @objc func clickFood(_ sender: UIButton) {
         foodEmoji.setColor(circleColor: .init(red: 1, green: 0.82, blue: 0.69, alpha: 1))
+    }
+    
+    @objc func clickPill(_ sender: UIButton) {
+        pillEmoji.setColor(circleColor: .init(red: 0.96, green: 0.95, blue: 0.69, alpha: 1))
     }
     
     @objc func clickMuscle(_ sender: UIButton) {

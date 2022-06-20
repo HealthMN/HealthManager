@@ -10,6 +10,8 @@ class SignUpVC: BaseVC {
     private lazy var passwordEyeIconBool = true
     private lazy var checkPasswordEyeIconBool = true
     
+    private let viewModel = SignUpViewModel()
+    
     
     private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
@@ -23,7 +25,7 @@ class SignUpVC: BaseVC {
         $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
-    private let emailTextField = UnderLineTextField().then {
+    let emailTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "이메일을 입력해주세요.")
     }
     
@@ -33,7 +35,7 @@ class SignUpVC: BaseVC {
         $0.textColor = HealthManagerAsset.hmPrimary.color
     }
     
-    private let passwordTextField = UnderLineTextField().then {
+    let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
         $0.isSecureTextEntry = true
     }
@@ -87,18 +89,19 @@ class SignUpVC: BaseVC {
     }
     
     @objc func clickSignUpBtn(_ sender: UIButton) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
+//        guard let email = emailTextField.text else { return }
+//        guard let password = passwordTextField.text else { return }
+//
+//        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+//            guard let user = result?.user else {
+//                // 실패
+//                print("error = \(error?.localizedDescription)")
+//                return self.emailTextField.shake()
+//            }
+//            print("Success SignUp = \(user)")
+//        }
+        viewModel.singUpAuth()
         
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            guard let user = result?.user else {
-                // 실패
-                print("error = \(error?.localizedDescription)")
-                return self.emailTextField.shake()
-            }
-            
-            print("Success SignUp = \(user)")
-        }
     }
     
     override func addView() {
