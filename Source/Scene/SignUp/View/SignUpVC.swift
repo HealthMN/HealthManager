@@ -90,12 +90,7 @@ class SignUpVC: BaseVC {
         guard let password = passwordTextField.text else { return }
 
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-//            guard let user = result?.user else {
-//                // 실패
-//                print("error = \(error?.localizedDescription)")
-//                return self.emailTextField.shake()
-//            }
-            
+            //error
             if let error = error as NSError? {
                 print("error = \(error.localizedDescription)")
                 
@@ -119,7 +114,6 @@ class SignUpVC: BaseVC {
                 }
             }
         }
-
     }
     
     override func addView() {

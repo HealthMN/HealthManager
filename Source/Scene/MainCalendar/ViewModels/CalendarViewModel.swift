@@ -7,7 +7,7 @@
 //
 import Foundation
 
-class CalendarViewModel: BaseVC {
+class CalendarViewModel {
     
     func getTodayTime() -> String {
         let date = Date()
