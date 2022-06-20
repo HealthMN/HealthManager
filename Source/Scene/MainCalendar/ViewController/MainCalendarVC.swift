@@ -46,7 +46,7 @@ class MainCalendarVC: BaseVC {
         $0.appearance.weekdayTextColor = .black
     }
     
-    private let addBtn = UIButton().then {
+    private lazy var addBtn = UIButton().then {
         $0.setTitle("+ 알림 추가하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 15)
@@ -137,10 +137,8 @@ class MainCalendarVC: BaseVC {
     }
     
     @objc func addAlarmBtnClick(_ sender: UIButton) {
-        navigationController?.present(AddAlarmView(), animated: true)
+        navigationController?.present(AddAlarmVC(), animated: true)
     }
-    
-    
 }
 
 extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {

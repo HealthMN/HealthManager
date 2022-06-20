@@ -88,32 +88,8 @@ class SignUpVC: BaseVC {
     @objc func clickSignUpBtn(_ sender: UIButton) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            //error
-            if let error = error as NSError? {
-                print("error = \(error.localizedDescription)")
-                
-                switch AuthErrorCode(_nsError: error).code {
-                    
-                case .emailAlreadyInUse:
-                    print("이미 이메일 사용중")
-                    
-                case .invalidEmail:
-                    print("이메일 형식이 틀림")
-                    self.emailTextField.shake()
-                    
-                case .operationNotAllowed:
-                    print("사용할 수 없는 이메일 및 비밀번호")
-                    
-                case .weakPassword:
-                    print("안정성이 낮은 비밀번호 형식")
-                    
-                default:
-                    print("asf")
-                }
-            }
-        }
+        
+        viewModel.signUpFetch(email: email, password: password)
     }
     
     override func addView() {
@@ -186,12 +162,6 @@ class SignUpVC: BaseVC {
                 self?.checkPasswordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
                 
                 self?.checkPasswordTextField.isSecureTextEntry = visible ? false : true
-            }
-        }
-        
-        viewModel.emailTextCheck.bind { [weak self] check in
-            DispatchQueue.main.async {
-                self?.email
             }
         }
     }
