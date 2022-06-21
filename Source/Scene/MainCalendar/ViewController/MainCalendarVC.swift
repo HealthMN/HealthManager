@@ -82,7 +82,6 @@ class MainCalendarVC: BaseVC {
     }
     
     @objc func addAlarmBtnClick(_ sender: UIButton) {
-        print("asdf")
         navigationController?.present(AddAlarmVC(), animated: true)
     }
 

@@ -77,15 +77,15 @@ class SignUpVC: BaseVC {
     }
     
     // MARK: - method
-    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
+    @objc private func passwordEyeIconClickEvent(_ sender: UIButton) {
         viewModel.passwordVisibleButtonDidTap()
     }
     
-    @objc func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
+    @objc private func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
         viewModel.checkPasswordVisibleButtonDidTap()
     }
     
-    @objc func clickSignUpBtn(_ sender: UIButton) {
+    @objc private func clickSignUpBtn(_ sender: UIButton) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
