@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        xcode-version: latest
     - name: install tuist
       run: curl -Ls https://install.tuist.io | bash
     - name: project Generate
