@@ -44,10 +44,10 @@ class LoginVC: BaseVC {
         $0.isSecureTextEntry = true
     }
     
-    private let passwordEyeIcon = UIButton().then {
+    private lazy var passwordEyeIcon = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.contentMode = .scaleAspectFit
-        $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(passwordEyeIconButtonDidTap(_:)), for: .touchUpInside)
     }
     
     private let findPaaswordBtn = UIButton().then {
@@ -56,7 +56,7 @@ class LoginVC: BaseVC {
         $0.setTitleColor(.gray, for: .normal)
     }
     
-    private let loginBtn = UIButton().then {
+    private lazy var loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = HealthManagerAsset.hmPrimary.color
@@ -64,19 +64,19 @@ class LoginVC: BaseVC {
         $0.addTarget(self, action: #selector(clickLoginBtn(_:)), for: .touchUpInside)
     }
     
-    private let notAccountBtn = UIButton().then {
+    private lazy var notAccountBtn = UIButton().then {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
-        $0.addTarget(self, action: #selector(pushSignUpVC(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(notAccountButtonDidTap(_:)), for: .touchUpInside)
     }
     
     // MARK: - method
-    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
+    @objc func passwordEyeIconButtonDidTap(_ sender: UIButton) {
         viewModel.passwordButtonDidTap()
     }
     
-    @objc func pushSignUpVC(_ sender: UIButton) {
+    @objc func notAccountButtonDidTap(_ sender: UIButton) {
         let vc = SignUpVC(viewModel: .init())
         self.navigationController?.pushViewController(vc, animated: true)
     }
