@@ -89,9 +89,7 @@ class LoginVC: BaseVC {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
-            
-                    self?.coordinator?.pushMainCalendarVC()
-                
+                self?.coordinator?.pushMainCalendarVC()
             } else {
                 print("Login Filed")
             }
@@ -152,7 +150,7 @@ class LoginVC: BaseVC {
             $0.height.equalTo(14)
         }
     }
-
+    
     override func bindState() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
@@ -163,6 +161,3 @@ class LoginVC: BaseVC {
         }
     }
 }
-
-
-
