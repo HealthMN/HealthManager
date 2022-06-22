@@ -13,18 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScence = (scene as? UIWindowScene) else { return }
         
         let nav = UINavigationController()
+        let vc = Inject.ViewControllerHost(LoginVC(viewModel: .init()))
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
         
+        
+//        let back = UIBarButtonItem()
+//        back.title = "뒤로가기"
+//        back.tintColor = .init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+//        vc.navigationItem.backBarButtonItem = back
+        
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
-        let vc = Inject.ViewControllerHost(LoginVC(viewModel: .init()))
         window?.rootViewController = nav
         
-        let back = UIBarButtonItem()
-        back.title = "뒤로가기"
-        back.tintColor = .init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-        vc.navigationItem.backBarButtonItem = back
         window?.makeKeyAndVisible()
     }
 

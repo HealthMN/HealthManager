@@ -15,6 +15,8 @@ class LoginVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
     
+    weak var coordinator: MainCoordinator?
+    
     private var viewModel: LoginViewModel
     
     private let loginTitleLabel = UILabel().then {
@@ -88,7 +90,7 @@ class LoginVC: BaseVC {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
             
-                
+                    self?.coordinator?.pushMainCalendarVC()
                 
             } else {
                 print("Login Filed")
