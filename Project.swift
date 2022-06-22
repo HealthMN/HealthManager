@@ -19,7 +19,8 @@ let project = Project(
             dependencies: [
                 .external(name: "Then"),
                 .external(name: "SnapKit"),
-                .external(name: "Inject")
+                .external(name: "Inject"),
+                .external(name: "Firebase")
             ]
         )
     ]
