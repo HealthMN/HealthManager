@@ -19,7 +19,6 @@ jobs:
       run: curl -Ls https://install.tuist.io | bash
     - name: project Generate
       run: |
-          rm -rf Package.resolved
           tuist generate
     - name: Build
       run: |
