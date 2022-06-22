@@ -97,10 +97,6 @@ class LoginVC: BaseVC {
         }
     }
     
-    override func configureVC() {
-        self.navigationItem.hidesBackButton = true
-    }
-    
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
                          passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn)
