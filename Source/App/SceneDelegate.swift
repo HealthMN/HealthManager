@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
-        let vc = Inject.ViewControllerHost(LoginVC())
+        let vc = Inject.ViewControllerHost(LoginVC(viewModel: .init()))
         window?.rootViewController = UINavigationController(rootViewController: vc)
         
         let back = UIBarButtonItem()
