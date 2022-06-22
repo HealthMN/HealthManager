@@ -87,9 +87,8 @@ class LoginVC: BaseVC {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
+            
                 
-                let vc = MainCalendarVC()
-                self?.navigationController?.setViewControllers([vc], animated: true)
                 
             } else {
                 print("Login Filed")
