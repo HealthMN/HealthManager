@@ -42,8 +42,6 @@ extension UITextField { // textField 흔들기
             }
         })
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        print("subview = \(self.subviews.count)")
-        print("asfas")
         
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.6

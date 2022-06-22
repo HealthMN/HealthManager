@@ -72,7 +72,7 @@ class LoginVC: BaseVC {
     }
     
     @objc func pushSignUpVC(_ sender: UIButton) {
-        let vc = SignUpVC()
+        let vc = SignUpVC(viewModel: .init())
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -84,13 +84,16 @@ class LoginVC: BaseVC {
             if result != nil {
                 
                 let vc = MainCalendarVC()
-                vc.modalPresentationStyle = .fullScreen
-                self?.present(vc, animated: true)
+                self?.navigationController?.setViewControllers([vc], animated: true)
                 
             } else {
                 print("Login Filed")
             }
         }
+    }
+    
+    override func configureVC() {
+        self.navigationItem.hidesBackButton = true
     }
     
     override func addView() {

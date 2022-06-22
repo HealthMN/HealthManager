@@ -7,9 +7,16 @@ import FirebaseAuth
 
 class SignUpVC: BaseVC {
     
-    private lazy var passwordEyeIconBool = true
-    private lazy var checkPasswordEyeIconBool = true
+    init(viewModel: SignUpViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let viewModel: SignUpViewModel
     
     private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
@@ -38,7 +45,7 @@ class SignUpVC: BaseVC {
         $0.isSecureTextEntry = true
     }
     
-    private let passwordEyeIconBtn = UIButton().then {
+    private lazy var passwordEyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
@@ -55,13 +62,13 @@ class SignUpVC: BaseVC {
         $0.isSecureTextEntry = true
     }
     
-    private let checkPasswordEyeIconBtn = UIButton().then {
+    private lazy var checkPasswordEyeIconBtn = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(checkPasswordEyeIconClickEvent(_:)), for: .touchUpInside)
     }
     
-    private let signUpBtn = UIButton().then {
+    private lazy var signUpBtn = UIButton().then {
         $0.setTitle("회원가입", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = UIColor(red: 0.25, green: 0.26, blue: 0.58, alpha: 1)
@@ -70,35 +77,19 @@ class SignUpVC: BaseVC {
     }
     
     // MARK: - method
-    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
-        passwordEyeIconBool.toggle()
-        print(passwordEyeIconBool)
-        
-        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
-        passwordEyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    @objc private func passwordEyeIconClickEvent(_ sender: UIButton) {
+        viewModel.passwordVisibleButtonDidTap()
     }
     
-    @objc func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
-        checkPasswordEyeIconBool.toggle()
-        print(passwordEyeIconBool)
-        
-        checkPasswordTextField.isSecureTextEntry = checkPasswordEyeIconBool ? true : false
-        checkPasswordEyeIconBtn.setImage(UIImage(named: checkPasswordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    @objc private func checkPasswordEyeIconClickEvent(_ sender: UIButton) {
+        viewModel.checkPasswordVisibleButtonDidTap()
     }
     
-    @objc func clickSignUpBtn(_ sender: UIButton) {
+    @objc private func clickSignUpBtn(_ sender: UIButton) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            guard let user = result?.user else {
-                // 실패
-                print("error = \(error?.localizedDescription)")
-                return self.emailTextField.shake()
-            }
-            
-            print("Success SignUp = \(user)")
-        }
+        viewModel.signUpFetch(email: email, password: password)
     }
     
     override func addView() {
@@ -155,6 +146,23 @@ class SignUpVC: BaseVC {
             $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
+        }
+    }
+    
+    override func bindState() {
+        viewModel.passwordIsVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.passwordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
+                
+                self?.passwordTextField.isSecureTextEntry = visible ? false : true
+            }
+        }
+        viewModel.checkPasswordIsVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.checkPasswordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
+                
+                self?.checkPasswordTextField.isSecureTextEntry = visible ? false : true
+            }
         }
     }
 }

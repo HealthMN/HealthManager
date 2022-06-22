@@ -11,7 +11,7 @@ import UIKit
 import Then
 import SnapKit
 
-class AddAlarmView: BaseVC {
+class AddAlarmVC: BaseVC {
     
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
@@ -56,6 +56,7 @@ class AddAlarmView: BaseVC {
     
     private let pillEmoji = EmojiCircle().then {
         $0.setPlaceholder(placeholder: "💊")
+        $0.addTarget(self, action: #selector(clickPill(_:)), for: .touchUpInside)
     }
     
     private let muscleEmoji = EmojiCircle().then {
@@ -94,6 +95,10 @@ class AddAlarmView: BaseVC {
     
     @objc func clickFood(_ sender: UIButton) {
         foodEmoji.setColor(circleColor: .init(red: 1, green: 0.82, blue: 0.69, alpha: 1))
+    }
+    
+    @objc func clickPill(_ sender: UIButton) {
+        pillEmoji.setColor(circleColor: .init(red: 0.96, green: 0.95, blue: 0.69, alpha: 1))
     }
     
     @objc func clickMuscle(_ sender: UIButton) {
@@ -200,7 +205,7 @@ class AddAlarmView: BaseVC {
     }
 }
 
-extension AddAlarmView: UITableViewDataSource, UITableViewDelegate {
+extension AddAlarmVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
