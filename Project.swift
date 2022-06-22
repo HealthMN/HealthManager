@@ -20,7 +20,8 @@ let project = Project(
                 .external(name: "Then"),
                 .external(name: "SnapKit"),
                 .external(name: "Inject"),
-                .external(name: "Firebase")
+                .external(name: "Firebase"),
+                .external(name: "FSCalendar")
             ]
         )
     ]

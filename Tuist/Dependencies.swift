@@ -6,7 +6,8 @@ let dependencies = Dependencies(
         .remote(url: "https://github.com/SnapKit/SnapKit.git", requirement: .upToNextMajor(from: "5.6.0")),
         .remote(url: "https://github.com/devxoul/Then.git", requirement: .upToNextMajor(from: "3.0.0")),
         .remote(url: "https://github.com/krzysztofzablocki/Inject.git", requirement: .upToNextMajor(from: "1.0.5")),
-        .remote(url: "https://github.com/firebase/firebase-ios-sdk", requirement: .upToNextMajor(from: "8.0.0"))
+        .remote(url: "https://github.com/firebase/firebase-ios-sdk", requirement: .upToNextMajor(from: "8.0.0")),
+        .remote(url: "https://github.com/WenchaoD/FSCalendar", requirement: .upToNextMajor(from: "2.8.3"))
         
     ], platforms: [.iOS]
 )
