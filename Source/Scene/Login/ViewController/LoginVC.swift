@@ -79,8 +79,7 @@ class LoginVC: BaseVC {
     }
     
     @objc func notAccountButtonDidTap(_ sender: UIButton) {
-        let vc = SignUpVC(viewModel: .init())
-        self.navigationController?.pushViewController(vc, animated: true)
+        coordinator?.pushSignUpVC()
     }
     
     @objc func clickLoginBtn(_ sender: UIButton) {
