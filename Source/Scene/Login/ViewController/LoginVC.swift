@@ -15,7 +15,8 @@ class LoginVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var coordinator: MainCoordinator?
+    var coordinator: Coordinator?
+    
     
     private var viewModel: LoginViewModel
     
@@ -91,7 +92,7 @@ class LoginVC: BaseVC {
             if result != nil {
                 self?.coordinator?.pushMainCalendarVC()
             } else {
-                print("Login Filed")
+                print("Login Failed")
             }
         }
     }
