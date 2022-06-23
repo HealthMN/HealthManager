@@ -17,7 +17,6 @@ class MainCoordinator: Coordinator {
         self.nav = nav
     }
     
-    
     func start() {
         let vc = LoginVC(viewModel: .init())
         vc.coordinator = self

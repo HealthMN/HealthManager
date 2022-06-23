@@ -17,12 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
         
-        
-//        let back = UIBarButtonItem()
-//        back.title = "뒤로가기"
-//        back.tintColor = .init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-//        vc.navigationItem.backBarButtonItem = back
-        
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
         window?.rootViewController = nav

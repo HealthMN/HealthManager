@@ -15,8 +15,7 @@ class LoginVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var coordinator: MainCoordinator?
-    
+    weak var coordinator: MainCoordinator?
     
     private var viewModel: LoginViewModel
     
