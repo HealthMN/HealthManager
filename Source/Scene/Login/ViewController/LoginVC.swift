@@ -43,7 +43,6 @@ class LoginVC: BaseVC {
     
     private let passwordTextField = UnderLineTextField().then {
         $0.setPlaceholder(placeholder: "비밀번호를 입력해주세요.")
-        $0.isSecureTextEntry = true
     }
     
     private lazy var passwordEyeIcon = UIButton().then {
