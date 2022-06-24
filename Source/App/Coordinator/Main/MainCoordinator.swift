@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class MainCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
+    var parentCoordinators: Coordinator?
+    var childCoordinators: [Coordinator] = []
     var nav: UINavigationController
     
     init(nav: UINavigationController) {

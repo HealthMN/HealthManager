@@ -15,7 +15,7 @@ class LoginVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    weak var coordinator: MainCoordinator?
+    var coordinator: Coordinator?
     
     private var viewModel: LoginViewModel
     
@@ -88,7 +88,7 @@ class LoginVC: BaseVC {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
-                self?.coordinator?.pushMainCalendarVC()
+                self?.coordinator?.pushSignUpVC()
             } else {
                 print("Login Failed")
             }
