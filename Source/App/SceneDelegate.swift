@@ -4,22 +4,21 @@ import Inject
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+
         guard let windowScence = (scene as? UIWindowScene) else { return }
+        
+        let nav = UINavigationController()
+        let vc = Inject.ViewControllerHost(LoginVC(viewModel: .init()))
+        coordinator = MainCoordinator(nav: nav)
+        coordinator?.start()
         
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
-        let vc = Inject.ViewControllerHost(LoginVC())
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
         
-        let back = UIBarButtonItem()
-        back.title = "뒤로가기"
-        back.tintColor = .init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-        vc.navigationItem.backBarButtonItem = back
         window?.makeKeyAndVisible()
     }
 

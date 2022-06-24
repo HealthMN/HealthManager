@@ -13,4 +13,5 @@ protocol Coordinator {
     var nav: UINavigationController { get set }
     
     func start()
+    func pushSignUpVC()
 }

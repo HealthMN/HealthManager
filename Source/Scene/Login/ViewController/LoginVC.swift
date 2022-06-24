@@ -6,7 +6,18 @@ import FirebaseAuth
 
 class LoginVC: BaseVC {
     
-    private lazy var passwordEyeIconBool = true
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var coordinator: Coordinator?
+    
+    private var viewModel: LoginViewModel
     
     private let loginTitleLabel = UILabel().then {
         $0.text = "Login"
@@ -35,10 +46,10 @@ class LoginVC: BaseVC {
         $0.isSecureTextEntry = true
     }
     
-    private let eyeIconBtn = UIButton().then {
+    private lazy var passwordEyeIcon = UIButton().then {
         $0.setImage(UIImage(named: "EyeIcon")?.resize(newWidth: 22), for: .normal)
         $0.contentMode = .scaleAspectFit
-        $0.addTarget(self, action: #selector(passwordEyeIconClickEvent(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(passwordEyeIconButtonDidTap(_:)), for: .touchUpInside)
     }
     
     private let findPaaswordBtn = UIButton().then {
@@ -47,7 +58,7 @@ class LoginVC: BaseVC {
         $0.setTitleColor(.gray, for: .normal)
     }
     
-    private let loginBtn = UIButton().then {
+    private lazy var loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = HealthManagerAsset.hmPrimary.color
@@ -55,25 +66,20 @@ class LoginVC: BaseVC {
         $0.addTarget(self, action: #selector(clickLoginBtn(_:)), for: .touchUpInside)
     }
     
-    private let notAccountBtn = UIButton().then {
+    private lazy var notAccountBtn = UIButton().then {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
-        $0.addTarget(self, action: #selector(pushSignUpVC(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(notAccountButtonDidTap(_:)), for: .touchUpInside)
     }
     
     // MARK: - method
-    @objc func passwordEyeIconClickEvent(_ sender: UIButton) {
-        passwordEyeIconBool.toggle()
-        print(passwordEyeIconBool)
-        
-        passwordTextField.isSecureTextEntry = passwordEyeIconBool ? true : false
-        eyeIconBtn.setImage(UIImage(named: passwordEyeIconBool ? "EyeIcon" : "EyeIconBlack")?.resize(newWidth: 22), for: .normal)
+    @objc func passwordEyeIconButtonDidTap(_ sender: UIButton) {
+        viewModel.passwordButtonDidTap()
     }
     
-    @objc func pushSignUpVC(_ sender: UIButton) {
-        let vc = SignUpVC(viewModel: .init())
-        self.navigationController?.pushViewController(vc, animated: true)
+    @objc func notAccountButtonDidTap(_ sender: UIButton) {
+        coordinator?.pushSignUpVC()
     }
     
     @objc func clickLoginBtn(_ sender: UIButton) {
@@ -82,23 +88,16 @@ class LoginVC: BaseVC {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
-                
-                let vc = MainCalendarVC()
-                self?.navigationController?.setViewControllers([vc], animated: true)
-                
+                self?.coordinator?.pushSignUpVC()
             } else {
-                print("Login Filed")
+                print("Login Failed")
             }
         }
     }
     
-    override func configureVC() {
-        self.navigationItem.hidesBackButton = true
-    }
-    
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
-                         passwordTextField, eyeIconBtn, findPaaswordBtn, loginBtn, notAccountBtn)
+                         passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn)
     }
     
     override func setLayout() {
@@ -127,7 +126,7 @@ class LoginVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(60)
         }
         
-        eyeIconBtn.snp.makeConstraints {
+        passwordEyeIcon.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.top)
             $0.trailing.equalTo(passwordTextField.snp.trailing)
         }
@@ -150,5 +149,14 @@ class LoginVC: BaseVC {
             $0.height.equalTo(14)
         }
     }
+    
+    override func bindState() {
+        viewModel.passwordIsVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.passwordEyeIcon.setImage(UIImage(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
+                
+                self?.passwordTextField.isSecureTextEntry = visible ? false : true
+            }
+        }
+    }
 }
-
