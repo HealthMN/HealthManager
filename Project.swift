@@ -1,11 +1,19 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let projectName = "HealthManager"
 let organizationName = "com.tm"
 
 let project = Project(
     name: projectName,
-    organizationName: organizationName,
+    organizationName: organizationName, packages: [
+        .SnapKit,
+        .Then,
+        .Inject,
+        .FirebaseAuth,
+        .FirebaseMessaging,
+        .FSCalendar
+    ],
     targets: [
         Target(
             name: "\(projectName)",
@@ -17,9 +25,12 @@ let project = Project(
             sources: ["Source/**"],
             resources: ["Resource/**"],
             dependencies: [
-                .external(name: "Then"),
-                .external(name: "SnapKit"),
-                .external(name: "Inject")
+                .SPM.SnapKit,
+                .SPM.Then,
+                .SPM.Inject,
+                .SPM.FirebaseAuth,
+                .SPM.FirebaseMessaging,
+                .SPM.FSCalendar
             ]
         )
     ]
