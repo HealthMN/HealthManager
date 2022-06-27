@@ -65,7 +65,7 @@ class LoginVC: BaseVC {
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(clickLoginBtn(_:)), for: .touchUpInside)
     }
-    
+
     private lazy var notAccountBtn = UIButton().then {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
