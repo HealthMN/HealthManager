@@ -44,6 +44,7 @@ class SignUpViewModel {
                     print("asf")
                 }
             }
+            print("회원가입 성공!")
         }
     }
 }
