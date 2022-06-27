@@ -22,6 +22,11 @@ class WarningView: UIView {
         super.init(frame: frame)
         
         addSubview(warningLabel)
+        
+        warningLabel.snp.makeConstraints {
+            $0.width.equalTo(170)
+            $0.height.equalTo(16)
+        }
     }
     
     required init?(coder: NSCoder) {

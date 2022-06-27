@@ -73,7 +73,7 @@ class LoginVC: BaseVC {
         $0.addTarget(self, action: #selector(notAccountButtonDidTap(_:)), for: .touchUpInside)
     }
     
-    private let waringLabel = WarningView().then {
+    private let warningLabel = WarningView().then {
         $0.setWarningLabel(text: "*이메일 또는 비밀번호가 틀렸어요")
     }
     
@@ -101,7 +101,7 @@ class LoginVC: BaseVC {
     
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
-                         passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn, waringLabel)
+                         passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn, warningLabel)
     }
     
     override func setLayout() {
@@ -153,9 +153,7 @@ class LoginVC: BaseVC {
             $0.height.equalTo(14)
         }
         
-        waringLabel.snp.makeConstraints {
-            $0.width.equalTo(170)
-            $0.height.equalTo(16)
+        warningLabel.snp.makeConstraints {
             $0.top.equalTo(loginBtn.snp.bottom).offset(8)
             $0.leading.equalTo(loginBtn.snp.leading).offset(10)
         }
