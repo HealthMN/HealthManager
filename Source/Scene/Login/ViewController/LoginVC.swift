@@ -166,7 +166,6 @@ class LoginVC: BaseVC {
         viewModel.warningLabelisVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
                 self?.warningLabel.isHidden = visible ? false : true
-                print("asdf")
             }
         }
     }
