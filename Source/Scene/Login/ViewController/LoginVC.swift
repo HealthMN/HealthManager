@@ -91,14 +91,9 @@ class LoginVC: BaseVC {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
-            if result != nil {
-                self?.coordinator?.pushMainCalendarVC()
-            } else {
-                self?.warningLabel.isHidden = false
-                print("Login Failed")
-            }
-        }
+        viewModel.signInFetch(email: email, password: password)
+        
+        
     }
     
     override func addView() {
@@ -165,8 +160,13 @@ class LoginVC: BaseVC {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
                 self?.passwordEyeIcon.setImage(UIImage(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
-                
                 self?.passwordTextField.isSecureTextEntry = visible ? false : true
+            }
+        }
+        viewModel.warningLabelisVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.warningLabel.isHidden = visible ? false : true
+                print("asdf")
             }
         }
     }
