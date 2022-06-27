@@ -75,6 +75,7 @@ class LoginVC: BaseVC {
     
     private let warningLabel = WarningView().then {
         $0.setWarningLabel(text: "*이메일 또는 비밀번호가 틀렸어요.")
+        $0.isHidden = true
     }
     
     // MARK: - method
@@ -94,6 +95,7 @@ class LoginVC: BaseVC {
             if result != nil {
                 self?.coordinator?.pushMainCalendarVC()
             } else {
+                self?.warningLabel.isHidden = false
                 print("Login Failed")
             }
         }
