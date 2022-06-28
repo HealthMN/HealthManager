@@ -13,7 +13,7 @@ import Inject
 import FSCalendar
 
 class MainCalendarVC: BaseVC {
-    weak var coordinator: MainCoordinator?
+    var coordinator: Coordinator?
     
     private let calendarViewModel = CalendarViewModel()
     

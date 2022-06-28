@@ -92,8 +92,6 @@ class LoginVC: BaseVC {
         guard let password = passwordTextField.text else { return }
         
         viewModel.signInFetch(email: email, password: password)
-        
-        
     }
     
     override func addView() {

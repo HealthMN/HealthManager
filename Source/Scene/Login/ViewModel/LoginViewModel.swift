@@ -25,7 +25,6 @@ class LoginViewModel {
                 print("로그인 성공")
                 self?.coordinator?.pushMainCalendarVC()
             } else {
-        
                 self?.warningLabelisVisible.value = true
                 print("Login Failed")
             }
