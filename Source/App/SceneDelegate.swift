@@ -12,7 +12,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let nav = UINavigationController()
         
-        let vc = Inject.ViewControllerHost(LoginVC(viewModel: .init()))
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
         
