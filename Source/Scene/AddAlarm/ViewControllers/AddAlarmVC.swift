@@ -35,7 +35,10 @@ class AddAlarmVC: BaseVC {
     
     private let datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
-        $0.preferredDatePickerStyle = .wheels
+        if #available(iOS 13.4, *) {
+            $0.preferredDatePickerStyle = .wheels
+        } else {
+        }
         $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
     }
     
