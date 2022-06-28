@@ -65,12 +65,17 @@ class LoginVC: BaseVC {
         $0.layer.cornerRadius = 10
         $0.addTarget(self, action: #selector(clickLoginBtn(_:)), for: .touchUpInside)
     }
-    
+
     private lazy var notAccountBtn = UIButton().then {
         $0.setTitle("계정이 없으신가요?", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.setTitleColor(.gray, for: .normal)
         $0.addTarget(self, action: #selector(notAccountButtonDidTap(_:)), for: .touchUpInside)
+    }
+    
+    private let warningLabel = WarningView().then {
+        $0.setWarningLabel(text: "*이메일 또는 비밀번호가 틀렸어요.")
+        $0.isHidden = true
     }
     
     // MARK: - method
@@ -86,18 +91,12 @@ class LoginVC: BaseVC {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
-            if result != nil {
-                self?.coordinator?.pushSignUpVC()
-            } else {
-                print("Login Failed")
-            }
-        }
+        viewModel.signInFetch(email: email, password: password)
     }
     
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
-                         passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn)
+                         passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn, warningLabel)
     }
     
     override func setLayout() {
@@ -148,14 +147,23 @@ class LoginVC: BaseVC {
             $0.width.equalTo(92)
             $0.height.equalTo(14)
         }
+        
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(loginBtn.snp.bottom).offset(8)
+            $0.leading.equalTo(loginBtn.snp.leading).offset(10)
+        }
     }
     
     override func bindState() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
                 self?.passwordEyeIcon.setImage(UIImage(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
-                
                 self?.passwordTextField.isSecureTextEntry = visible ? false : true
+            }
+        }
+        viewModel.warningLabelisVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.warningLabel.isHidden = visible ? false : true
             }
         }
     }

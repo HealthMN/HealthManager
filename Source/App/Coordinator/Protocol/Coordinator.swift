@@ -14,4 +14,5 @@ protocol Coordinator {
     
     func start()
     func pushSignUpVC()
+    func pushMainCalendarVC()
 }

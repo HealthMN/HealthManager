@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScence = (scene as? UIWindowScene) else { return }
         
         let nav = UINavigationController()
-        let vc = Inject.ViewControllerHost(LoginVC(viewModel: .init()))
+        
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
         

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class MainCoordinator: Coordinator {
-    var parentCoordinators: Coordinator?
     var childCoordinators: [Coordinator] = []
     var nav: UINavigationController
     
@@ -19,7 +18,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = LoginVC(viewModel: .init())
+        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator = self
         nav.pushViewController(vc, animated: true)
     }
@@ -27,11 +26,13 @@ class MainCoordinator: Coordinator {
     func pushMainCalendarVC() {
         let vc = MainCalendarVC()
         vc.coordinator = self
+        print("MainCalendar!!")
         nav.setViewControllers([vc], animated: true)
     }
     
     func pushSignUpVC() {
         let vc = SignUpVC(viewModel: .init())
+        print("Sign")
         nav.pushViewController(vc, animated: true)
     }
 }
