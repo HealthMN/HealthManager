@@ -12,7 +12,7 @@ import Then
 import Inject
 import FSCalendar
 
-class MainCalendarViewController: BaseVC {
+class MainCalendarVC: BaseVC {
     var coordinator: Coordinator?
     
     private let calendarViewModel = CalendarViewModel()
@@ -143,7 +143,7 @@ class MainCalendarViewController: BaseVC {
     }
 }
 
-extension MainCalendarViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath)
         cell.selectionStyle = .none
@@ -156,7 +156,7 @@ extension MainCalendarViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension MainCalendarViewController: UIScrollViewDelegate {
+extension MainCalendarVC: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("scrolled..")
     }
