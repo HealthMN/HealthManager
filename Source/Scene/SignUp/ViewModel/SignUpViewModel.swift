@@ -19,7 +19,7 @@ class SignUpViewModel {
     func checkPasswordVisibleButtonDidTap() {
         checkPasswordIsVisible.value.toggle()
     }
-
+    
     func signUpFetch(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             //error
@@ -39,12 +39,11 @@ class SignUpViewModel {
                     
                 case .weakPassword:
                     print("안정성이 낮은 비밀번호 형식")
-                    
                 default:
-                    print("asf")
+                    print("그 외 다른 에러")
                 }
+                print("회원가입 성공!")
             }
-            print("회원가입 성공!")
         }
     }
 }
