@@ -28,6 +28,7 @@ class SignUpViewModel {
             //error
             if let error = error as NSError? {
                 print("error = \(error.localizedDescription)")
+                self?.warninglabelIsVisible.value = true
                 
                 switch AuthErrorCode(_nsError: error).code {
                     
@@ -49,8 +50,10 @@ class SignUpViewModel {
                 default:
                     print("그 외 다른 에러")
                 }
-                self?.warninglabelIsVisible.value = true
-                print("회원가입 성공!")
+            }
+            if let result = result {
+                self?.warninglabelIsVisible.value = false
+                print("result = \(result)")
             }
         }
     }
