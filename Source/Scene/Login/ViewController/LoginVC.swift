@@ -106,7 +106,7 @@ class LoginVC: BaseVC {
         }
         
         emailTextLabel.snp.makeConstraints {
-            $0.top.equalTo(loginTitleLabel.snp.bottom).offset(78)
+            $0.top.equalTo(loginTitleLabel.snp.bottom).offset(64)
             $0.leading.equalToSuperview().inset(56)
         }
         
@@ -136,7 +136,7 @@ class LoginVC: BaseVC {
         }
         
         loginBtn.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(96)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(80)
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
         }

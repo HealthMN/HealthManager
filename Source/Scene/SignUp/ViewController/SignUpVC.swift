@@ -108,7 +108,7 @@ class SignUpVC: BaseVC {
         }
         
         emailTextLabel.snp.makeConstraints {
-            $0.top.equalTo(signUpTitleLabel.snp.bottom).offset(78)
+            $0.top.equalTo(signUpTitleLabel.snp.bottom).offset(64)
             $0.leading.equalToSuperview().inset(56)
         }
         
@@ -148,7 +148,7 @@ class SignUpVC: BaseVC {
         }
         
         signUpBtn.snp.makeConstraints {
-            $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(96)
+            $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(80)
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
         }
