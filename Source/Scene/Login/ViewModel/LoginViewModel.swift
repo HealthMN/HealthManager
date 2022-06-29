@@ -27,11 +27,8 @@ class LoginViewModel {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
                 self?.coordinator?.pushMainCalendarVC()
-                print("로그인 성공")
-                
             } else {
                 self?.warningLabelisVisible.value = true
-                print("Login Failed")
             }
         }
     }

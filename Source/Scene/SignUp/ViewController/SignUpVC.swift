@@ -76,6 +76,10 @@ class SignUpVC: BaseVC {
         $0.addTarget(self, action: #selector(clickSignUpBtn(_:)), for: .touchUpInside)
     }
     
+    private let warningLabel = WarningView().then {
+        $0.isHidden = true
+    }
+    
     // MARK: - method
     @objc private func passwordEyeIconClickEvent(_ sender: UIButton) {
         viewModel.passwordVisibleButtonDidTap()
@@ -93,7 +97,7 @@ class SignUpVC: BaseVC {
     }
     
     override func addView() {
-        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, passwordEyeIconBtn, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn)
+        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, passwordEyeIconBtn, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn, warningLabel)
     }
     
     override func setLayout() {
@@ -103,7 +107,7 @@ class SignUpVC: BaseVC {
         }
         
         emailTextLabel.snp.makeConstraints {
-            $0.top.equalTo(signUpTitleLabel.snp.bottom).offset(78)
+            $0.top.equalTo(signUpTitleLabel.snp.bottom).offset(64)
             $0.leading.equalToSuperview().inset(56)
         }
         
@@ -143,9 +147,14 @@ class SignUpVC: BaseVC {
         }
         
         signUpBtn.snp.makeConstraints {
-            $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(96)
+            $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(80)
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
+        }
+        
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(signUpBtn.snp.bottom).offset(8)
+            $0.leading.equalTo(signUpBtn.snp.leading).offset(10)
         }
     }
     
@@ -162,6 +171,16 @@ class SignUpVC: BaseVC {
                 self?.checkPasswordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
                 
                 self?.checkPasswordTextField.isSecureTextEntry = visible ? false : true
+            }
+        }
+        viewModel.warningLabelDescription.bind { [weak self] text in
+            DispatchQueue.main.async {
+                self?.warningLabel.setWarningLabel(text: text)
+            }
+        }
+        viewModel.warninglabelIsVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.warningLabel.isHidden = visible ? false : true
             }
         }
     }
