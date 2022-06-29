@@ -77,7 +77,6 @@ class SignUpVC: BaseVC {
     }
     
     private let warningLabel = WarningView().then {
-        $0.setWarningLabel(text: "")
         $0.isHidden = true
     }
     

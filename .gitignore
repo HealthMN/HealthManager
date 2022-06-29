@@ -130,7 +130,7 @@ iOSInjectionProject/
 ### Swift ###
 # Xcode
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
+*GoogleService-Info.plist
 
 ## Playgrounds
 timeline.xctimeline
@@ -181,7 +181,7 @@ Dependencies/
 Packages
 xcuserdata
 *.xcodeproj
-
+*GoogleService-Info.plist
 
 ### SwiftPM ###
 
