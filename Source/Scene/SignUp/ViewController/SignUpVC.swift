@@ -98,7 +98,7 @@ class SignUpVC: BaseVC {
     }
     
     override func addView() {
-        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, passwordEyeIconBtn, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn)
+        view.addSubviews(signUpTitleLabel, emailTextLabel, emailTextField, passwordTextLabel, passwordTextField, passwordEyeIconBtn, checkPasswordTextLabel, checkPasswordTextField, checkPasswordEyeIconBtn, signUpBtn, warningLabel)
     }
     
     override func setLayout() {
@@ -151,6 +151,11 @@ class SignUpVC: BaseVC {
             $0.top.equalTo(checkPasswordTextField.snp.bottom).offset(96)
             $0.leading.trailing.equalToSuperview().inset(60)
             $0.height.equalTo(45)
+        }
+        
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(signUpBtn.snp.bottom).offset(8)
+            $0.leading.equalTo(signUpBtn.snp.leading).offset(10)
         }
     }
     
