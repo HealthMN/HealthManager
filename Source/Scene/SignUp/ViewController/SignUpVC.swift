@@ -76,6 +76,11 @@ class SignUpVC: BaseVC {
         $0.addTarget(self, action: #selector(clickSignUpBtn(_:)), for: .touchUpInside)
     }
     
+    private let warningLabel = WarningView().then {
+        $0.setWarningLabel(text: "")
+        $0.isHidden = true
+    }
+    
     // MARK: - method
     @objc private func passwordEyeIconClickEvent(_ sender: UIButton) {
         viewModel.passwordVisibleButtonDidTap()
@@ -162,6 +167,16 @@ class SignUpVC: BaseVC {
                 self?.checkPasswordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
                 
                 self?.checkPasswordTextField.isSecureTextEntry = visible ? false : true
+            }
+        }
+        viewModel.warningLabelDescription.bind { [weak self] text in
+            DispatchQueue.main.async {
+                self?.warningLabel.setWarningLabel(text: text)
+            }
+        }
+        viewModel.warninglabelIsVisible.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.warningLabel.isHidden = visible ? false : true
             }
         }
     }
