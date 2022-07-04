@@ -95,7 +95,8 @@ class AddAlarmVC: BaseVC {
     @objc func clickSelectBtn(_ sender: UIButton) {
         
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
-
+        
+        viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath!])
     }
     
     // MARK: - UI
