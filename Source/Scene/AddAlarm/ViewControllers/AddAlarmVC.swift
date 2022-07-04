@@ -96,7 +96,8 @@ class AddAlarmVC: BaseVC {
         
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
         
-        viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath!])
+        viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath ?? 0])
+        self.dismiss(animated: true)
     }
     
     // MARK: - UI
@@ -107,8 +108,6 @@ class AddAlarmVC: BaseVC {
     override func configureVC() {
         repeatDaytableView.delegate = self
         repeatDaytableView.dataSource = self
-        
-        print("Realm저장위치=\n\(Realm.Configuration.defaultConfiguration.fileURL!)\n")
         
         navigationItem.titleView = titleViewLabel
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
