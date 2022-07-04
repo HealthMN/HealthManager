@@ -13,6 +13,17 @@ import SnapKit
 
 class AddAlarmVC: BaseVC {
     
+    init(viewModel: AddAlarmViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let viewModel: AddAlarmViewModel
+    
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
     private let titleViewLabel = UILabel().then {
@@ -20,7 +31,7 @@ class AddAlarmVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
     
-    private let cancelBtn = UIButton().then {
+    private lazy var cancelBtn = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
@@ -29,13 +40,14 @@ class AddAlarmVC: BaseVC {
     
     private let button = AddAlarmSegmentedControl(titles: ["⏰", "👟", "🍖", "💊", "💪🏻"])
     
-    private let okayBtn = UIButton().then() {
+    private lazy var selectBtn = UIButton().then() {
         $0.setTitle("확인", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        $0.addTarget(self, action: #selector(clickSelectBtn(_:)), for: .touchUpInside)
     }
     
-    private let datepickerView = UIDatePicker().then {
+    private lazy var datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
         if #available(iOS 13.4, *) {
             $0.preferredDatePickerStyle = .wheels
@@ -43,31 +55,6 @@ class AddAlarmVC: BaseVC {
         }
         $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
     }
-    
-//    private let clockEmoji = EmojiCircle().then {
-//        $0.setPlaceholder(placeholder: "⏰")
-//        $0.addTarget(self, action: #selector(clickClock(_:)), for: .touchUpInside)
-//    }
-//
-//    private let runEmoji = EmojiCircle().then {
-//        $0.setPlaceholder(placeholder: "👟")
-//        $0.addTarget(self, action: #selector(clickRun(_:)), for: .touchUpInside)
-//    }
-//
-//    private let foodEmoji = EmojiCircle().then {
-//        $0.setPlaceholder(placeholder: "🍖")
-//        $0.addTarget(self, action: #selector(clickFood(_:)), for: .touchUpInside)
-//    }
-//
-//    private let pillEmoji = EmojiCircle().then {
-//        $0.setPlaceholder(placeholder: "💊")
-//        $0.addTarget(self, action: #selector(clickPill(_:)), for: .touchUpInside)
-//    }
-//
-//    private let muscleEmoji = EmojiCircle().then {
-//        $0.setPlaceholder(placeholder: "💪🏻")
-//        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
-//    }
     
     private let descriptionLabel = UILabel().then {
         $0.text = "내용"
@@ -103,8 +90,13 @@ class AddAlarmVC: BaseVC {
         self.dismiss(animated: true)
     }
     
+    @objc func clickSelectBtn(_ sender: UIButton) {
+        viewModel.selectButtonDidTap()
+    }
+    
+    // MARK: - UI
     override func addView() {
-        view.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, button, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
+        view.addSubviews(titleViewLabel, cancelBtn, selectBtn, datepickerView, button, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
     }
     
     override func configureVC() {
@@ -113,7 +105,7 @@ class AddAlarmVC: BaseVC {
         
         navigationItem.titleView = titleViewLabel
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: selectBtn)
     }
     
     override func setLayout() {
@@ -127,7 +119,7 @@ class AddAlarmVC: BaseVC {
             $0.leading.equalToSuperview().inset(16)
         }
 
-        okayBtn.snp.makeConstraints {
+        selectBtn.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14)
             $0.trailing.equalToSuperview().inset(16)
         }
@@ -166,6 +158,7 @@ class AddAlarmVC: BaseVC {
     }
 }
 
+// MARK: - Extension
 extension AddAlarmVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
