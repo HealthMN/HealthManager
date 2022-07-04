@@ -1,11 +1,14 @@
 import Foundation
-import 
+import RealmSwift
 
 class AddAlarmViewModel {
     
-    @Persisted
-    
-    func selectButtonDidTap() {
+    func selectButtonDidTap(date: Date, title: String, icon: String, week: String) {
+        let realm = try! Realm()
+        let model = AddAlarmModel(date: date, title: title, icon: icon, week: week)
         
+        try! realm.write{
+            realm.add(model)
+        }
     }
 }

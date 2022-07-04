@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Then
 import SnapKit
+import RealmSwift
 
 class AddAlarmVC: BaseVC {
     
@@ -22,7 +23,9 @@ class AddAlarmVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let viewModel: AddAlarmViewModel
+    private let viewModel: AddAlarmViewModel
+    
+    private let icons = ["⏰", "👟", "🍖", "💊", "💪🏻"]
     
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
@@ -38,7 +41,7 @@ class AddAlarmVC: BaseVC {
         $0.addTarget(self, action: #selector(clickCancelBtn(_:)), for: .touchUpInside)
     }
     
-    private let button = AddAlarmSegmentedControl(titles: ["⏰", "👟", "🍖", "💊", "💪🏻"])
+    private lazy var button = AddAlarmSegmentedControl(titles: icons)
     
     private lazy var selectBtn = UIButton().then() {
         $0.setTitle("확인", for: .normal)
@@ -51,9 +54,9 @@ class AddAlarmVC: BaseVC {
         $0.datePickerMode = .time
         if #available(iOS 13.4, *) {
             $0.preferredDatePickerStyle = .wheels
-        } else {
-        }
+        } else { }
         $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
+        $0.timeZone = .autoupdatingCurrent
     }
     
     private let descriptionLabel = UILabel().then {
@@ -77,7 +80,6 @@ class AddAlarmVC: BaseVC {
     }
     
     // MARK: - method
-    
     @objc func changedTimer(_ sender: Any?) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
@@ -91,7 +93,9 @@ class AddAlarmVC: BaseVC {
     }
     
     @objc func clickSelectBtn(_ sender: UIButton) {
-        viewModel.selectButtonDidTap()
+        
+        let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
+
     }
     
     // MARK: - UI
@@ -102,6 +106,8 @@ class AddAlarmVC: BaseVC {
     override func configureVC() {
         repeatDaytableView.delegate = self
         repeatDaytableView.dataSource = self
+        
+        print("Realm저장위치=\n\(Realm.Configuration.defaultConfiguration.fileURL!)\n")
         
         navigationItem.titleView = titleViewLabel
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
@@ -156,6 +162,7 @@ class AddAlarmVC: BaseVC {
             $0.bottom.equalToSuperview().inset(28)
         }
     }
+    
 }
 
 // MARK: - Extension

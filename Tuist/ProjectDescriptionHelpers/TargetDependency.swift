@@ -37,6 +37,6 @@ public extension Package {
         requirement: .upToNextMajor(from: "2.8.3"))
     static let RealmSwift = Package.remote(
         url: "https://github.com/realm/realm-swift",
-        requirement: .upToNextMajor(from: "10.2.0"))
+        requirement: .upToNextMajor(from: "10.1.0"))
     
 }
