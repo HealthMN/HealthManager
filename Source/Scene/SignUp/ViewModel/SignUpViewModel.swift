@@ -10,6 +10,8 @@ import Foundation
 import FirebaseAuth
 
 class SignUpViewModel {
+    var coordinaotr: Coordinator?
+    
     var passwordIsVisible = Observable(false)
     var checkPasswordIsVisible = Observable(false)
     
@@ -32,8 +34,9 @@ class SignUpViewModel {
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
                 //success
-                if let result = result {
+                if result != nil {
                     self?.warninglabelIsVisible.value = false
+                    self?.coordinaotr?.pushLoginVC()
                     print("회원가입 성공")
                 }
                 
