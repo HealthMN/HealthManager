@@ -37,7 +37,7 @@ class MainCoordinator: Coordinator {
     }
     
     func pushSignUpVC() {
-        let vc = SignUpVC(viewModel: .init())
+        let vc = SignUpVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         nav.pushViewController(vc, animated: true)
     }
 }

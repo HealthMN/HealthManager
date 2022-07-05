@@ -18,6 +18,10 @@ class SignUpViewModel {
     var warninglabelIsVisible = Observable(false)
     var warningLabelDescription = Observable("")
     
+    init(coordinator: Coordinator) {
+        self.coordinaotr = coordinator
+    }
+    
     func passwordVisibleButtonDidTap() {
         passwordIsVisible.value.toggle()
     }
