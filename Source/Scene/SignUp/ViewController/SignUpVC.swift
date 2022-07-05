@@ -92,8 +92,10 @@ class SignUpVC: BaseVC {
     @objc private func clickSignUpBtn(_ sender: UIButton) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
+        guard let checkPassword = checkPasswordTextField.text else { return }
         
         viewModel.signUpFetch(email: email, password: password)
+        viewModel.passwordCompareWithCheckPassword(password: password, checkPassword: checkPassword)
     }
     
     override func addView() {

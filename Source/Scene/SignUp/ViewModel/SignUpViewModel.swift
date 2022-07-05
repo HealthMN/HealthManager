@@ -19,9 +19,18 @@ class SignUpViewModel {
     func passwordVisibleButtonDidTap() {
         passwordIsVisible.value.toggle()
     }
+    
     func checkPasswordVisibleButtonDidTap() {
         checkPasswordIsVisible.value.toggle()
     }
+    
+    func passwordCompareWithCheckPassword(password: String, checkPassword: String) {
+        if password != checkPassword {
+            warningLabelDescription.value = "*비밀번호가 일치하지 않습니다."
+            print("비밀벊호 확인")
+        }
+    }
+    
     
     func signUpFetch(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
