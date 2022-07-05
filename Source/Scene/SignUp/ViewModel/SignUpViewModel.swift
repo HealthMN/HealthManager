@@ -26,8 +26,9 @@ class SignUpViewModel {
     
     func passwordCompareWithCheckPassword(email: String,password: String, checkPassword: String) {
         if password != checkPassword {
+            self.warninglabelIsVisible.value = true
             self.warningLabelDescription.value = "*비밀번호가 일치하지 않습니다."
-            print("비밀벊호 확인")
+            
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
                 //success
