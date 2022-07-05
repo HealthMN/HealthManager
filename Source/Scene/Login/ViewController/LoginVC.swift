@@ -154,6 +154,8 @@ class LoginVC: BaseVC {
         }
     }
     
+    // MARK: - bind
+    
     override func bindState() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {

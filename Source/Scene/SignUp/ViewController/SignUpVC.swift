@@ -159,6 +159,8 @@ class SignUpVC: BaseVC {
         }
     }
     
+    // MARK: - bind
+    
     override func bindState() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
@@ -177,6 +179,7 @@ class SignUpVC: BaseVC {
         viewModel.warningLabelDescription.bind { [weak self] text in
             DispatchQueue.main.async {
                 self?.warningLabel.setWarningLabel(text: text)
+                
             }
         }
         viewModel.warninglabelIsVisible.bind { [weak self] visible in
