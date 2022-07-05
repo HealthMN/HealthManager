@@ -93,9 +93,8 @@ class SignUpVC: BaseVC {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let checkPassword = checkPasswordTextField.text else { return }
-        
-        viewModel.signUpFetch(email: email, password: password)
-        viewModel.passwordCompareWithCheckPassword(password: password, checkPassword: checkPassword)
+    
+        viewModel.passwordCompareWithCheckPassword(email: email, password: password, checkPassword: checkPassword)
     }
     
     override func addView() {
@@ -180,8 +179,8 @@ class SignUpVC: BaseVC {
         }
         viewModel.warningLabelDescription.bind { [weak self] text in
             DispatchQueue.main.async {
+                print("text바뀜")
                 self?.warningLabel.setWarningLabel(text: text)
-                
             }
         }
         viewModel.warninglabelIsVisible.bind { [weak self] visible in
@@ -189,5 +188,6 @@ class SignUpVC: BaseVC {
                 self?.warningLabel.isHidden = visible ? false : true
             }
         }
+        
     }
 }
