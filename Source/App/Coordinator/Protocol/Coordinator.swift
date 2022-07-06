@@ -13,6 +13,7 @@ protocol Coordinator {
     var nav: UINavigationController { get set }
     
     func start()
+    func pushLoginVC()
     func pushSignUpVC()
     func pushMainCalendarVC()
 }

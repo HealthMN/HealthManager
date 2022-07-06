@@ -92,8 +92,9 @@ class SignUpVC: BaseVC {
     @objc private func clickSignUpBtn(_ sender: UIButton) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        
-        viewModel.signUpFetch(email: email, password: password)
+        guard let checkPassword = checkPasswordTextField.text else { return }
+    
+        viewModel.passwordCompareWithCheckPassword(email: email, password: password, checkPassword: checkPassword)
     }
     
     override func addView() {
@@ -155,8 +156,11 @@ class SignUpVC: BaseVC {
         warningLabel.snp.makeConstraints {
             $0.top.equalTo(signUpBtn.snp.bottom).offset(8)
             $0.leading.equalTo(signUpBtn.snp.leading).offset(10)
+            $0.width.equalTo(checkPasswordTextField.snp.width)
         }
     }
+    
+    // MARK: - bind
     
     override func bindState() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
@@ -183,5 +187,6 @@ class SignUpVC: BaseVC {
                 self?.warningLabel.isHidden = visible ? false : true
             }
         }
+        
     }
 }

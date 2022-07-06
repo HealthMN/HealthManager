@@ -29,8 +29,15 @@ class MainCoordinator: Coordinator {
         nav.setViewControllers([vc], animated: true)
     }
     
+    func pushLoginVC() {
+        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        vc.coordinator =  self
+        nav.popViewController(animated: true)
+                         
+    }
+    
     func pushSignUpVC() {
-        let vc = SignUpVC(viewModel: .init())
+        let vc = SignUpVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         nav.pushViewController(vc, animated: true)
     }
 }
