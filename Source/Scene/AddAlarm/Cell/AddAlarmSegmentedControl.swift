@@ -13,7 +13,7 @@ final class AddAlarmSegmentedControl: UIView {
     var unselectedTextColor: UIColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
     var selectedTextColor: UIColor = .white
     var unselectedBackgroundColor: UIColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-    var selectedBackgroundColor: [UIColor] = [.init(red: 0.66, green: 0.75, blue: 1, alpha: 1), .init(red: 0.78, green: 1, blue: 0.68, alpha: 1), .init(red: 1, green: 0.82, blue: 0.69, alpha: 1), .init(red: 0.96, green: 0.95, blue: 0.69, alpha: 1), .init(red: 1, green: 0.65, blue: 0.65, alpha: 1)]
+    var selectedBackgroundColors: [UIColor] = [.init(red: 0.66, green: 0.75, blue: 1, alpha: 1), .init(red: 0.78, green: 1, blue: 0.68, alpha: 1), .init(red: 1, green: 0.82, blue: 0.69, alpha: 1), .init(red: 0.96, green: 0.95, blue: 0.69, alpha: 1), .init(red: 1, green: 0.65, blue: 0.65, alpha: 1)]
     var borderColor: UIColor = .clear
     var selectedIndex: Int = 0
     
@@ -69,10 +69,10 @@ final class AddAlarmSegmentedControl: UIView {
     fileprivate func initialState() {
         let index = selectedIndex
         if #available(iOS 15.0, *) {
-            buttons[index].configuration?.baseBackgroundColor = selectedBackgroundColor[index]
+            buttons[index].configuration?.baseBackgroundColor = selectedBackgroundColors[index]
             buttons[index].configuration?.baseForegroundColor = selectedTextColor
         } else {
-            buttons[index].backgroundColor = selectedBackgroundColor[index]
+            buttons[index].backgroundColor = selectedBackgroundColors[index]
         }
         buttons[index].setTitleColor(selectedTextColor, for: .normal)
         buttons[index].layer.borderColor = UIColor.clear.cgColor
@@ -102,7 +102,7 @@ final class AddAlarmSegmentedControl: UIView {
             button.layer.borderColor = borderColor.cgColor
             if button == sender {
                 if #available(iOS 15.0, *) {
-                    button.configuration?.baseBackgroundColor = selectedBackgroundColor[index]
+                    button.configuration?.baseBackgroundColor = selectedBackgroundColors[index]
                     button.configuration?.baseForegroundColor = selectedTextColor
                 } else {
                     button.backgroundColor = unselectedBackgroundColor
