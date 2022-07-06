@@ -14,7 +14,7 @@ import RealmSwift
 
 class AlarmCell: UITableViewCell {
     
-    var model: AddAlarmModel? {
+    var model: Alarm? {
         didSet { if let model = model { bind(model) } }
     }
         
@@ -50,7 +50,7 @@ class AlarmCell: UITableViewCell {
         setLayout()
     }
     
-    func bind(_ model: AddAlarmModel) {
+    func bind(_ model: Alarm) {
         
         let date = DateFormatter()
         

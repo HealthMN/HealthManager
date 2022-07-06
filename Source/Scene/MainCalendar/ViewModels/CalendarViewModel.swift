@@ -10,7 +10,7 @@ import RealmSwift
 
 class CalendarViewModel {
     
-    var datasource = Observable([AddAlarmModel]())
+    var datasource = Observable([Alarm]())
     
     func getTodayTime() -> String {
         let date = Date()
@@ -24,7 +24,7 @@ class CalendarViewModel {
     }
     
     func add() {        
-        let results = try! Realm().objects(AddAlarmModel.self)
+        let results = try! Realm().objects(Alarm.self)
         
         self.datasource.value = results.toArray()
         
