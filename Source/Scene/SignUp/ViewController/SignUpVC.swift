@@ -179,7 +179,6 @@ class SignUpVC: BaseVC {
         }
         viewModel.warningLabelDescription.bind { [weak self] text in
             DispatchQueue.main.async {
-                print("text바뀜")
                 self?.warningLabel.setWarningLabel(text: text)
             }
         }

@@ -41,7 +41,6 @@ class SignUpViewModel {
                 if result != nil {
                     self?.warninglabelIsVisible.value = false
                     self?.coordinaotr?.pushLoginVC()
-                    print("회원가입 성공")
                 }
                 
                 //error
