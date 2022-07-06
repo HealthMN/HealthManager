@@ -10,10 +10,14 @@ final class AddAlarmSegmentedControl: UIView {
     private var titles: [String] = []
     private var buttons: [UIButton] = []
     
-    var unselectedTextColor: UIColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+    var unselectedTextColor: UIColor = UIColor.Theme.lightGray
     var selectedTextColor: UIColor = .white
-    var unselectedBackgroundColor: UIColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-    var selectedBackgroundColors: [UIColor] = [.init(red: 0.66, green: 0.75, blue: 1, alpha: 1), .init(red: 0.78, green: 1, blue: 0.68, alpha: 1), .init(red: 1, green: 0.82, blue: 0.69, alpha: 1), .init(red: 0.96, green: 0.95, blue: 0.69, alpha: 1), .init(red: 1, green: 0.65, blue: 0.65, alpha: 1)]
+    var unselectedBackgroundColor: UIColor = UIColor.Theme.lightGray
+    var selectedBackgroundColors: [UIColor] = [UIColor.Theme.blue,
+                                               UIColor.Theme.green,
+                                               UIColor.Theme.orange,
+                                               UIColor.Theme.yellow,
+                                               UIColor.Theme.red]
     var borderColor: UIColor = .clear
     var selectedIndex: Int = 0
     
