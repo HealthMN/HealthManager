@@ -10,9 +10,14 @@ import Foundation
 import UIKit
 import SnapKit
 import Then
+import RealmSwift
 
 class AlarmCell: UITableViewCell {
     
+    var model: AddAlarmModel? {
+        didSet { if let model = model { bind(model) } }
+    }
+        
     private let emojiCircleLabel = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
@@ -21,18 +26,15 @@ class AlarmCell: UITableViewCell {
     }
     
     private let emojiLabel = UILabel().then {
-        $0.text = "⏰"
         $0.font = .systemFont(ofSize: 28)
     }
     
     private let timeLabel = UILabel().then {
-        $0.text = "6시 30분"
         $0.font = .systemFont(ofSize: 12)
         $0.textColor = .blue
     }
     
     private let descriptionLabel = UILabel().then {
-        $0.text = "헬스가기"
         $0.font = .systemFont(ofSize: 18)
     }
     
@@ -46,6 +48,17 @@ class AlarmCell: UITableViewCell {
 
         addView()
         setLayout()
+    }
+    
+    func bind(_ model: AddAlarmModel) {
+        
+        let date = DateFormatter()
+        
+        date.dateFormat = "hh시 mm분"
+        
+        emojiLabel.text = "\(model.icon)"
+        timeLabel.text = "\(date.string(from: model.date))"
+        descriptionLabel.text = "\(model.title)"
     }
     
     required init?(coder: NSCoder) {

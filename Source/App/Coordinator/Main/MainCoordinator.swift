@@ -18,13 +18,13 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = MainCalendarVC()
+        let vc = MainCalendarVC(viewModel: CalendarViewModel.init())
         vc.coordinator = self
         nav.pushViewController(vc, animated: true)
     }
     
     func pushMainCalendarVC() {
-        let vc = MainCalendarVC()
+        let vc = MainCalendarVC(viewModel: CalendarViewModel.init())
         vc.coordinator = self
         nav.setViewControllers([vc], animated: true)
     }
