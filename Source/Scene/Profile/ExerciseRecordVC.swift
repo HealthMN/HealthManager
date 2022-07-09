@@ -19,7 +19,12 @@ class ExerciseRecordVC: BaseVC {
     
     private let titleLabel = UILabel().then {
         $0.text = "오늘 하루 운동시간을 기록해보세요."
-        $0.font = UIFont(name: "", size: 13)
+        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
+    }
+    
+    private let timerTextField = UITextField().then {
+        $0.placeholder = "00:00"
+        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
     
     override func configureVC() {
@@ -28,7 +33,7 @@ class ExerciseRecordVC: BaseVC {
     
     override func addView() {
         view.addSubview(contextView)
-        contextView.addSubviews(titleLabel)
+        contextView.addSubviews(titleLabel, timerTextField)
     }
     
     override func setLayout() {
@@ -41,6 +46,11 @@ class ExerciseRecordVC: BaseVC {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(35)
             $0.centerX.equalToSuperview()
+        }
+        
+        timerTextField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(48)
+            $0.leading.equalToSuperview().inset(75)
         }
     }
 }
