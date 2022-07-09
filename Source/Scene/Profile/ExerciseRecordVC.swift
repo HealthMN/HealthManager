@@ -24,6 +24,7 @@ class ExerciseRecordVC: BaseVC {
     
     private let timerHoursTextField = UITextField().then {
         $0.placeholder = "00"
+        $0.keyboardType = .numberPad
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
     
@@ -73,4 +74,17 @@ class ExerciseRecordVC: BaseVC {
             $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
         }
     }
+}
+
+extension ExerciseRecordVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let hoursTextFieldLength = timerHoursTextField.text ?? ""
+        guard let stringSRange = Range(range, in: hoursTextFieldLength) else { return false }
+        
+        let updateText = hoursTextFieldLength.replacingCharacters(in: stringSRange, with: string)
+        print("ㅎㅎ \(hoursTextFieldLength)")
+        
+        return updateText.count <= 2
+    }
+    
 }
