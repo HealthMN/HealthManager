@@ -22,8 +22,8 @@ class ExerciseRecordVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
     }
     
-    private let timerHoursTextField = UITextField().then {
-        $0.placeholder = "00"
+    private let timerTextField = UITextField().then {
+        $0.placeholder = "00  00"
         $0.keyboardType = .numberPad
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
@@ -33,19 +33,14 @@ class ExerciseRecordVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
     
-    private let timerMinutesTextField = UITextField().then {
-        $0.placeholder = "00"
-        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
-    }
-    
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
-        timerHoursTextField.delegate = self
+        timerTextField.delegate = self
     }
     
     override func addView() {
         view.addSubview(contextView)
-        contextView.addSubviews(titleLabel, timerHoursTextField, colonLabel, timerMinutesTextField)
+        contextView.addSubviews(titleLabel, timerTextField, colonLabel)
     }
     
     override func setLayout() {
@@ -60,17 +55,19 @@ class ExerciseRecordVC: BaseVC {
             $0.centerX.equalToSuperview()
         }
         
-        timerHoursTextField.snp.makeConstraints {
+        timerTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(48)
             $0.leading.equalToSuperview().inset(75)
         }
         
         colonLabel.snp.makeConstraints {
-            $0.top.equalTo(timerHoursTextField.snp.top)
+            $0.top.equalTo(timerTextField.snp.top)
             $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(timerTextField.snp.bottom)
+            $0.width.equalTo(10)
         }
         
-        timerMinutesTextField.snp.makeConstraints {
+        timerTextField.snp.makeConstraints {
             $0.top.equalTo(colonLabel.snp.top)
             $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
         }
@@ -79,13 +76,13 @@ class ExerciseRecordVC: BaseVC {
 
 extension ExerciseRecordVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let hoursTextFieldLength = timerHoursTextField.text ?? ""
+        let hoursTextFieldLength = timerTextField.text ?? ""
         guard let stringSRange = Range(range, in: hoursTextFieldLength) else { return false }
         
         let updateText = hoursTextFieldLength.replacingCharacters(in: stringSRange, with: string)
         print("ㅎㅎ \(hoursTextFieldLength)")
         
-        return updateText.count <= 2
+        return updateText.count <= 4
     }
     
 }
