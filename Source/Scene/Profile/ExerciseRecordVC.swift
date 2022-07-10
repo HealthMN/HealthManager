@@ -33,6 +33,14 @@ class ExerciseRecordVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
     
+    private let okayBtn = UIButton().then {
+        $0.setTitle("확인", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
+        $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
+        $0.layer.cornerRadius = 8
+    }
+    
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
         timerTextField.delegate = self
@@ -40,7 +48,7 @@ class ExerciseRecordVC: BaseVC {
     
     override func addView() {
         view.addSubview(contextView)
-        contextView.addSubviews(titleLabel, timerTextField, colonLabel)
+        contextView.addSubviews(titleLabel, timerTextField, colonLabel, okayBtn)
     }
     
     override func setLayout() {
@@ -70,6 +78,12 @@ class ExerciseRecordVC: BaseVC {
         timerTextField.snp.makeConstraints {
             $0.top.equalTo(colonLabel.snp.top)
             $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
+        }
+        
+        okayBtn.snp.makeConstraints {
+            $0.top.equalTo(timerTextField.snp.bottom).offset(84)
+            $0.leading.trailing.equalToSuperview().inset(25)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }

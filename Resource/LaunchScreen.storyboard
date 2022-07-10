@@ -24,18 +24,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashImg" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-F8-uE6">
-                                <rect key="frame" x="157" y="390" width="100" height="48"/>
+                                <rect key="frame" x="167" y="424" width="80" height="48"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RJw-pE-yyl" secondAttribute="bottom" constant="34" id="34m-JN-Ab0"/>
-                            <constraint firstItem="j7P-F8-uE6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="346" id="5Oc-Pn-60v"/>
-                            <constraint firstItem="j7P-F8-uE6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="157" id="6J5-R2-s0t"/>
+                            <constraint firstItem="j7P-F8-uE6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="167" id="4XV-ov-vEg"/>
                             <constraint firstItem="RJw-pE-yyl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="BUy-hC-cd0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RJw-pE-yyl" secondAttribute="trailing" constant="109" id="Tbi-5d-mUw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="j7P-F8-uE6" secondAttribute="trailing" constant="157" id="f0v-Jc-464"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="j7P-F8-uE6" secondAttribute="trailing" constant="167" id="WiQ-XO-fjc"/>
+                            <constraint firstItem="j7P-F8-uE6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="380" id="qc6-kS-Cqt"/>
                         </constraints>
                     </view>
                 </viewController>
