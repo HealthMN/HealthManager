@@ -22,9 +22,13 @@ class ExerciseRecordVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
     }
     
-    private let timerTextField = UITextField().then {
-        $0.attributedPlaceholder = NSAttributedString(string: "00  00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        $0.keyboardType = .numberPad
+    private let hoursTimerTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
+    }
+    
+    private let minutesTimerTextField = UITextField().then {
+        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
     
@@ -43,12 +47,11 @@ class ExerciseRecordVC: BaseVC {
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
-        timerTextField.delegate = self
     }
     
     override func addView() {
         view.addSubview(contextView)
-        contextView.addSubviews(titleLabel, timerTextField, colonLabel, okayBtn)
+        contextView.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
     }
     
     override func setLayout() {
@@ -63,40 +66,32 @@ class ExerciseRecordVC: BaseVC {
             $0.centerX.equalToSuperview()
         }
         
-        timerTextField.snp.makeConstraints {
+        hoursTimerTextField.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(48)
             $0.leading.equalToSuperview().inset(75)
         }
         
         colonLabel.snp.makeConstraints {
-            $0.top.equalTo(timerTextField.snp.top)
+            $0.top.equalTo(hoursTimerTextField.snp.top)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(timerTextField.snp.bottom)
-            $0.width.equalTo(10)
+            $0.bottom.equalTo(hoursTimerTextField.snp.bottom)
+            $0.width.equalTo(17)
         }
         
-        timerTextField.snp.makeConstraints {
+        hoursTimerTextField.snp.makeConstraints {
             $0.top.equalTo(colonLabel.snp.top)
+            $0.trailing.equalTo(colonLabel.snp.leading).offset(3)
+        }
+        
+        minutesTimerTextField.snp.makeConstraints {
+            $0.top.equalTo(hoursTimerTextField.snp.top)
             $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
         }
         
         okayBtn.snp.makeConstraints {
-            $0.top.equalTo(timerTextField.snp.bottom).offset(84)
+            $0.top.equalTo(hoursTimerTextField.snp.bottom).offset(84)
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().inset(20)
         }
     }
-}
-
-extension ExerciseRecordVC: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let hoursTextFieldLength = timerTextField.text ?? ""
-        guard let stringSRange = Range(range, in: hoursTextFieldLength) else { return false }
-        
-        let updateText = hoursTextFieldLength.replacingCharacters(in: stringSRange, with: string)
-        print("ㅎㅎ \(hoursTextFieldLength)")
-        
-        return updateText.count <= 4
-    }
-    
 }
