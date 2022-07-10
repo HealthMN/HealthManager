@@ -23,7 +23,7 @@ class ExerciseRecordVC: BaseVC {
     }
     
     private let timerTextField = UITextField().then {
-        $0.placeholder = "00  00"
+        $0.attributedPlaceholder = NSAttributedString(string: "00  00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         $0.keyboardType = .numberPad
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
