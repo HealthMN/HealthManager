@@ -179,12 +179,6 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MainCalendarVC: UIScrollViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scrolled..")
-    }
-}
-
 extension MainCalendarVC: AddAlarmDelegate {
     func dataCreated() {
         viewModel.add()
