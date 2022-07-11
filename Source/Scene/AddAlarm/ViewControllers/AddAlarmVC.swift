@@ -103,10 +103,12 @@ class AddAlarmVC: BaseVC {
         
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
         
-        viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath ?? 0], index: button.selectedIndex)
-        
-        self.dismiss(animated: true) { [weak self] in
-            self?.delegate?.dataCreated()
+        if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath ?? 0], index: button.selectedIndex)) {
+            self.dismiss(animated: true) { [weak self] in
+                self?.delegate?.dataCreated()
+            }
+        } else {
+            descriptionTextField.shake()
         }
     }
     
@@ -172,7 +174,6 @@ class AddAlarmVC: BaseVC {
             $0.bottom.equalToSuperview().inset(28)
         }
     }
-    
 }
 
 // MARK: - Extension
