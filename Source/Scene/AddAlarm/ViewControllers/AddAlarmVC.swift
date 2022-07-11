@@ -12,12 +12,18 @@ import Then
 import SnapKit
 import RealmSwift
 
+protocol AddAlarmDelegate: AnyObject {
+    func dataCreated()
+}
+
 class AddAlarmVC: BaseVC {
     
     init(viewModel: AddAlarmViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
+    
+    weak var delegate: AddAlarmDelegate?
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -88,8 +94,9 @@ class AddAlarmVC: BaseVC {
     }
     
     @objc func clickCancelBtn(_ sender: UIButton) {
-        print("dismiss")
-        self.dismiss(animated: true)
+            self.dismiss(animated: true) { [weak self] in
+            self?.delegate?.dataCreated()
+        }
     }
     
     @objc func clickSelectBtn(_ sender: UIButton) {
@@ -97,7 +104,10 @@ class AddAlarmVC: BaseVC {
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
         
         viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath ?? 0], index: button.selectedIndex)
-        self.dismiss(animated: true)
+        
+        self.dismiss(animated: true) { [weak self] in
+            self?.delegate?.dataCreated()
+        }
     }
     
     // MARK: - UI

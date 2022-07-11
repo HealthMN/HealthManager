@@ -21,8 +21,7 @@ class AlarmCell: UITableViewCell {
     private let emojiCircleLabel = UIView().then {
         $0.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         $0.clipsToBounds = true
-        $0.layer.cornerRadius = $0.layer.bounds.width/2 - 2
-        $0.backgroundColor = .init(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        $0.layer.cornerRadius = 27.5
     }
     
     private let emojiLabel = UILabel().then {
@@ -59,6 +58,8 @@ class AlarmCell: UITableViewCell {
         emojiLabel.text = "\(model.icon)"
         timeLabel.text = "\(date.string(from: model.date))"
         descriptionLabel.text = "\(model.title)"
+//        emojiCircleLabel.backgroundColor = HealthColor.red.display
+        emojiCircleLabel.backgroundColor = HealthColor.allCases.first?.display ?? nil
     }
     
     required init?(coder: NSCoder) {

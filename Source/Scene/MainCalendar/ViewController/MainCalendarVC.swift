@@ -13,7 +13,7 @@ import Inject
 import FSCalendar
 import RealmSwift
 
-class MainCalendarVC: BaseVC {
+final class MainCalendarVC: BaseVC {
     
     var coordinator: Coordinator?
     
@@ -75,6 +75,7 @@ class MainCalendarVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.alarmTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        viewModel.add()
     }
 
     //화면에 나타난 직후
@@ -95,7 +96,9 @@ class MainCalendarVC: BaseVC {
     }
     
     @objc func addAlarmBtnClick(_ sender: UIButton) {
-        navigationController?.present(AddAlarmVC(viewModel: AddAlarmViewModel.init()), animated: true)
+        let vc = AddAlarmVC(viewModel: .init())
+        vc.delegate = self
+        navigationController?.present(vc, animated: true)
     }
 
     override func addView() {
@@ -108,7 +111,7 @@ class MainCalendarVC: BaseVC {
         todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self
-        viewModel.add()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     override func setLayout() {
@@ -153,6 +156,13 @@ class MainCalendarVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
+    override func bindState() {
+        viewModel.datasource.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.alarmTableView.reloadData()
+            }
+        }
+    }
 }
 
 extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
@@ -172,5 +182,12 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
 extension MainCalendarVC: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("scrolled..")
+    }
+}
+
+extension MainCalendarVC: AddAlarmDelegate {
+    func dataCreated() {
+        viewModel.add()
+        alarmTableView.reloadData()
     }
 }

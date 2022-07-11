@@ -1,6 +1,6 @@
 import UIKit
 
-enum Color: String, Codable, CaseIterable {
+enum HealthColor: String, Codable, CaseIterable {
     case blue = "0"
     case green = "1"
     case orange = "2"
@@ -8,7 +8,7 @@ enum Color: String, Codable, CaseIterable {
     case red = "4"
 }
 
-extension Color {
+extension HealthColor {
     var display: UIColor {
         switch self {
         case .blue: return UIColor.Theme.blue
