@@ -37,12 +37,14 @@ class ExerciseRecordVC: BaseVC {
     private lazy var hoursTimerTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
-        $0.addTarget(self, action: #selector(hourTimerTextFieldDidTap(_:)), for: .touchUpInside)
+        $0.keyboardType = .numberPad
+        //        $0.addTarget(self, action: #selector(hourTimerTextFieldDidTap(_:)), for: .touchUpInside)
     }
     
     private let minutesTimerTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
+        $0.keyboardType = .numberPad
     }
     
     private let colonLabel = UILabel().then {
@@ -58,14 +60,16 @@ class ExerciseRecordVC: BaseVC {
         $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 8
     }
-    
-    @objc func hourTimerTextFieldDidTap(_ sender: UIButton) {
-        print("click")
-        viewModel.keyboardUnlock(textFieldType: hoursTimerTextField)
-    }
+    //
+    //    @objc func hourTimerTextFieldDidTap(_ textField: UITextField) {
+    //        print("click")
+    //        viewModel.keyboardUnlock(textFieldType: textField)
+    //    }
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
+        hoursTimerTextField.delegate = self
+        minutesTimerTextField.delegate = self
     }
     
     override func addView() {
@@ -112,5 +116,16 @@ class ExerciseRecordVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().inset(20)
         }
+    }
+}
+
+extension ExerciseRecordVC: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if textField.text?.count ?? 0 >= 2 {
+            textField.resignFirstResponder()
+            print("2개 이상!")
+        }
+        print("sdf")
     }
 }
