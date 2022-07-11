@@ -27,7 +27,6 @@ class CalendarViewModel {
         let results = try! Realm().objects(Alarm.self)
         
         self.datasource.value = results.toArray()
-        
     }
 }
 

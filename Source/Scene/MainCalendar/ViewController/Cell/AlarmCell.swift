@@ -58,8 +58,7 @@ class AlarmCell: UITableViewCell {
         emojiLabel.text = "\(model.icon)"
         timeLabel.text = "\(date.string(from: model.date))"
         descriptionLabel.text = "\(model.title)"
-//        emojiCircleLabel.backgroundColor = HealthColor.red.display
-        emojiCircleLabel.backgroundColor = HealthColor.allCases.first?.display ?? nil
+        emojiCircleLabel.backgroundColor = HealthColor(rawValue: "\(model.index)")?.display ?? .red
     }
     
     required init?(coder: NSCoder) {
