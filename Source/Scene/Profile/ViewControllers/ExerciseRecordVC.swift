@@ -18,7 +18,7 @@ class ExerciseRecordVC: BaseVC {
         super.init(nibName: nil, bundle: nil)
     }
     
-    private var viewModel: ExerciseRecordViewModel?
+    private var viewModel: ExerciseRecordViewModel
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,19 +35,20 @@ class ExerciseRecordVC: BaseVC {
     }
     
     private lazy var hoursTimerTextField = UITextField().then {
-        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
-        $0.addTarget(self, action: #selector(hourTimerTextFieldDidTap), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(hourTimerTextFieldDidTap(_:)), for: .touchUpInside)
     }
     
     private let minutesTimerTextField = UITextField().then {
-        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
     }
     
     private let colonLabel = UILabel().then {
         $0.text = ":"
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
+        $0.textColor = .gray
     }
     
     private let okayBtn = UIButton().then {
@@ -58,8 +59,9 @@ class ExerciseRecordVC: BaseVC {
         $0.layer.cornerRadius = 8
     }
     
-    @objc func hourTimerTextFieldDidTap() {
-        viewModel?.keyboardUnlock(textFieldType: hoursTimerTextField)
+    @objc func hourTimerTextFieldDidTap(_ sender: UIButton) {
+        print("click")
+        viewModel.keyboardUnlock(textFieldType: hoursTimerTextField)
     }
     
     override func configureVC() {
@@ -89,9 +91,9 @@ class ExerciseRecordVC: BaseVC {
         }
         
         colonLabel.snp.makeConstraints {
-            $0.top.equalTo(hoursTimerTextField.snp.top)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(hoursTimerTextField.snp.bottom)
+            $0.top.equalTo(hoursTimerTextField.snp.top).offset(-2)
+            $0.height.equalTo(hoursTimerTextField.snp.height)
             $0.width.equalTo(17)
         }
         
