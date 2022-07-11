@@ -19,7 +19,7 @@ class MainCoordinator: Coordinator {
     
     func start() {
 //        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        let vc = ExerciseRecordVC()
+        let vc = ExerciseRecordVC(viewModel: .init())
 //        vc.coordinator = self
         nav.pushViewController(vc, animated: true)
     }

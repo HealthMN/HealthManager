@@ -12,6 +12,18 @@ import Then
 import UIKit
 
 class ExerciseRecordVC: BaseVC {
+    
+    init(viewModel: ExerciseRecordViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    private var viewModel: ExerciseRecordViewModel?
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let contextView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -22,9 +34,10 @@ class ExerciseRecordVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
     }
     
-    private let hoursTimerTextField = UITextField().then {
+    private lazy var hoursTimerTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
+        $0.addTarget(self, action: #selector(hourTimerTextFieldDidTap), for: .touchUpInside)
     }
     
     private let minutesTimerTextField = UITextField().then {
@@ -43,6 +56,10 @@ class ExerciseRecordVC: BaseVC {
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 8
+    }
+    
+    @objc func hourTimerTextFieldDidTap() {
+        viewModel?.keyboardUnlock(textFieldType: hoursTimerTextField)
     }
     
     override func configureVC() {
