@@ -111,7 +111,6 @@ final class MainCalendarVC: BaseVC {
         todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     override func setLayout() {
