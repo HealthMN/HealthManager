@@ -37,12 +37,14 @@ class ExerciseRecordVC: BaseVC {
     private lazy var hoursTimerTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
+        $0.tintColor = .clear
         $0.keyboardType = .numberPad
     }
     
     private let minutesTimerTextField = UITextField().then {
         $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
+        $0.tintColor = .clear
         $0.keyboardType = .numberPad
     }
     
