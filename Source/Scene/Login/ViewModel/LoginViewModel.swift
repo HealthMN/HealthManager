@@ -26,7 +26,7 @@ class LoginViewModel {
     func signInFetch(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
-                self?.coordinator?.pushMainCalendarVC()
+                self?.coordinator?.setMainCalendarVC()
             } else {
                 self?.warningLabelisVisible.value = true
             }

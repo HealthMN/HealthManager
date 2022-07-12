@@ -19,6 +19,6 @@ class ExerciseRecordViewModel {
     }
     
     func okayBtnDidTap() {
-        coordinator?.pushProfileVC()
+        coordinator?.setProfileVC()
     }
 }

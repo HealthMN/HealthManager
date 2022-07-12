@@ -64,7 +64,7 @@ class ExerciseRecordVC: BaseVC {
     }
     
     @objc func okayBtnDidTap(_ sender: UIButton) {
-        viewModel.coordinator?.pushProfileVC()
+        viewModel.coordinator?.setProfileVC()
     }
     
     override func configureVC() {
