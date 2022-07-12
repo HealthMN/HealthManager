@@ -44,6 +44,6 @@ class MainCoordinator: Coordinator {
     
     func setProfileVC() {
         let vc = ProfileVC()
-        nav.pushViewController(vc, animated: true)
+        nav.setViewControllers([vc], animated: true)
     }
 }

@@ -69,7 +69,7 @@ class ExerciseRecordVC: BaseVC {
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         
         print("hourTimerTf = \(hoursTimerTF)")
-        viewModel.okayBtnDidTap(hoursTextField: hoursTimerTF, minutesTextField: minutesTimerTF)
+        viewModel.okayBtnDidTap()
         
     }
     

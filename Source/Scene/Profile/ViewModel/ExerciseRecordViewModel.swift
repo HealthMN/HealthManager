@@ -15,16 +15,8 @@ class ExerciseRecordViewModel {
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
-    
-    //    func notInputTextFieldText(_ textField: UITextField) {
-    //        if let textfield = textField.text, textField1?.text  {
-    //            coordinator?.setProfileVC()
-    //        } else {
-    //            textField.shake()
-    //        }
-    //    }
-    
-        func okayBtnDidTap(hoursTextField: String, minutesTextField: String) {
+
+        func okayBtnDidTap() {
             coordinator?.setProfileVC()
     }
 }
