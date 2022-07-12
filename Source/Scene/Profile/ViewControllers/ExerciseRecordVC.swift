@@ -121,20 +121,22 @@ class ExerciseRecordVC: BaseVC {
 extension ExerciseRecordVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
-        if textField == hoursTimerTextField {
-            if Int(hoursTimerTextField.text ?? "") ?? 0 > 12 {
-                hoursTimerTextField.text = "12"
-            }
-        } else {
+        guard textField == hoursTimerTextField else {
             if Int(minutesTimerTextField.text ?? "") ?? 0 > 60 {
                 minutesTimerTextField.text = "60"
             }
+            return
+        }
+        if Int(hoursTimerTextField.text ?? "") ?? 0 > 12 {
+            hoursTimerTextField.text = "12"
         }
         
-        if textField.text?.count ?? 0 >= 2 {
-            textField.resignFirstResponder()
-            print("2개 이상!")
+        
+        guard textField.text?.count ?? 0 >= 2 else {
+            print("2개 이상이 아님")
+            return
         }
-        print("sdf")
+        textField.resignFirstResponder()
+        print("2개 이상")
     }
 }
