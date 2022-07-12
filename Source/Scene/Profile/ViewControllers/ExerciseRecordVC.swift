@@ -42,7 +42,7 @@ class ExerciseRecordVC: BaseVC {
     }
     
     private let minutesTimerTextField = UITextField().then {
-        $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        $0.attributedPlaceholder = NSAttributedString(string: "30", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
         $0.tintColor = .clear
         $0.keyboardType = .numberPad
@@ -63,8 +63,14 @@ class ExerciseRecordVC: BaseVC {
         $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
+    // MARK: - method
     @objc func okayBtnDidTap(_ sender: UIButton) {
-        viewModel.coordinator?.setProfileVC()
+        guard let hoursTimerTF = hoursTimerTextField.text else { return }
+        guard let minutesTimerTF = minutesTimerTextField.text else { return }
+        
+        print("hourTimerTf = \(hoursTimerTF)")
+        viewModel.okayBtnDidTap(hoursTextField: hoursTimerTF, minutesTextField: minutesTimerTF)
+        
     }
     
     override func configureVC() {

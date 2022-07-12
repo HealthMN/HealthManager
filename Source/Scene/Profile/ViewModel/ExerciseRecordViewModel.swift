@@ -12,13 +12,19 @@ import UIKit
 class ExerciseRecordViewModel {
     var coordinator: Coordinator?
     
-    var okayBtnValue = Observable(false)
-    
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
     
-    func okayBtnDidTap() {
-        coordinator?.setProfileVC()
+    //    func notInputTextFieldText(_ textField: UITextField) {
+    //        if let textfield = textField.text, textField1?.text  {
+    //            coordinator?.setProfileVC()
+    //        } else {
+    //            textField.shake()
+    //        }
+    //    }
+    
+        func okayBtnDidTap(hoursTextField: String, minutesTextField: String) {
+            coordinator?.setProfileVC()
     }
 }
