@@ -16,4 +16,5 @@ protocol Coordinator {
     func pushLoginVC()
     func pushSignUpVC()
     func pushMainCalendarVC()
+    func pushProfileVC()
 }

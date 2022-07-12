@@ -10,5 +10,15 @@ import Foundation
 import UIKit
 
 class ExerciseRecordViewModel {
+    var coordinator: Coordinator?
     
+    var okayBtnValue = Observable(false)
+    
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
+    }
+    
+    func okayBtnDidTap() {
+        coordinator?.pushProfileVC()
+    }
 }
