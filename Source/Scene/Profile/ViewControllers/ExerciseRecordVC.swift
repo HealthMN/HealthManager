@@ -59,11 +59,6 @@ class ExerciseRecordVC: BaseVC {
         $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 8
     }
-    //
-    //    @objc func hourTimerTextFieldDidTap(_ textField: UITextField) {
-    //        print("click")
-    //        viewModel.keyboardUnlock(textFieldType: textField)
-    //    }
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
@@ -102,12 +97,12 @@ class ExerciseRecordVC: BaseVC {
         
         hoursTimerTextField.snp.makeConstraints {
             $0.top.equalTo(colonLabel.snp.top)
-            $0.trailing.equalTo(colonLabel.snp.leading).offset(3)
+            $0.leading.equalToSuperview().inset(68)
         }
         
         minutesTimerTextField.snp.makeConstraints {
             $0.top.equalTo(hoursTimerTextField.snp.top)
-            $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
+            $0.trailing.equalToSuperview().inset(65)
         }
         
         okayBtn.snp.makeConstraints {
@@ -127,10 +122,9 @@ extension ExerciseRecordVC: UITextFieldDelegate {
             }
             return
         }
-        if Int(hoursTimerTextField.text ?? "") ?? 0 > 12 {
+        if Int(hoursTimerTextField.text ?? "") ?? 0 > 24 {
             hoursTimerTextField.text = "12"
         }
-        
         
         guard textField.text?.count ?? 0 >= 2 else {
             print("2개 이상이 아님")
