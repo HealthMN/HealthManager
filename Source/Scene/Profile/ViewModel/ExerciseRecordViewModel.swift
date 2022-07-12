@@ -11,13 +11,4 @@ import UIKit
 
 class ExerciseRecordViewModel {
     
-    func keyboardUnlock(textFieldType: UITextField) {
-        
-        if textFieldType.text?.count ?? 0 >= 2 {
-            textFieldType.resignFirstResponder()
-            print("2개 이상!")
-        }
-        
-        print("sdf")
-    }
 }

@@ -38,7 +38,6 @@ class ExerciseRecordVC: BaseVC {
         $0.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 60)
         $0.keyboardType = .numberPad
-        //        $0.addTarget(self, action: #selector(hourTimerTextFieldDidTap(_:)), for: .touchUpInside)
     }
     
     private let minutesTimerTextField = UITextField().then {
@@ -121,6 +120,16 @@ class ExerciseRecordVC: BaseVC {
 
 extension ExerciseRecordVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if textField == hoursTimerTextField {
+            if Int(hoursTimerTextField.text ?? "") ?? 0 > 12 {
+                hoursTimerTextField.text = "12"
+            }
+        } else {
+            if Int(minutesTimerTextField.text ?? "") ?? 0 > 60 {
+                minutesTimerTextField.text = "60"
+            }
+        }
         
         if textField.text?.count ?? 0 >= 2 {
             textField.resignFirstResponder()
