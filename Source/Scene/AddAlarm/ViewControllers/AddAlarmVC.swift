@@ -16,7 +16,7 @@ protocol AddAlarmDelegate: AnyObject {
     func dataCreated()
 }
 
-class AddAlarmVC: BaseVC {
+final class AddAlarmVC: BaseVC {
     
     init(viewModel: AddAlarmViewModel) {
         self.viewModel = viewModel
