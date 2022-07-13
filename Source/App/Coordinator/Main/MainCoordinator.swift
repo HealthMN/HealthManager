@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class MainCoordinator: Coordinator {
+    
     var childCoordinators: [Coordinator] = []
     var nav: UINavigationController
     
@@ -20,11 +21,11 @@ class MainCoordinator: Coordinator {
     func start() {
         let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator = self
-        nav.pushViewController(vc, animated: true)
+        nav.setViewControllers([vc], animated: true)
     }
     
-    func pushMainCalendarVC() {
-        let vc = MainCalendarVC(viewModel: .init())
+    func setMainCalendarVC() {
+        let vc = MainCalendarVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator = self
         nav.setViewControllers([vc], animated: true)
     }
@@ -33,11 +34,25 @@ class MainCoordinator: Coordinator {
         let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator =  self
         nav.popViewController(animated: true)
-                         
     }
     
     func pushSignUpVC() {
         let vc = SignUpVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         nav.pushViewController(vc, animated: true)
+    }
+    
+    func pushProfileVC() {
+        let vc = ProfileGraphVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        nav.pushViewController(vc, animated: true)
+    }
+    
+    func dismissProfileVC() {
+        nav.dismiss(animated: true)
+    }
+    
+    func presentProfileGraphVC() {
+        let vc = ProfileVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        vc.modalPresentationStyle = .fullScreen
+        nav.present(vc, animated: true)
     }
 }

@@ -26,7 +26,7 @@ final class MainCalendarVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private var viewModel = CalendarViewModel()
+    private var viewModel: CalendarViewModel
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -44,9 +44,10 @@ final class MainCalendarVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 23)
     }
     
-    private let profileBtn = UIButton().then {
+    private lazy var profileBtn = UIButton().then {
         $0.setImage(UIImage(systemName: "person.crop.circle")?.resize(newWidth: 37)
             .withTintColor(HealthManagerAsset.hmPrimary.color), for: .normal)
+        $0.addTarget(self, action: #selector(profileBtnDidTap(_:)), for: .touchUpInside)
     }
     
     private var fsCalendar = FSCalendar().then {
@@ -63,7 +64,7 @@ final class MainCalendarVC: BaseVC {
         $0.setTitle("+ 알림 추가하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 15)
-        $0.addTarget(self, action: #selector(addAlarmBtnClick(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(addAlarmBtnDidTap(_:)), for: .touchUpInside)
     }
     
     private let alarmTableView = UITableView().then {
@@ -95,7 +96,11 @@ final class MainCalendarVC: BaseVC {
         }
     }
     
-    @objc func addAlarmBtnClick(_ sender: UIButton) {
+    @objc func profileBtnDidTap(_ sender: UIButton) {
+        viewModel.profileBtnDidTap()
+    }
+    
+    @objc func addAlarmBtnDidTap(_ sender: UIButton) {
         let vc = AddAlarmVC(viewModel: .init())
         vc.delegate = self
         navigationController?.present(vc, animated: true)

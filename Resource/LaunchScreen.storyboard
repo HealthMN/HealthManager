@@ -31,10 +31,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RJw-pE-yyl" secondAttribute="bottom" constant="34" id="34m-JN-Ab0"/>
+                            <constraint firstItem="j7P-F8-uE6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ACh-NL-OO9"/>
                             <constraint firstItem="RJw-pE-yyl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="BUy-hC-cd0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RJw-pE-yyl" secondAttribute="trailing" constant="109" id="Tbi-5d-mUw"/>
-                            <constraint firstItem="j7P-F8-uE6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cWW-Mh-akf"/>
-                            <constraint firstItem="j7P-F8-uE6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uZ5-ei-Fq2"/>
+                            <constraint firstItem="j7P-F8-uE6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="sj4-KL-iOm"/>
                         </constraints>
                     </view>
                 </viewController>

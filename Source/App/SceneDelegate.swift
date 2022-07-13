@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 import Inject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -12,12 +13,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let nav = UINavigationController()
         
-        coordinator = MainCoordinator(nav: nav)
-        coordinator?.start()
-        
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
         window?.rootViewController = nav
+        coordinator = MainCoordinator(nav: nav)
+        coordinator?.start()
         
         window?.makeKeyAndVisible()
     }
