@@ -7,7 +7,12 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct ExerciseRecordModel {
+class ExerciseRecordModel: Object {
     var time: Float
+    
+    init(time: Float) {
+        self.time = time
+    }
 }

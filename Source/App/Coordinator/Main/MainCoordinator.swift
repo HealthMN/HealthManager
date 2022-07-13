@@ -24,7 +24,7 @@ class MainCoordinator: Coordinator {
         nav.pushViewController(vc, animated: true)
     }
     
-    func pushMainCalendarVC() {
+    func setMainCalendarVC() {
         let vc = MainCalendarVC(viewModel: .init())
         vc.coordinator = self
         nav.setViewControllers([vc], animated: true)

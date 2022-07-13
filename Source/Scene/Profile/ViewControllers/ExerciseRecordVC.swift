@@ -69,10 +69,9 @@ class ExerciseRecordVC: BaseVC {
     @objc func okayBtnDidTap(_ sender: UIButton) {
         guard let hoursTimerTF = hoursTimerTextField.text else { return }
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
-        
-        print("hourTimerTf = \(hoursTimerTF)")
+        let time = Float(hoursTimerTF + "." + minutesTimerTF) ?? 0.3
+        viewModel.saveProfileTime(time: time)
         viewModel.okayBtnDidTap()
-        model.time = Float(hoursTimerTF + "." + minutesTimerTF) ?? 0.3
         print(model.time)
         
     }

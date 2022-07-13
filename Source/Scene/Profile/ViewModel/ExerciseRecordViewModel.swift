@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class ExerciseRecordViewModel {
     var coordinator: Coordinator?
@@ -15,8 +16,17 @@ class ExerciseRecordViewModel {
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
-
-        func okayBtnDidTap() {
-            coordinator?.setProfileVC()
+    
+    func okayBtnDidTap() {
+        coordinator?.setProfileVC()
+    }
+    
+    func saveProfileTime(time: Float) {
+        let realm = try! Realm()
+        let exerciseRecord = ExerciseRecordModel(time: time)
+        
+        try! realm.write {
+            realm.add(exerciseRecord)
+        }
     }
 }
