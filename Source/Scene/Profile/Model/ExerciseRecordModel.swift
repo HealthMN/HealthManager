@@ -12,7 +12,8 @@ import RealmSwift
 class ExerciseRecordModel: Object {
     @Persisted var time: Float
     
-    init(time: Float) {
+    convenience init(time: Float) {
+        self.init()
         self.time = time
     }
 }
