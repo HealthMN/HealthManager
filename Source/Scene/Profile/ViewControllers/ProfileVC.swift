@@ -126,11 +126,8 @@ class ProfileVC: BaseVC {
 extension ProfileVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
-        guard textField == hoursTimerTextField else {
-            if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
-                minutesTimerTextField.text = "59"
-            }
-            return
+        if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
+            minutesTimerTextField.text = "59"
         }
         
         if Int(hoursTimerTextField.text ?? "") ?? 0 >= 24 {
