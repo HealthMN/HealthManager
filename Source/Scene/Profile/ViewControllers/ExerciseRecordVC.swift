@@ -19,6 +19,8 @@ class ExerciseRecordVC: BaseVC {
     }
     
     private var viewModel: ExerciseRecordViewModel
+    private var model = ExerciseRecordModel(time: .init()
+    )
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -70,6 +72,8 @@ class ExerciseRecordVC: BaseVC {
         
         print("hourTimerTf = \(hoursTimerTF)")
         viewModel.okayBtnDidTap()
+        model.time = Float(hoursTimerTF + "." + minutesTimerTF) ?? 0.3
+        print(model.time)
         
     }
     

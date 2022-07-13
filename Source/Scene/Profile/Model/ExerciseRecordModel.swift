@@ -9,5 +9,5 @@
 import Foundation
 
 struct ExerciseRecordModel {
-    var time: Int = 30
+    var time: Float
 }
