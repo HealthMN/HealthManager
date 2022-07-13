@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class ExerciseRecordModel: Object {
-    var time: Float
+    @Persisted var time: Float
     
     init(time: Float) {
         self.time = time

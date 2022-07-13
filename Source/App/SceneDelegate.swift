@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 import Inject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -7,8 +8,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        print("ㅎㅎㅎ \(try? Realm.Configuration.defaultConfiguration.fileURL)")
 
         guard let windowScence = (scene as? UIWindowScene) else { return }
+        
         
         let nav = UINavigationController()
         
