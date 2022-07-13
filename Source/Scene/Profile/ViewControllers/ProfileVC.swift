@@ -5,8 +5,6 @@
 //  Created by 민도현 on 2022/07/10.
 //  Copyright © 2022 com.tm. All rights reserved.
 //
-
-import Foundation
 import SnapKit
 import Then
 import UIKit
@@ -130,13 +128,13 @@ extension ProfileVC: UITextFieldDelegate {
         
         guard textField == hoursTimerTextField else {
             if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
-                minutesTimerTextField.text = "30"
+                minutesTimerTextField.text = "59"
             }
             return
         }
         
         if Int(hoursTimerTextField.text ?? "") ?? 0 >= 24 {
-            hoursTimerTextField.text = "12"
+            hoursTimerTextField.text = "23"
         }
         
         guard textField.text?.count ?? 0 >= 2 else {
