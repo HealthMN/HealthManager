@@ -47,7 +47,7 @@ class AddAlarmVC: BaseVC {
         $0.addTarget(self, action: #selector(clickCancelBtn(_:)), for: .touchUpInside)
     }
     
-    private lazy var button = AddAlarmSegmentedControl(titles: icons)
+    private lazy var segmentedButton = AddAlarmSegmentedControl(titles: icons)
     
     private lazy var selectBtn = UIButton().then() {
         $0.setTitle("확인", for: .normal)
@@ -103,7 +103,7 @@ class AddAlarmVC: BaseVC {
         
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
         
-        if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[button.selectedIndex])", week: cells[indexPath ?? 0], index: button.selectedIndex)) {
+        if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[segmentedButton.selectedIndex])", week: cells[indexPath ?? 0], index: segmentedButton.selectedIndex)) {
             self.dismiss(animated: true) { [weak self] in
                 self?.delegate?.dataCreated()
             }
@@ -114,7 +114,7 @@ class AddAlarmVC: BaseVC {
     
     // MARK: - UI
     override func addView() {
-        view.addSubviews(titleViewLabel, cancelBtn, selectBtn, datepickerView, button, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
+        view.addSubviews(titleViewLabel, cancelBtn, selectBtn, datepickerView, segmentedButton, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
     }
     
     override func configureVC() {
@@ -148,14 +148,14 @@ class AddAlarmVC: BaseVC {
             $0.height.equalTo(190)
         }
         
-        button.snp.makeConstraints {
+        segmentedButton.snp.makeConstraints {
             $0.top.equalTo(datepickerView.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(32)
-            $0.top.equalTo(button.snp.bottom).offset(27)
+            $0.top.equalTo(segmentedButton.snp.bottom).offset(27)
         }
         
         descriptionTextField.snp.makeConstraints {
