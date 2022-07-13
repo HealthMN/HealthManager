@@ -19,13 +19,13 @@ class MainCoordinator: Coordinator {
     
     func start() {
 //        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        let vc = ExerciseRecordVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-//        vc.coordinator = self
-        nav.pushViewController(vc, animated: true)
+        let vc = MainCalendarVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        vc.coordinator = self
+        nav.setViewControllers([vc], animated: true)
     }
     
     func setMainCalendarVC() {
-        let vc = MainCalendarVC(viewModel: .init())
+        let vc = MainCalendarVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator = self
         nav.setViewControllers([vc], animated: true)
     }
@@ -42,8 +42,8 @@ class MainCoordinator: Coordinator {
         nav.pushViewController(vc, animated: true)
     }
     
-    func setProfileVC() {
-        let vc = ProfileVC()
-        nav.setViewControllers([vc], animated: true)
+    func pushProfileVC() {
+        let vc = ProfileVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        nav.pushViewController(vc, animated: true)
     }
 }

@@ -12,6 +12,12 @@ class CalendarViewModel {
     
     var datasource = Observable([Alarm]())
     
+    var coordinator: Coordinator?
+    
+    init(coordinator: Coordinator) {
+        self.coordinator = coordinator
+    }
+    
     func getTodayTime() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -28,6 +34,10 @@ class CalendarViewModel {
         let results = realm.objects(Alarm.self)
         
         self.datasource.value = results.toArray()
+    }
+    
+    func profileBtnDidTap() {
+        coordinator?.pushProfileVC()
     }
 }
 
