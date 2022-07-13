@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 class ExerciseRecordModel: Object {
-    @Persisted var time: Double
+    @Persisted var time: Int
     
-    convenience init(time: Double) {
+    convenience init(time: Int) {
         self.init()
         self.time = time
     }
