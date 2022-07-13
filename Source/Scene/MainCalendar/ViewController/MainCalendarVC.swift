@@ -190,8 +190,6 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
                 viewModel.datasource.value.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 
-            } else if editingStyle == .insert {
-                
             }
         }
 }
