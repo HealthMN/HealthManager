@@ -131,7 +131,7 @@ extension ProfileVC: UITextFieldDelegate {
         
         guard textField == hoursTimerTextField else {
             if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
-                minutesTimerTextField.text = "60"
+                minutesTimerTextField.text = "30"
             }
             return
         }
