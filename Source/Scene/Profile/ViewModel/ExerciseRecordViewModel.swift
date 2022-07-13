@@ -21,7 +21,7 @@ class ExerciseRecordViewModel {
         coordinator?.setProfileVC()
     }
     
-    func saveProfileTime(time: Float) {
+    func saveProfileTime(time: Double) {
         let realm = try! Realm()
         let exerciseRecord = ExerciseRecordModel(time: time)
         
