@@ -19,8 +19,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-//        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        let vc = MainCalendarVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator = self
         nav.setViewControllers([vc], animated: true)
     }

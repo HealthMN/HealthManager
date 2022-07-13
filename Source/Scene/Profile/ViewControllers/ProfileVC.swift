@@ -68,7 +68,6 @@ class ProfileVC: BaseVC {
         guard let hoursTimerTF = hoursTimerTextField.text else { return }
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
-        print(time)
         viewModel.saveProfileTime(time: time)
         viewModel.coordinator?.dismissProfileVC()
     }
@@ -141,11 +140,9 @@ extension ProfileVC: UITextFieldDelegate {
         }
         
         guard textField.text?.count ?? 0 >= 2 else {
-            print("2개 이상이 아님")
             return
         }
         
         textField.resignFirstResponder()
-        print("2개 이상")
     }
 }

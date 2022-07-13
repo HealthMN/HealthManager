@@ -8,10 +8,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        print("ㅎㅎㅎ \(try? Realm.Configuration.defaultConfiguration.fileURL)")
 
         guard let windowScence = (scene as? UIWindowScene) else { return }
-        
         
         let nav = UINavigationController()
         
@@ -20,8 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nav
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
-        
-        
         
         window?.makeKeyAndVisible()
     }
