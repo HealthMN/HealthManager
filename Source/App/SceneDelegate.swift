@@ -1,5 +1,6 @@
 import UIKit
 import Inject
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

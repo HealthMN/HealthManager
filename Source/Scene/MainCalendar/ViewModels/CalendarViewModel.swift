@@ -23,8 +23,9 @@ class CalendarViewModel {
         return dateStr
     }
     
-    func add() {        
-        let results = try! Realm().objects(Alarm.self)
+    func add() {
+        let realm = try! Realm()
+        let results = realm.objects(Alarm.self)
         
         self.datasource.value = results.toArray()
     }
