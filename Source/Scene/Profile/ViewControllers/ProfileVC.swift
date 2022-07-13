@@ -13,12 +13,12 @@ import UIKit
 
 class ProfileVC: BaseVC {
     
-    init(viewModel: ExerciseRecordViewModel) {
+    init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
-    private let viewModel: ExerciseRecordViewModel
+    private let viewModel: ProfileViewModel
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -70,6 +70,7 @@ class ProfileVC: BaseVC {
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
         print(time)
         viewModel.saveProfileTime(time: time)
+        viewModel.coordinator?.dismissProfileVC()
     }
     
     override func configureVC() {
@@ -135,7 +136,7 @@ extension ProfileVC: UITextFieldDelegate {
             return
         }
         
-        if Int(hoursTimerTextField.text ?? "") ?? 0 > 24 {
+        if Int(hoursTimerTextField.text ?? "") ?? 0 >= 24 {
             hoursTimerTextField.text = "12"
         }
         

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class MainCoordinator: Coordinator {
+    
     var childCoordinators: [Coordinator] = []
     var nav: UINavigationController
     
@@ -34,7 +35,6 @@ class MainCoordinator: Coordinator {
         let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator =  self
         nav.popViewController(animated: true)
-                         
     }
     
     func pushSignUpVC() {
@@ -43,7 +43,17 @@ class MainCoordinator: Coordinator {
     }
     
     func pushProfileVC() {
-        let vc = ProfileVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        let vc = ProfileGraphVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         nav.pushViewController(vc, animated: true)
+    }
+    
+    func dismissProfileVC() {
+        nav.dismiss(animated: true)
+    }
+    
+    func presentProfileGraphVC() {
+        let vc = ProfileVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        vc.modalPresentationStyle = .fullScreen
+        nav.present(vc, animated: true)
     }
 }

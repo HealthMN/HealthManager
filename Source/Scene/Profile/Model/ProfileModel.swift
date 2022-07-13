@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class ExerciseRecordModel: Object {
+class ProfileModel: Object {
     @Persisted var time: Int
     
     convenience init(time: Int) {

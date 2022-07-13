@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class ExerciseRecordViewModel {
+class ProfileViewModel {
     var coordinator: Coordinator?
     
     init(coordinator: Coordinator) {
@@ -19,7 +19,7 @@ class ExerciseRecordViewModel {
     
     func saveProfileTime(time: Int) {
         let realm = try! Realm()
-        let exerciseRecord = ExerciseRecordModel(time: time)
+        let exerciseRecord = ProfileModel(time: time)
         
         try! realm.write {
             realm.add(exerciseRecord)
