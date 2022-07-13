@@ -10,8 +10,28 @@ import Foundation
 import UIKit
 import Then
 import SnapKit
+import RealmSwift
+
+protocol AddAlarmDelegate: AnyObject {
+    func dataCreated()
+}
 
 class AddAlarmVC: BaseVC {
+    
+    init(viewModel: AddAlarmViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    weak var delegate: AddAlarmDelegate?
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let viewModel: AddAlarmViewModel
+    
+    private let icons = ["⏰", "👟", "🍖", "💊", "💪🏻"]
     
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]
     
@@ -20,51 +40,29 @@ class AddAlarmVC: BaseVC {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
     }
     
-    private let cancelBtn = UIButton().then {
+    private lazy var cancelBtn = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
         $0.addTarget(self, action: #selector(clickCancelBtn(_:)), for: .touchUpInside)
     }
     
-    private let okayBtn = UIButton().then() {
+    private lazy var segmentedButton = AddAlarmSegmentedControl(titles: icons)
+    
+    private lazy var selectBtn = UIButton().then() {
         $0.setTitle("확인", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        $0.addTarget(self, action: #selector(clickSelectBtn(_:)), for: .touchUpInside)
     }
     
-    private let datepickerView = UIDatePicker().then {
+    private lazy var datepickerView = UIDatePicker().then {
         $0.datePickerMode = .time
         if #available(iOS 13.4, *) {
             $0.preferredDatePickerStyle = .wheels
-        } else {
-        }
+        } else { }
         $0.addTarget(self, action: #selector(changedTimer(_:)), for: .valueChanged)
-    }
-    
-    private let clockEmoji = EmojiCircle().then {
-        $0.setPlaceholder(placeholder: "⏰")
-        $0.addTarget(self, action: #selector(clickClock(_:)), for: .touchUpInside)
-    }
-    
-    private let runEmoji = EmojiCircle().then {
-        $0.setPlaceholder(placeholder: "👟")
-        $0.addTarget(self, action: #selector(clickRun(_:)), for: .touchUpInside)
-    }
-    
-    private let foodEmoji = EmojiCircle().then {
-        $0.setPlaceholder(placeholder: "🍖")
-        $0.addTarget(self, action: #selector(clickFood(_:)), for: .touchUpInside)
-    }
-    
-    private let pillEmoji = EmojiCircle().then {
-        $0.setPlaceholder(placeholder: "💊")
-        $0.addTarget(self, action: #selector(clickPill(_:)), for: .touchUpInside)
-    }
-    
-    private let muscleEmoji = EmojiCircle().then {
-        $0.setPlaceholder(placeholder: "💪🏻")
-        $0.addTarget(self, action: #selector(clickMuscle(_:)), for: .touchUpInside)
+        $0.timeZone = .autoupdatingCurrent
     }
     
     private let descriptionLabel = UILabel().then {
@@ -88,26 +86,6 @@ class AddAlarmVC: BaseVC {
     }
     
     // MARK: - method
-    @objc func clickClock(_ sender: UIButton) {
-        clockEmoji.setColor(circleColor: .init(red: 0.66, green: 0.75, blue: 1, alpha: 1))
-    }
-    
-    @objc func clickRun(_ sender: UIButton) {
-        runEmoji.setColor(circleColor: .init(red: 0.78, green: 1, blue: 0.68, alpha: 1))
-    }
-    
-    @objc func clickFood(_ sender: UIButton) {
-        foodEmoji.setColor(circleColor: .init(red: 1, green: 0.82, blue: 0.69, alpha: 1))
-    }
-    
-    @objc func clickPill(_ sender: UIButton) {
-        pillEmoji.setColor(circleColor: .init(red: 0.96, green: 0.95, blue: 0.69, alpha: 1))
-    }
-    
-    @objc func clickMuscle(_ sender: UIButton) {
-        muscleEmoji.setColor(circleColor: .init(red: 1, green: 0.65, blue: 0.65, alpha: 1))
-    }
-    
     @objc func changedTimer(_ sender: Any?) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
@@ -116,12 +94,27 @@ class AddAlarmVC: BaseVC {
     }
     
     @objc func clickCancelBtn(_ sender: UIButton) {
-        print("dismiss")
-        self.dismiss(animated: true)
+            self.dismiss(animated: true) { [weak self] in
+            self?.delegate?.dataCreated()
+        }
     }
     
+    @objc func clickSelectBtn(_ sender: UIButton) {
+        
+        let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
+        
+        if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[segmentedButton.selectedIndex])", week: cells[indexPath ?? 0], index: segmentedButton.selectedIndex)) {
+            self.dismiss(animated: true) { [weak self] in
+                self?.delegate?.dataCreated()
+            }
+        } else {
+            descriptionTextField.shake()
+        }
+    }
+    
+    // MARK: - UI
     override func addView() {
-        view.addSubviews(titleViewLabel, cancelBtn, okayBtn,  datepickerView, clockEmoji, runEmoji, foodEmoji, pillEmoji,muscleEmoji, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
+        view.addSubviews(titleViewLabel, cancelBtn, selectBtn, datepickerView, segmentedButton, descriptionLabel, descriptionTextField, repeatDayQuestionLabel, repeatDaytableView)
     }
     
     override func configureVC() {
@@ -130,7 +123,7 @@ class AddAlarmVC: BaseVC {
         
         navigationItem.titleView = titleViewLabel
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelBtn)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: okayBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: selectBtn)
     }
     
     override func setLayout() {
@@ -144,7 +137,7 @@ class AddAlarmVC: BaseVC {
             $0.leading.equalToSuperview().inset(16)
         }
 
-        okayBtn.snp.makeConstraints {
+        selectBtn.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14)
             $0.trailing.equalToSuperview().inset(16)
         }
@@ -155,39 +148,14 @@ class AddAlarmVC: BaseVC {
             $0.height.equalTo(190)
         }
         
-        clockEmoji.snp.makeConstraints {
-            $0.size.equalTo(55)
+        segmentedButton.snp.makeConstraints {
             $0.top.equalTo(datepickerView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(20)
-        }
-        
-        runEmoji.snp.makeConstraints {
-            $0.size.equalTo(55)
-            $0.top.equalTo(clockEmoji.snp.top)
-            $0.leading.equalTo(clockEmoji.snp.trailing).offset(20)
-        }
-        
-        foodEmoji.snp.makeConstraints {
-            $0.size.equalTo(55)
-            $0.top.equalTo(clockEmoji.snp.top)
-            $0.centerX.equalToSuperview()
-        }
-        
-        pillEmoji.snp.makeConstraints {
-            $0.size.equalTo(55)
-            $0.top.equalTo(clockEmoji.snp.top)
-            $0.leading.equalTo(foodEmoji.snp.trailing).offset(20)
-        }
-        
-        muscleEmoji.snp.makeConstraints {
-            $0.size.equalTo(55)
-            $0.top.equalTo(clockEmoji.snp.top)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         descriptionLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(32)
-            $0.top.equalTo(clockEmoji.snp.bottom).offset(27)
+            $0.top.equalTo(segmentedButton.snp.bottom).offset(27)
         }
         
         descriptionTextField.snp.makeConstraints {
@@ -208,6 +176,7 @@ class AddAlarmVC: BaseVC {
     }
 }
 
+// MARK: - Extension
 extension AddAlarmVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count

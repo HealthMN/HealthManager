@@ -6,8 +6,11 @@
 //  Copyright © 2022 com.tm. All rights reserved.
 //
 import Foundation
+import RealmSwift
 
 class CalendarViewModel {
+    
+    var datasource = Observable([Alarm]())
     
     func getTodayTime() -> String {
         let date = Date()
@@ -18,5 +21,17 @@ class CalendarViewModel {
         let dateStr = dateFormatter.string(from: date)
         
         return dateStr
+    }
+    
+    func add() {        
+        let results = try! Realm().objects(Alarm.self)
+        
+        self.datasource.value = results.toArray()
+    }
+}
+
+extension Results {
+    func toArray() -> [Element] {
+        return Array(self)
     }
 }
