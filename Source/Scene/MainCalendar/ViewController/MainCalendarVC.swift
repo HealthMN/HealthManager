@@ -11,11 +11,22 @@ import SnapKit
 import Then
 import Inject
 import FSCalendar
+import RealmSwift
 
-class MainCalendarVC: BaseVC {
+final class MainCalendarVC: BaseVC {
+    
     var coordinator: Coordinator?
     
-    private let calendarViewModel = CalendarViewModel()
+    init(viewModel: CalendarViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private var viewModel = CalendarViewModel()
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +75,7 @@ class MainCalendarVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.alarmTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        viewModel.add()
     }
 
     //화면에 나타난 직후
@@ -84,7 +96,9 @@ class MainCalendarVC: BaseVC {
     }
     
     @objc func addAlarmBtnClick(_ sender: UIButton) {
-        navigationController?.present(AddAlarmVC(), animated: true)
+        let vc = AddAlarmVC(viewModel: .init())
+        vc.delegate = self
+        navigationController?.present(vc, animated: true)
     }
 
     override func addView() {
@@ -94,7 +108,7 @@ class MainCalendarVC: BaseVC {
     }
     
     override func configureVC() {
-        todayDateLabel.text = calendarViewModel.getTodayTime()
+        todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self
     }
@@ -141,23 +155,48 @@ class MainCalendarVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
+    override func bindState() {
+        viewModel.datasource.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.alarmTableView.reloadData()
+            }
+        }
+    }
 }
 
 extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath)
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? AlarmCell
+        cell?.selectionStyle = .none
+        cell?.model = viewModel.datasource.value[indexPath.row]
         
-        return cell
+        return cell ?? AlarmCell.init()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.datasource.value.count
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            
+            if editingStyle == .delete {
+                let realm = try! Realm()
+                let obj = realm.object(ofType: Alarm.self, forPrimaryKey: viewModel.datasource.value[indexPath.row].id) ?? .init()
+                
+                try! realm.write{
+                    realm.delete(obj)
+                }
+                
+                viewModel.datasource.value.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            }
+        }
 }
 
-extension MainCalendarVC: UIScrollViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scrolled..")
+extension MainCalendarVC: AddAlarmDelegate {
+    func dataCreated() {
+        viewModel.add()
+        alarmTableView.reloadData()
     }
 }
