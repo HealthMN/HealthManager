@@ -176,6 +176,24 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.datasource.value.count
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            
+            if editingStyle == .delete {
+                let realm = try! Realm()
+                let obj = realm.object(ofType: Alarm.self, forPrimaryKey: viewModel.datasource.value[indexPath.row].id) ?? .init()
+                
+                try! realm.write{
+                    realm.delete(obj)
+                }
+                
+                viewModel.datasource.value.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } else if editingStyle == .insert {
+                
+            }
+        }
 }
 
 extension MainCalendarVC: AddAlarmDelegate {
