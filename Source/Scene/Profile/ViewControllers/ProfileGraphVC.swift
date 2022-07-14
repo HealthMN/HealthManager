@@ -102,7 +102,7 @@ class ProfileGraphVC: BaseVC {
             if object is UITableView {
                 if let newValue = change?[.newKey] as? CGSize {
                     profileTableView.snp.updateConstraints {
-                        $0.height.equalTo(newValue.height + 50)
+                        $0.height.equalTo(newValue.height)
                     }
                 }
             }
@@ -133,8 +133,8 @@ class ProfileGraphVC: BaseVC {
         profileTableView.snp.makeConstraints {
             $0.top.equalTo(lineChartView.snp.bottom).offset(38)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(130)
-            $0.bottom.equalToSuperview().inset(93)
+            $0.height.equalTo(1)
+            $0.bottom.equalToSuperview().inset(98)
         }
     }
 }
