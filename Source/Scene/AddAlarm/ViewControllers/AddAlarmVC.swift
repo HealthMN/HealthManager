@@ -1,8 +1,6 @@
-import Foundation
 import UIKit
 import Then
 import SnapKit
-import RealmSwift
 
 protocol AddAlarmDelegate: AnyObject {
     func dataCreated()

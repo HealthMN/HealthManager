@@ -1,7 +1,6 @@
 import UIKit
 import Then
 import SnapKit
-import Firebase
 import FirebaseAuth
 
 final class LoginVC: BaseVC {
