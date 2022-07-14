@@ -5,10 +5,8 @@ protocol Coordinator: AnyObject {
     var parentCoordinator: Coordinator? { get set }
     
     func start()
-    func pushLoginVC()
-    func pushSignUpVC()
-    func setMainCalendarVC()
-    func pushProfileVC()
-    func dismissProfileVC()
-    func presentProfileGraphVC()
+    func start(coordinator: Coordinator)
+    func didFinish(coordniator: Coordinator)
+    func navigate(to step: HMStep)
+    func removeChildCoordinators()
 }
