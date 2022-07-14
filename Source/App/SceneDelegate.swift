@@ -9,6 +9,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print(try? Realm.Configuration.defaultConfiguration.fileURL)
+        for fontFamily in UIFont.familyNames {
+                  for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
+                      print(fontName)
+                  }
+              }
         guard let windowScence = (scene as? UIWindowScene) else { return }
         
         let nav = UINavigationController()
