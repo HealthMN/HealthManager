@@ -1,19 +1,14 @@
 import Foundation
 import FirebaseAuth
 
-final class SignUpViewModel {
-    var coordinaotr: Coordinator?
+final class SignUpViewModel: BaseViewModel {
     
     var passwordIsVisible = Observable(false)
     var checkPasswordIsVisible = Observable(false)
     
     var warninglabelIsVisible = Observable(false)
     var warningLabelDescription = Observable("")
-    
-    init(coordinator: Coordinator) {
-        self.coordinaotr = coordinator
-    }
-    
+
     func passwordVisibleButtonDidTap() {
         passwordIsVisible.value.toggle()
     }
@@ -32,7 +27,7 @@ final class SignUpViewModel {
                 //success
                 if result != nil {
                     self?.warninglabelIsVisible.value = false
-                    self?.coordinaotr?.pushLoginVC()
+                    self?.coordinator.navigate(to: .loginIsRequired)
                 }
                 
                 //error
