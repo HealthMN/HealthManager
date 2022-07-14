@@ -9,6 +9,9 @@ final class LoginViewModel: BaseViewModel {
     func passwordButtonDidTap() {
         passwordIsVisible.value.toggle()
     }
+    func notAccountButtonDidTap() {
+        coordinator.navigate(to: .signUpIsRequired)
+    }
     
     func signInFetch(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
