@@ -1,8 +1,8 @@
 import UIKit
 
-protocol Coordinator {
-    var childCoordinators: [Coordinator] { get set }
+protocol Coordinator: AnyObject {
     var nav: UINavigationController { get set }
+    var parentCoordinator: Coordinator? { get set }
     
     func start()
     func pushLoginVC()
