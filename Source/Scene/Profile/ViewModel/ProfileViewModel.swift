@@ -13,8 +13,6 @@ class ProfileViewModel: BaseViewModel {
         try! realm.write {
             realm.add(exerciseRecord)
         }
-        
-        coordinator.didFinish(coordinator: coordinator)
     }
     
     func dismiss() {
