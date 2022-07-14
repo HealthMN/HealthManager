@@ -3,9 +3,8 @@ import UIKit
 import Then
 import SnapKit
 
-class ProfileTabelVeiwCell: UITableViewCell {
+class ProfileTableViewCell: UITableViewCell {
     let titleTextLabel = UILabel().then {
-        $0.text = "asdfadsf r"
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
     }
     
@@ -20,12 +19,9 @@ class ProfileTabelVeiwCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     func addView() {
         contentView.addSubviews(titleTextLabel)
     }
-    
     
     func setLayout() {
         titleTextLabel.snp.makeConstraints {

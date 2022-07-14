@@ -42,11 +42,14 @@ class ProfileGraphVC: BaseVC {
     }
     
     private let profileTableView = UITableView().then {
-        $0.register(ProfileTabelVeiwCell.self, forCellReuseIdentifier: "ProfileTableViewCell")
+        $0.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileViewCell")
+        $0.rowHeight = UITableView.automaticDimension
+        $0.layer.cornerRadius = 8
     }
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.97, green: 0.98, blue: 0.97, alpha: 1)
+        profileTableView.dataSource = self
         viewModel.readThisWeekData()
         viewModel.coordinator?.presentProfileGraphVC()
     }
@@ -94,20 +97,16 @@ class ProfileGraphVC: BaseVC {
     }
 }
 
-extension ProfileGraphVC: UITableViewDelegate {
-    
-}
-
 extension ProfileGraphVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as? ProfileTabelVeiwCell else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileViewCell", for: indexPath) as? ProfileTableViewCell else { return UITableViewCell()}
         
         cell.titleTextLabel.text = cells[indexPath.row]
-        
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }
