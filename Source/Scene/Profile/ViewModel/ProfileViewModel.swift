@@ -14,6 +14,7 @@ class ProfileViewModel {
     
     let realm = try! Realm()
     var entries = [ChartDataEntry]()
+    var entries2 = [ChartDataEntry]()
     
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
@@ -28,11 +29,23 @@ class ProfileViewModel {
         }
     }
     
-    func readData() {
+    func readThisWeekData() {
         let list = realm.objects(ProfileModel.self).toArray()
         
-        for i in list.count - 7..<list.count {
-            entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
+        if list.count >= 7 {
+            
+            for i in list.count - 7..<list.count {
+                entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
+                entries2.append(ChartDataEntry(x: Double(i), y: Double(list[i - 7].time)))
+                
+            }
+            print("entries = \(entries)")
+            print("entries2 = \(entries2)")
+        } else {
+            for i in 0..<list.count {
+                entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
+                entries2.append(ChartDataEntry(x: Double(i), y: Double(list[i - 7].time)))
+            }
         }
     }
 }

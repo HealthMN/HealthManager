@@ -31,22 +31,36 @@ class ProfileGraphVC: BaseVC {
         $0.xAxis.labelTextColor = .clear
         $0.rightAxis.enabled = false
         $0.leftAxis.labelTextColor = HealthManagerAsset.hmPrimary.color
+        $0.xAxis.setLabelCount(7, force: false)
         $0.animate(xAxisDuration: 2)
     }
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.97, green: 0.98, blue: 0.97, alpha: 1)
+        viewModel.readThisWeekData()
         viewModel.coordinator?.presentProfileGraphVC()
     }
     
     override func viewDidLayoutSubviews() {
-        viewModel.readData()
-        let set = LineChartDataSet(entries: viewModel.entries, label: "오늘의 운동시간")
-        let data = LineChartData(dataSet: set)
+        let set = LineChartDataSet(entries: viewModel.entries, label: "이번 주")
+        let set2 = LineChartDataSet(entries: viewModel.entries2, label: "저번 주")
         
         set.mode = .horizontalBezier
         set.lineWidth = 2
         set.setColors(HealthManagerAsset.hmPrimary.color)
+        set.circleHoleRadius = 3.0
+        set.circleRadius = 3.0
+        set.circleColors = [HealthManagerAsset.hmPrimary.color]
+        
+        set2.mode = .horizontalBezier
+        set2.lineWidth = 2
+        set2.setColors(.gray)
+        set2.circleHoleRadius = 3.0
+        set2.circleRadius = 3.0
+        set2.circleColors = [.gray]
+        
+        let data = LineChartData(dataSets: [set, set2])
+        
         
         lineChartView.data = data
     }
