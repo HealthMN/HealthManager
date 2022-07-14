@@ -1,29 +1,29 @@
 import UIKit
 
 final class MainCoordinator: baseCoordinator {
-    
+    // MARK: - Start
     override func start() {
         let vm = LoginViewModel(coordinator: self)
         let vc = LoginVC(viewModel: vm)
         self.nav.setViewControllers([vc], animated: true)
     }
-    
+    // MARK: - Navigate
     override func navigate(to step: HMStep) {
         switch step {
         case .loginIsRequired:
             navigateToLogin()
         case .signUpIsRequired:
-            <#code#>
+            navigateToSignUp()
         case .mainCalendarIsRequired:
-            <#code#>
+            navigateToMainCalendar()
         case .addAlarmIsRequired:
-            <#code#>
+            navigateToAddAlarm()
         case .profileIsRequired:
-            <#code#>
+            navigateToAddAlarm()
         }
     }
 }
-
+// MARK: - extension
 private extension MainCoordinator {
     func navigateToLogin() {
         let vm = LoginViewModel(coordinator: self)

@@ -18,10 +18,10 @@ class baseCoordinator: Coordinator {
         fatalError("Start method should be implemented")
     }
     
-    func start(coodinator: Coordinator) {
-        childCoordinators += [coodinator]
-        coodinator.parentCoordinator = self
-        coodinator.start()
+    func start(coordinator: Coordinator) {
+        childCoordinators += [coordinator]
+        coordinator.parentCoordinator = self
+        coordinator.start()
     }
     
     func didFinish(coordinator: Coordinator) {
@@ -30,7 +30,7 @@ class baseCoordinator: Coordinator {
         }
     }
     
-    func navigate(to step: HealthStep){
+    func navigate(to step: HMStep){
         
     }
     
