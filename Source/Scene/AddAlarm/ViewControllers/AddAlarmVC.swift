@@ -6,20 +6,9 @@ protocol AddAlarmDelegate: AnyObject {
     func dataCreated()
 }
 
-final class AddAlarmVC: BaseVC {
-    
-    init(viewModel: AddAlarmViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
+final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
+    // MARK: - Properties
     weak var delegate: AddAlarmDelegate?
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private let viewModel: AddAlarmViewModel
     
     private let icons = ["⏰", "👟", "🍖", "💊", "💪🏻"]
     

@@ -1,12 +1,7 @@
 import Foundation
 import RealmSwift
 
-final class AddAlarmViewModel {
-    let coordinator: Coordinator?
-    
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-    }
+final class AddAlarmViewModel: BaseViewModel {
         
     func selectButtonDidTap(date: Date, title: String, icon: String, week: String, index: Int) -> Bool {
         let realm = try! Realm()
@@ -18,9 +13,9 @@ final class AddAlarmViewModel {
         
         try! realm.write{
             realm.add(model)
-        }
-        
+        }        
         return true
+        
     }
     
 }
