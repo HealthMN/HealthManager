@@ -1,11 +1,3 @@
-//
-//  EmojiCircleCell.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/06/05.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import SnapKit
