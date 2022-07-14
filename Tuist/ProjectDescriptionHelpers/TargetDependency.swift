@@ -13,6 +13,7 @@ public extension TargetDependency.SPM {
     static let FirebaseMessaging = TargetDependency.package(product: "FirebaseMessaging")
     static let FSCalendar = TargetDependency.package(product: "FSCalendar")
     static let RealmSwift = TargetDependency.package(product: "RealmSwift")
+    static let Charts = TargetDependency.package(product: "Charts")
     
 }
 
@@ -38,5 +39,8 @@ public extension Package {
     static let RealmSwift = Package.remote(
         url: "https://github.com/realm/realm-swift",
         requirement: .upToNextMajor(from: "10.1.0"))
+    static let Charts = Package.remote(
+        url: "https://github.com/danielgindi/Charts",
+        requirement: .upToNextMajor(from: "4.0.0"))
     
 }
