@@ -48,6 +48,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
         viewModel.saveProfileTime(time: time)
+        viewModel.dismiss()
     }
     
     override func configureVC() {

@@ -2,7 +2,7 @@ import UIKit
 import RealmSwift
 
 class ProfileViewModel: BaseViewModel {
-    func presentProfileGraphVC() {
+    func presentProfileVC() {
         coordinator.navigate(to: .profileIsRequired)
     }
     
@@ -15,5 +15,9 @@ class ProfileViewModel: BaseViewModel {
         }
         
         coordinator.didFinish(coordinator: coordinator)
+    }
+    
+    func dismiss() {
+        coordinator.nav.dismiss(animated: true)
     }
 }

@@ -18,8 +18,10 @@ final class MainCoordinator: baseCoordinator {
             navigateToMainCalendar()
         case .addAlarmIsRequired:
             navigateToAddAlarm()
+        case .profileGraphIsRequired:
+            navigateToProfileGraph()
         case .profileIsRequired:
-            navigateToAddAlarm()
+            navigateToProfile()
         }
     }
 }
@@ -43,11 +45,17 @@ private extension MainCoordinator {
     func navigateToAddAlarm() {
         let vm = AddAlarmViewModel(coordinator: self)
         let vc = AddAlarmVC(viewModel: vm)
+        self.nav.visibleViewController?.present(vc, animated: true)
+    }
+    func navigateToProfileGraph() {
+        let vm = ProfileViewModel(coordinator: self)
+        let vc = ProfileGraphVC(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
     }
     func navigateToProfile() {
         let vm = ProfileViewModel(coordinator: self)
         let vc = ProfileVC(viewModel: vm)
-        self.nav.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .fullScreen
+        self.nav.visibleViewController?.present(vc, animated: true)
     }
 }

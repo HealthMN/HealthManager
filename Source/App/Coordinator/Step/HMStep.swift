@@ -8,4 +8,7 @@ enum HMStep {
     case mainCalendarIsRequired
     case addAlarmIsRequired
     case profileIsRequired
+    
+    // MARK: Profile
+    case profileGraphIsRequired
 }

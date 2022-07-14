@@ -24,7 +24,7 @@ final class CalendarViewModel: BaseViewModel {
     }
     
     func profileBtnDidTap() {
-        coordinator.navigate(to: .profileIsRequired)
+        coordinator.navigate(to: .profileGraphIsRequired)
     }
     
     func addAlarmBtnDidTap() {
