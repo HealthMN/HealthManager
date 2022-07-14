@@ -1,11 +1,9 @@
 import UIKit
 import RealmSwift
 
-class ProfileViewModel {
-    var coordinator: Coordinator?
-    
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
+class ProfileViewModel: BaseViewModel {
+    func presentProfileVC() {
+        coordinator.navigate(to: .profileIsRequired)
     }
     
     func saveProfileTime(time: Int) {
@@ -15,5 +13,9 @@ class ProfileViewModel {
         try! realm.write {
             realm.add(exerciseRecord)
         }
+    }
+    
+    func dismiss() {
+        coordinator.nav.dismiss(animated: true)
     }
 }

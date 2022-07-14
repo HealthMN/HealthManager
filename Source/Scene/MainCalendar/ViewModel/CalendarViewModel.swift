@@ -1,16 +1,10 @@
 import Foundation
 import RealmSwift
 
-final class CalendarViewModel {
-    
+final class CalendarViewModel: BaseViewModel {
+    // MARK: - Properties
     var datasource = Observable([Alarm]())
-    
-    var coordinator: Coordinator?
-    
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-    }
-    
+    // MARK: - Method
     func getTodayTime() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -30,10 +24,14 @@ final class CalendarViewModel {
     }
     
     func profileBtnDidTap() {
-        coordinator?.pushProfileVC()
+        coordinator.navigate(to: .profileGraphIsRequired)
+    }
+    
+    func addAlarmBtnDidTap() {
+        coordinator.navigate(to: .addAlarmIsRequired)
     }
 }
-
+// MARK: - Extension
 extension Results {
     func toArray() -> [Element] {
         return Array(self)

@@ -1,7 +1,18 @@
 import UIKit
 
-class BaseVC: UIViewController{
+class BaseVC<T: BaseViewModel>: UIViewController{
     let bound = UIScreen.main.bounds
+    
+    let viewModel: T
+    
+    init(viewModel: T){
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     @available(*, unavailable)
     override func viewDidLoad() {
@@ -11,12 +22,22 @@ class BaseVC: UIViewController{
         addView()
         setLayout()
         configureVC()
-        bindState()
+        bindVM()
+    }
+    
+    @available(*, unavailable)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.coordinator.didFinish(coordinator: viewModel.coordinator)
+    }
+    
+    deinit{
+        print("\(type(of: self)): \(#function)")
     }
 
     func setup(){}
     func addView(){}
     func setLayout(){}
     func configureVC(){}
-    func bindState(){}
+    func bindVM(){}
 }

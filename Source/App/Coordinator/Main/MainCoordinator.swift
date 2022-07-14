@@ -1,49 +1,61 @@
 import UIKit
 
-final class MainCoordinator: Coordinator {
-    
-    var childCoordinators: [Coordinator] = []
-    var nav: UINavigationController
-    
-    init(nav: UINavigationController) {
-        self.nav = nav
+final class MainCoordinator: baseCoordinator {
+    // MARK: - Start
+    override func start() {
+        let vm = LoginViewModel(coordinator: self)
+        let vc = LoginVC(viewModel: vm)
+        self.nav.setViewControllers([vc], animated: true)
     }
-    
-    func start() {
-        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        vc.coordinator = self
-        nav.setViewControllers([vc], animated: true)
+    // MARK: - Navigate
+    override func navigate(to step: HMStep) {
+        switch step {
+        case .loginIsRequired:
+            navigateToLogin()
+        case .signUpIsRequired:
+            navigateToSignUp()
+        case .mainCalendarIsRequired:
+            navigateToMainCalendar()
+        case .addAlarmIsRequired:
+            navigateToAddAlarm()
+        case .profileGraphIsRequired:
+            navigateToProfileGraph()
+        case .profileIsRequired:
+            navigateToProfile()
+        }
     }
-    
-    func setMainCalendarVC() {
-        let vc = MainCalendarVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        vc.coordinator = self
-        nav.setViewControllers([vc], animated: true)
+}
+// MARK: - extension
+private extension MainCoordinator {
+    func navigateToLogin() {
+        let vm = LoginViewModel(coordinator: self)
+        let vc = LoginVC(viewModel: vm)
+        self.nav.setViewControllers([vc], animated: true)
     }
-    
-    func pushLoginVC() {
-        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        vc.coordinator =  self
-        nav.popViewController(animated: true)
+    func navigateToSignUp() {
+        let vm = SignUpViewModel(coordinator: self)
+        let vc = SignUpVC(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
     }
-    
-    func pushSignUpVC() {
-        let vc = SignUpVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        nav.pushViewController(vc, animated: true)
+    func navigateToMainCalendar() {
+        let vm = CalendarViewModel(coordinator: self)
+        let vc = MainCalendarVC(viewModel: vm)
+        self.nav.setViewControllers([vc], animated: true)
     }
-    
-    func pushProfileVC() {
-        let vc = ProfileGraphVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        nav.pushViewController(vc, animated: true)
+    func navigateToAddAlarm() {
+        let vm = AddAlarmViewModel(coordinator: self)
+        let vc = AddAlarmVC(viewModel: vm)
+        self.nav.visibleViewController?.present(vc, animated: true)
     }
-    
-    func dismissProfileVC() {
-        nav.dismiss(animated: true)
+    func navigateToProfileGraph() {
+        let vm = ProfileViewModel(coordinator: self)
+        let vc = ProfileGraphVC(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
     }
-    
-    func presentProfileGraphVC() {
-        let vc = ProfileVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+    func navigateToProfile() {
+        let vm = ProfileViewModel(coordinator: self)
+        let vc = ProfileVC(viewModel: vm)
         vc.modalPresentationStyle = .fullScreen
-        nav.present(vc, animated: true)
+        self.nav.visibleViewController?.present(vc, animated: true)
     }
 }

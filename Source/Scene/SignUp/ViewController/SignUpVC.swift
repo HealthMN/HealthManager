@@ -4,19 +4,8 @@ import SnapKit
 import Firebase
 import FirebaseAuth
 
-final class SignUpVC: BaseVC {
-    
-    init(viewModel: SignUpViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private let viewModel: SignUpViewModel
-    
+final class SignUpVC: BaseVC<SignUpViewModel> {
+
     private let signUpTitleLabel = UILabel().then {
         $0.text = "SignUp"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
@@ -161,7 +150,7 @@ final class SignUpVC: BaseVC {
     
     // MARK: - bind
     
-    override func bindState() {
+    override func bindVM() {
         viewModel.passwordIsVisible.bind { [weak self] visible in
             DispatchQueue.main.async {
                 self?.passwordEyeIconBtn.setImage(.init(named: visible ? "EyeIconBlack" : "EyeIcon")?.resize(newWidth: 22), for: .normal)
