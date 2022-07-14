@@ -34,5 +34,20 @@ private extension MainCoordinator {
         let vm = SignUpViewModel(coordinator: self)
         let vc = SignUpVC(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
-    }   
+    }
+    func navigateToMainCalendar() {
+        let vm = CalendarViewModel(coordinator: self)
+        let vc = MainCalendarVC(viewModel: vm)
+        self.nav.setViewControllers([vc], animated: true)
+    }
+    func navigateToAddAlarm() {
+        let vm = AddAlarmViewModel(coordinator: self)
+        let vc = AddAlarmVC(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
+    }
+    func navigateToProfile() {
+        let vm = ProfileViewModel(coordinator: self)
+        let vc = ProfileVC(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
+    }
 }
