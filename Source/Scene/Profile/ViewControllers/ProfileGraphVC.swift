@@ -28,6 +28,10 @@ class ProfileGraphVC: BaseVC {
     
     private let cells = ["운동시간 보기", "탈퇴하기", "설정", "회원 탈퇴"]
     
+    private let contentScrollView = UIScrollView()
+    
+    private let contentView = UIView()
+    
     private let lineChartView = LineChartView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -43,13 +47,17 @@ class ProfileGraphVC: BaseVC {
     
     private let profileTableView = UITableView().then {
         $0.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileViewCell")
-        $0.rowHeight = UITableView.automaticDimension
+        $0.rowHeight = 60
         $0.layer.cornerRadius = 8
     }
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.97, green: 0.98, blue: 0.97, alpha: 1)
         profileTableView.dataSource = self
+        DispatchQueue.main.async {
+            self.lineChartView.reloadInputViews()
+        }
+        
         viewModel.readThisWeekData()
         viewModel.coordinator?.presentProfileGraphVC()
     }
@@ -78,15 +86,48 @@ class ProfileGraphVC: BaseVC {
         lineChartView.data = data
     }
     
+    //뷰가 나타나기 직전
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.profileTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+    }
+
+    //화면에 나타난 직후
+    override func viewWillDisappear(_ animated: Bool) {
+        self.profileTableView.removeObserver(self, forKeyPath: "contentSize")
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if object is UITableView {
+                if let newValue = change?[.newKey] as? CGSize {
+                    profileTableView.snp.updateConstraints {
+                        $0.height.equalTo(newValue.height + 50)
+                    }
+                }
+            }
+        }
+    }
+    
     override func addView() {
-        view.addSubviews(lineChartView, profileTableView)
+        view.addSubview(contentScrollView)
+        contentScrollView.addSubview(contentView)
+        contentView.addSubviews(lineChartView, profileTableView)
     }
     
     override func setLayout() {
+        contentScrollView.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.centerX.width.top.bottom.equalToSuperview()
+        }
+        
         lineChartView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaInsets.top).inset(104)
+            $0.top.equalTo(view.safeAreaInsets.top).inset(64)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(270)
+            $0.height.equalTo(300)
         }
         
         profileTableView.snp.makeConstraints {
