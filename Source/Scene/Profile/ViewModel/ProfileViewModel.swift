@@ -7,9 +7,13 @@
 //
 import UIKit
 import RealmSwift
+import Charts
 
 class ProfileViewModel {
     var coordinator: Coordinator?
+    
+    let realm = try! Realm()
+    var entries = [ChartDataEntry]()
     
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
@@ -21,6 +25,14 @@ class ProfileViewModel {
         
         try! realm.write {
             realm.add(exerciseRecord)
+        }
+    }
+    
+    func readData() {
+        let list = realm.objects(ProfileModel.self).toArray()
+        
+        for i in list.count - 7..<list.count {
+            entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
         }
     }
 }

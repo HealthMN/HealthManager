@@ -27,23 +27,14 @@ class ProfileGraphVC: BaseVC {
     
     private let lineChartView = LineChartView()
     
-    let realm = try! Realm()
-    
     override func configureVC() {
         view.backgroundColor = .init(red: 0.97, green: 0.98, blue: 0.97, alpha: 1)
         viewModel.coordinator?.presentProfileGraphVC()
     }
     
     override func viewDidLayoutSubviews() {
-        
-        var entries = [ChartDataEntry]()
-        let list = realm.objects(ProfileModel.self).toArray()
-        
-        for i in 0..<list.count {
-            entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
-        }
-        
-        let set = LineChartDataSet(entries: entries)
+        viewModel.readData()
+        let set = LineChartDataSet(entries: viewModel.entries)
         let data = LineChartData(dataSet: set)
         lineChartView.data = data
         
