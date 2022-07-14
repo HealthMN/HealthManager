@@ -35,7 +35,6 @@ let project = Project(
                 .SPM.FSCalendar,
                 .SPM.RealmSwift,
                 .SPM.Charts
-                
             ]
         )
     ]
