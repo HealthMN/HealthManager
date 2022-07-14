@@ -19,8 +19,9 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
-        vc.coordinator = self
+//        let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+        let vc = ProfileGraphVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
+//        vc.coordinator = self
         nav.setViewControllers([vc], animated: true)
     }
     
