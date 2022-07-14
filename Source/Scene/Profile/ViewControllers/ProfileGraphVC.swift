@@ -26,7 +26,7 @@ class ProfileGraphVC: BaseVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let cells = ["운동시간 보기", "탈퇴하기", "설정", "회원 탈퇴"]
+    private let cells = ["운동시간 보기", "설정", "회원 탈퇴"]
     
     private let contentScrollView = UIScrollView()
     
@@ -133,6 +133,7 @@ class ProfileGraphVC: BaseVC {
         profileTableView.snp.makeConstraints {
             $0.top.equalTo(lineChartView.snp.bottom).offset(38)
             $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(130)
             $0.bottom.equalToSuperview().inset(93)
         }
     }
