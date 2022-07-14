@@ -1,35 +1,14 @@
-//
-//  AddAlarmView.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/06/03.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
-
-import Foundation
 import UIKit
 import Then
 import SnapKit
-import RealmSwift
 
 protocol AddAlarmDelegate: AnyObject {
     func dataCreated()
 }
 
-final class AddAlarmVC: BaseVC {
-    
-    init(viewModel: AddAlarmViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
+final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
+    // MARK: - Properties
     weak var delegate: AddAlarmDelegate?
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private let viewModel: AddAlarmViewModel
     
     private let icons = ["⏰", "👟", "🍖", "💊", "💪🏻"]
     

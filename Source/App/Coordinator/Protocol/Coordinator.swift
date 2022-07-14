@@ -1,22 +1,12 @@
-//
-//  Coordinator.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/06/23.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
-import Foundation
 import UIKit
 
-protocol Coordinator {
-    var childCoordinators: [Coordinator] { get set }
+protocol Coordinator: AnyObject {
     var nav: UINavigationController { get set }
+    var parentCoordinator: Coordinator? { get set }
     
     func start()
-    func pushLoginVC()
-    func pushSignUpVC()
-    func setMainCalendarVC()
-    func pushProfileVC()
-    func dismissProfileVC()
-    func presentProfileGraphVC()
+    func start(coordinator: Coordinator)
+    func didFinish(coordinator: Coordinator)
+    func navigate(to step: HMStep)
+    func removeChildCoordinators()
 }

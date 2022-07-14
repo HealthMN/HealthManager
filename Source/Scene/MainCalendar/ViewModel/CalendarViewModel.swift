@@ -1,23 +1,10 @@
-//
-//  CalendarVM.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/05/30.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
 import Foundation
 import RealmSwift
 
-class CalendarViewModel {
-    
+final class CalendarViewModel: BaseViewModel {
+    // MARK: - Properties
     var datasource = Observable([Alarm]())
-    
-    var coordinator: Coordinator?
-    
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-    }
-    
+    // MARK: - Method
     func getTodayTime() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -37,10 +24,14 @@ class CalendarViewModel {
     }
     
     func profileBtnDidTap() {
-        coordinator?.pushProfileVC()
+        coordinator.navigate(to: .profileGraphIsRequired)
+    }
+    
+    func addAlarmBtnDidTap() {
+        coordinator.navigate(to: .addAlarmIsRequired)
     }
 }
-
+// MARK: - Extension
 extension Results {
     func toArray() -> [Element] {
         return Array(self)

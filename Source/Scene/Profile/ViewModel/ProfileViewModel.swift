@@ -1,10 +1,3 @@
-//
-//  ExerciseRecordViewModel.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/07/11.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
 import UIKit
 import RealmSwift
 import Charts
@@ -18,6 +11,9 @@ class ProfileViewModel {
     
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
+class ProfileViewModel: BaseViewModel {
+    func presentProfileVC() {
+        coordinator.navigate(to: .profileIsRequired)
     }
     
     func saveProfileTime(time: Int) {
@@ -45,5 +41,9 @@ class ProfileViewModel {
                 entries2.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
             }
         }
+    }
+    
+    func dismiss() {
+        coordinator.nav.dismiss(animated: true)
     }
 }
