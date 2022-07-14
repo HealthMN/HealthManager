@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class ProfileModel: Object {
+final class ProfileModel: Object {
     @Persisted var time: Int
     
     convenience init(time: Int) {

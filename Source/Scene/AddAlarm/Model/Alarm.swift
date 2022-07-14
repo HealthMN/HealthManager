@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class Alarm: Object {
+final class Alarm: Object {
     @Persisted(primaryKey: true) var id: String
     @Persisted var date: Date
     @Persisted var title: String

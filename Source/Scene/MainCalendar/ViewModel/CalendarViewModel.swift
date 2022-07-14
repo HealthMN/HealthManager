@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class CalendarViewModel {
+final class CalendarViewModel {
     
     var datasource = Observable([Alarm]())
     

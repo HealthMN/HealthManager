@@ -1,7 +1,7 @@
 import Foundation
 import FirebaseAuth
 
-class SignUpViewModel {
+final class SignUpViewModel {
     var coordinaotr: Coordinator?
     
     var passwordIsVisible = Observable(false)

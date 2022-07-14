@@ -2,7 +2,7 @@ import SnapKit
 import Then
 import UIKit
 
-class ProfileVC: BaseVC {
+final class ProfileVC: BaseVC {
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel

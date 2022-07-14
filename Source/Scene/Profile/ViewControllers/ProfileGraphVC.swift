@@ -1,6 +1,6 @@
 import Foundation
 
-class ProfileGraphVC: BaseVC {
+final class ProfileGraphVC: BaseVC {
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel

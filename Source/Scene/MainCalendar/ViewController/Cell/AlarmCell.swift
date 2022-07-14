@@ -4,7 +4,7 @@ import SnapKit
 import Then
 import RealmSwift
 
-class AlarmCell: UITableViewCell {
+final class AlarmCell: UITableViewCell {
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }
