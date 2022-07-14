@@ -1,18 +1,9 @@
-//
-//  AlarmCell.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/05/30.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
-
-import Foundation
 import UIKit
 import SnapKit
 import Then
 import RealmSwift
 
-class AlarmCell: UITableViewCell {
+final class AlarmCell: UITableViewCell {
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }

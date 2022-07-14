@@ -1,10 +1,9 @@
 import UIKit
 import Then
 import SnapKit
-import Firebase
 import FirebaseAuth
 
-class LoginVC: BaseVC {
+final class LoginVC: BaseVC {
     
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel

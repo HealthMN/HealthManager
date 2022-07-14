@@ -1,17 +1,8 @@
-//
-//  EmojiCircleCell.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/06/05.
-//  Copyright © 2022 com.tm. All rights reserved.
-//
-
-import Foundation
 import UIKit
 import SnapKit
 import Then
 
-class EmojiCircle: UIButton {
+final class EmojiCircle: UIButton {
     
     private let emojiCircle = UILabel().then {
         $0.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
