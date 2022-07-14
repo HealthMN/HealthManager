@@ -4,20 +4,7 @@ import Then
 import FSCalendar
 import RealmSwift
 
-final class MainCalendarVC: BaseVC {
-    
-    var coordinator: Coordinator?
-    
-    init(viewModel: CalendarViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private var viewModel: CalendarViewModel
+final class MainCalendarVC: BaseVC<CalendarViewModel> {
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -92,9 +79,7 @@ final class MainCalendarVC: BaseVC {
     }
     
     @objc func addAlarmBtnDidTap(_ sender: UIButton) {
-        let vc = AddAlarmVC(viewModel: .init())
-        vc.delegate = self
-        navigationController?.present(vc, animated: true)
+        viewModel.addAlarmBtnDidTap()
     }
 
     override func addView() {
@@ -151,7 +136,7 @@ final class MainCalendarVC: BaseVC {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
-    override func bindState() {
+    override func bindVM() {
         viewModel.datasource.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.alarmTableView.reloadData()
