@@ -24,29 +24,19 @@ class baseCoordinator: Coordinator {
         coodinator.start()
     }
     
-    func pushLoginVC() {
-        <#code#>
+    func didFinish(coordinator: Coordinator) {
+        if let idx = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: idx)
+        }
     }
     
-    func pushSignUpVC() {
-        <#code#>
+    func navigate(to step: HealthStep){
+        
     }
     
-    func setMainCalendarVC() {
-        <#code#>
+    func removeChildCoordinators() {
+        childCoordinators.forEach{ $0.removeChildCoordinators() }
+        childCoordinators.removeAll()
     }
-    
-    func pushProfileVC() {
-        <#code#>
-    }
-    
-    func dismissProfileVC() {
-        <#code#>
-    }
-    
-    func presentProfileGraphVC() {
-        <#code#>
-    }
-    
     
 }
