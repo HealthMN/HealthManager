@@ -2,16 +2,12 @@ import UIKit
 import RealmSwift
 import Charts
 
-class ProfileViewModel {
-    var coordinator: Coordinator?
+class ProfileViewModel: BaseViewModel {
     
     let realm = try! Realm()
     var entries = [ChartDataEntry]()
     var entries2 = [ChartDataEntry]()
-    
-    init(coordinator: Coordinator) {
-        self.coordinator = coordinator
-class ProfileViewModel: BaseViewModel {
+
     func presentProfileVC() {
         coordinator.navigate(to: .profileIsRequired)
     }

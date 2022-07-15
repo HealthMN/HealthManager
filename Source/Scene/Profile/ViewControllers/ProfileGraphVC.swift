@@ -5,14 +5,7 @@ import RealmSwift
 import SnapKit
 import UIKit
 
-class ProfileGraphVC: BaseVC {
-    
-    private let viewModel: ProfileViewModel
-    
-    init(viewModel: ProfileViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
+class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -51,7 +44,7 @@ class ProfileGraphVC: BaseVC {
         }
         
         viewModel.readThisWeekData()
-        viewModel.coordinator?.presentProfileGraphVC()
+        viewModel.presentProfileVC()
     }
     
     override func viewDidLayoutSubviews() {

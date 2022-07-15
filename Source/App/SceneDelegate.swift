@@ -6,7 +6,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        print(try? Realm.Configuration.defaultConfiguration.fileURL)
         for fontFamily in UIFont.familyNames {
                   for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
                       print(fontName)
