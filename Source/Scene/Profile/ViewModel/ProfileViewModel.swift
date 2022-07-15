@@ -7,9 +7,15 @@ class ProfileViewModel: BaseViewModel {
     let realm = try! Realm()
     var entries = [ChartDataEntry]()
     var entries2 = [ChartDataEntry]()
+    
+    var dismissBtn = Observable(false)
+    
+    func dismissBtnDidTap() {
+        dismissBtn.value.toggle()
+    }
 
     func presentProfileVC() {
-        coordinator.navigate(to: .profileIsRequired)
+        coordinator.navigate(to: .profileGraphIsRequired)
     }
     
     func saveProfileTime(time: Int) {
@@ -40,6 +46,8 @@ class ProfileViewModel: BaseViewModel {
     }
     
     func dismiss() {
+        presentProfileVC()
         coordinator.nav.dismiss(animated: true)
+        dismissBtnDidTap()
     }
 }

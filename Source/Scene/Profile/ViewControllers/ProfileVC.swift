@@ -3,6 +3,7 @@ import Then
 import UIKit
 
 final class ProfileVC: BaseVC<ProfileViewModel> {
+    
     private let contextView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -106,7 +107,6 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
 
 extension ProfileVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        
         
         if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
             minutesTimerTextField.text = "59"
