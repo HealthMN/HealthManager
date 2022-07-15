@@ -20,7 +20,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.rightAxis.enabled = false
         $0.leftAxis.labelTextColor = HealthManagerAsset.hmPrimary.color
         $0.xAxis.setLabelCount(7, force: false)
-        $0.animate(xAxisDuration: 2)
+        $0.animate(xAxisDuration: 0.5)
         $0.xAxis.drawGridLinesEnabled = false
         $0.leftAxis.drawGridLinesEnabled = false
         $0.doubleTapToZoomEnabled = false
@@ -38,6 +38,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.text = "HealthManager \n 당신의 운동 루틴을 관리해드립니다."
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         $0.textColor = .init(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
+        $0.numberOfLines = 0
     }
     
     private let staffEmail = UILabel().then {
@@ -47,7 +48,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     private let joggingImg = UIImageView().then {
         $0.image = UIImage(named: "joggingImg")
-//        $0.sizeToFit()
+        $0.sizeToFit()
     }
     
     override func configureVC() {
