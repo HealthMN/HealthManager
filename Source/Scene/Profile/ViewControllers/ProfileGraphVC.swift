@@ -35,14 +35,17 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     }
     
     private let introduceProjectLabel = UILabel().then {
-        $0.text = "HealthManager \n 당신의 운동 루틴을 관리해드립니다."
-        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        $0.text = "HealthManager\n당신의 운동 루틴을 관리해드립니다."
+        $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.textColor = .init(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
         $0.numberOfLines = 0
     }
     
     private let staffEmail = UILabel().then {
-        $0.text = "관리자 이메일"
+        $0.text = "관리자 이메일\nsunghun4777@gmail.com  |  min50875@gmail.com"
+        $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
+        $0.textColor = .init(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
+        $0.numberOfLines = 0
     }
     
     
@@ -81,6 +84,8 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         set2.circleColors = [.gray]
         
         lineChartView.data = data
+        
+        changeIntroduceProjectFont()
     }
     
     //뷰가 나타나기 직전
@@ -109,7 +114,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     override func addView() {
         view.addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews(lineChartView, profileTableView, introduceProjectLabel, staffEmail, joggingImg)
+        contentView.addSubviews(lineChartView, profileTableView, introduceProjectLabel, staffEmail, staffEmail, joggingImg)
     }
     
     override func setLayout() {
@@ -145,7 +150,11 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         introduceProjectLabel.snp.makeConstraints {
             $0.top.equalTo(joggingImg.snp.top)
             $0.leading.equalToSuperview().inset(16)
-            $0.height.equalTo(33)
+        }
+        
+        staffEmail.snp.makeConstraints {
+            $0.top.equalTo(introduceProjectLabel.snp.bottom).offset(34)
+            $0.leading.equalTo(introduceProjectLabel.snp.leading)
         }
     }
     
@@ -155,6 +164,20 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
                 self?.lineChartView.reloadInputViews()
             }
         }
+    }
+    
+    func changeIntroduceProjectFont() {
+        guard let introduceText = introduceProjectLabel.text else { return }
+        guard let staffEmailtext = staffEmail.text else { return }
+        
+        let introduceAttribute = NSMutableAttributedString(string: introduceText)
+        let staffEmailAttribute = NSMutableAttributedString(string: staffEmailtext)
+        introduceAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (introduceText as NSString).range(of: "당신의 운동 루틴을 관리해드립니다."))
+        
+        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (introduceText as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
+        
+        introduceProjectLabel.attributedText = introduceAttribute
+        staffEmail.attributedText = staffEmailAttribute
     }
 }
 
