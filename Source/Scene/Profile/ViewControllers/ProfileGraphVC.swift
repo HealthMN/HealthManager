@@ -41,11 +41,12 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.numberOfLines = 0
     }
     
-    private let staffEmail = UILabel().then {
+    private let staffEmailLabel = UILabel().then {
         $0.text = "관리자 이메일\nsunghun4777@gmail.com  |  min50875@gmail.com"
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.textColor = .init(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
         $0.numberOfLines = 0
+        
     }
     
     
@@ -114,7 +115,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     override func addView() {
         view.addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews(lineChartView, profileTableView, introduceProjectLabel, staffEmail, staffEmail, joggingImg)
+        contentView.addSubviews(lineChartView, profileTableView, introduceProjectLabel, staffEmailLabel, staffEmailLabel, joggingImg)
     }
     
     override func setLayout() {
@@ -152,7 +153,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
             $0.leading.equalToSuperview().inset(16)
         }
         
-        staffEmail.snp.makeConstraints {
+        staffEmailLabel.snp.makeConstraints {
             $0.top.equalTo(introduceProjectLabel.snp.bottom).offset(34)
             $0.leading.equalTo(introduceProjectLabel.snp.leading)
         }
@@ -168,16 +169,17 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     func changeIntroduceProjectFont() {
         guard let introduceText = introduceProjectLabel.text else { return }
-        guard let staffEmailtext = staffEmail.text else { return }
+        guard let staffEmailtext = staffEmailLabel.text else { return }
         
         let introduceAttribute = NSMutableAttributedString(string: introduceText)
         let staffEmailAttribute = NSMutableAttributedString(string: staffEmailtext)
+        
         introduceAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (introduceText as NSString).range(of: "당신의 운동 루틴을 관리해드립니다."))
         
-        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (introduceText as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
+        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (staffEmailtext as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
         
         introduceProjectLabel.attributedText = introduceAttribute
-        staffEmail.attributedText = staffEmailAttribute
+        staffEmailLabel.attributedText = staffEmailAttribute
     }
 }
 
