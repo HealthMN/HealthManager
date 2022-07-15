@@ -7,10 +7,9 @@ import UIKit
 
 final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
-    private let cells = ["운동시간 보기", "설정", "회원 탈퇴"]
+    private let cells = ["운동시간 수정", "설정", "회원 탈퇴"]
     
     private let contentScrollView = UIScrollView()
-    
     private let contentView = UIView()
     
     private let lineChartView = LineChartView().then {
@@ -52,11 +51,11 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     private let joggingImg = UIImageView().then {
         $0.image = UIImage(named: "joggingImg")
-        $0.sizeToFit()
+        $0.contentMode = .scaleAspectFill
     }
     
     override func configureVC() {
-        view.backgroundColor = .init(red: 0.97, green: 0.98, blue: 0.97, alpha: 1)
+        view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
         profileTableView.dataSource = self
         
         viewModel.readThisWeekData()
@@ -68,7 +67,6 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         let set2 = LineChartDataSet(entries: viewModel.entries2, label: "저번 주")
         
         let data = LineChartData(dataSets: [set, set2])
-//        data.setDrawValues(false)
         
         set.mode = .horizontalBezier
         set.lineWidth = 2.5
@@ -141,16 +139,16 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         }
         
         joggingImg.snp.makeConstraints {
-            $0.top.equalTo(profileTableView.snp.bottom).inset(-12)
+            $0.top.equalTo(profileTableView.snp.bottom).inset(-30)
             $0.trailing.equalToSuperview().inset(-13)
-            $0.bottom.equalToSuperview().inset(29)
-            $0.width.equalTo(148)
-            $0.height.equalTo(111)
+            $0.bottom.equalToSuperview().inset(-10)
+            $0.width.equalTo(138)
+            $0.height.equalTo(101)
         }
         
         introduceProjectLabel.snp.makeConstraints {
-            $0.top.equalTo(joggingImg.snp.top)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalTo(profileTableView.snp.bottom).inset(-25)
+            $0.leading.equalToSuperview().inset(20)
         }
         
         staffEmailLabel.snp.makeConstraints {
@@ -174,15 +172,14 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         let introduceAttribute = NSMutableAttributedString(string: introduceText)
         let staffEmailAttribute = NSMutableAttributedString(string: staffEmailtext)
         
-        introduceAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (introduceText as NSString).range(of: "당신의 운동 루틴을 관리해드립니다."))
+        introduceAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 11) ?? "", range: (introduceText as NSString).range(of: "당신의 운동 루틴을 관리해드립니다."))
         
-        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 10) ?? "", range: (staffEmailtext as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
+        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 11) ?? "", range: (staffEmailtext as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
         
         introduceProjectLabel.attributedText = introduceAttribute
         staffEmailLabel.attributedText = staffEmailAttribute
     }
 }
-
 
 extension ProfileGraphVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
