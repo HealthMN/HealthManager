@@ -5,11 +5,7 @@ import RealmSwift
 import SnapKit
 import UIKit
 
-class ProfileGraphVC: BaseVC<ProfileViewModel> {
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     private let cells = ["운동시간 보기", "설정", "회원 탈퇴"]
     
