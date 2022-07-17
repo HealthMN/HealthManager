@@ -30,24 +30,13 @@ class ProfileViewModel: BaseViewModel {
     func readThisWeekData() {
         var list = realm.objects(ProfileModel.self).toArray()
         
-        
         if list.count >= 14 {
             
             for i in list.count - 7..<list.count {
                 entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
                 entries2.append(ChartDataEntry(x: Double(i), y: Double(list[i - 7].time)))
             }
-        }
-        
-        if list.count >= 2 {
-            for i in list.count - 1..<list.count {
-                
-                print("ㅣㅑㄴㅅ")
-                entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
-                entries2.append(ChartDataEntry(x: Double(i), y: Double(list[i - 1].time)))
-            }
-        }
-        else if list.count == 1{
+        } else {
             for i in 0..<list.count {
                 entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
             }
