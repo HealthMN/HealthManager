@@ -6,6 +6,7 @@ import UIKit
 
 final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
+    // MARK: - Properties
     private let cells = ["운동시간 수정", "설정", "회원 탈퇴"]
     
     private let contentScrollView = UIScrollView()
@@ -51,6 +52,23 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.contentMode = .scaleAspectFill
     }
     
+    // MARK: - method
+    func changeIntroduceProjectFont() {
+        guard let introduceText = introduceProjectLabel.text else { return }
+        guard let staffEmailtext = staffEmailLabel.text else { return }
+        
+        let introduceAttribute = NSMutableAttributedString(string: introduceText)
+        let staffEmailAttribute = NSMutableAttributedString(string: staffEmailtext)
+        
+        introduceAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 11) ?? "", range: (introduceText as NSString).range(of: "당신의 운동 루틴을 관리해드립니다."))
+        
+        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 11) ?? "", range: (staffEmailtext as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
+        
+        introduceProjectLabel.attributedText = introduceAttribute
+        staffEmailLabel.attributedText = staffEmailAttribute
+    }
+    
+    // MARK: - UI
     override func configureVC() {
         view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
         profileTableView.dataSource = self
@@ -161,23 +179,9 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
             }
         }
     }
-    
-    func changeIntroduceProjectFont() {
-        guard let introduceText = introduceProjectLabel.text else { return }
-        guard let staffEmailtext = staffEmailLabel.text else { return }
-        
-        let introduceAttribute = NSMutableAttributedString(string: introduceText)
-        let staffEmailAttribute = NSMutableAttributedString(string: staffEmailtext)
-        
-        introduceAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 11) ?? "", range: (introduceText as NSString).range(of: "당신의 운동 루틴을 관리해드립니다."))
-        
-        staffEmailAttribute.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 11) ?? "", range: (staffEmailtext as NSString).range(of: "sunghun4777@gmail.com  |  min50875@gmail.com"))
-        
-        introduceProjectLabel.attributedText = introduceAttribute
-        staffEmailLabel.attributedText = staffEmailAttribute
-    }
 }
 
+// MARK: - Extension
 extension ProfileGraphVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count

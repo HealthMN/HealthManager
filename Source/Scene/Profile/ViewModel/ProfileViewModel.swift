@@ -2,7 +2,7 @@ import UIKit
 import RealmSwift
 import Charts
 
-class ProfileViewModel: BaseViewModel {
+final class ProfileViewModel: BaseViewModel {
     
     let realm = try! Realm()
     var entries = [ChartDataEntry]()
