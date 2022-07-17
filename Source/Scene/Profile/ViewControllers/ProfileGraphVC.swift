@@ -1,4 +1,3 @@
-import Foundation
 import Charts
 import Then
 import RealmSwift
@@ -45,9 +44,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         $0.textColor = .init(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
         $0.numberOfLines = 0
-        
     }
-    
     
     private let joggingImg = UIImageView().then {
         $0.image = UIImage(named: "joggingImg")
