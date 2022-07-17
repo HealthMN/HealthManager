@@ -141,18 +141,18 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         joggingImg.snp.makeConstraints {
             $0.top.equalTo(profileTableView.snp.bottom).inset(-30)
             $0.trailing.equalToSuperview().inset(-13)
-            $0.bottom.equalToSuperview().inset(-10)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
             $0.width.equalTo(138)
             $0.height.equalTo(101)
         }
         
         introduceProjectLabel.snp.makeConstraints {
-            $0.top.equalTo(profileTableView.snp.bottom).inset(-25)
+            $0.bottom.equalTo(staffEmailLabel.snp.bottom).inset(40)
             $0.leading.equalToSuperview().inset(20)
         }
         
         staffEmailLabel.snp.makeConstraints {
-            $0.top.equalTo(introduceProjectLabel.snp.bottom).offset(34)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalTo(introduceProjectLabel.snp.leading)
         }
     }
