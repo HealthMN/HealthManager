@@ -4,12 +4,14 @@ import Charts
 
 final class ProfileViewModel: BaseViewModel {
     
+    // MARK: - Properties
     let realm = try! Realm()
     var entries = [ChartDataEntry]()
     var entries2 = [ChartDataEntry]()
     
     var dismissBtn = Observable(false)
     
+    // MARK: - method
     func dismissBtnDidTap() {
         dismissBtn.value.toggle()
     }
@@ -28,7 +30,7 @@ final class ProfileViewModel: BaseViewModel {
     }
     
     func readThisWeekData() {
-        var list = realm.objects(ProfileModel.self).toArray()
+        let list = realm.objects(ProfileModel.self).toArray()
         
         if list.count >= 14 {
             

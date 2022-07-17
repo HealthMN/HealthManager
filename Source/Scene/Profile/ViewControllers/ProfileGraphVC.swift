@@ -48,7 +48,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     }
     
     private let joggingImg = UIImageView().then {
-        $0.image = UIImage(named: "joggingImg")
+        $0.image = Image.joggingImg
         $0.contentMode = .scaleAspectFill
     }
     
