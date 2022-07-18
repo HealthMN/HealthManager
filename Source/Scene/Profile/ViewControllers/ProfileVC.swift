@@ -45,7 +45,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
     }
     
     // MARK: - method
-    @objc func okayBtnDidTap(_ sender: UIButton) {
+    @objc private func okayBtnDidTap(_ sender: UIButton) {
         guard let hoursTimerTF = hoursTimerTextField.text else { return }
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)

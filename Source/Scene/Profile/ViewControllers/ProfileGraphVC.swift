@@ -53,7 +53,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     }
     
     // MARK: - method
-    func changeIntroduceProjectFont() {
+    private func changeIntroduceProjectFont() {
         guard let introduceText = introduceProjectLabel.text else { return }
         guard let staffEmailtext = staffEmailLabel.text else { return }
         
@@ -78,24 +78,24 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     override func viewDidLayoutSubviews() {
         
-        let set = LineChartDataSet(entries: viewModel.entries, label: "이번 주")
-        let set2 = LineChartDataSet(entries: viewModel.entries2, label: "저번 주")
+        let thisWeekSet = LineChartDataSet(entries: viewModel.entries, label: "이번 주")
+        let lastWeekSet = LineChartDataSet(entries: viewModel.entries2, label: "저번 주")
         
-        let data = LineChartData(dataSets: [set, set2])
+        let data = LineChartData(dataSets: [thisWeekSet, lastWeekSet])
         
-        set.mode = .horizontalBezier
-        set.lineWidth = 2.5
-        set.setColors(HealthManagerAsset.hmPrimary.color)
-        set.circleHoleRadius = 4.0
-        set.circleRadius = 4.0
-        set.circleColors = [HealthManagerAsset.hmPrimary.color]
+        thisWeekSet.mode = .horizontalBezier
+        thisWeekSet.lineWidth = 2.5
+        thisWeekSet.setColors(HealthManagerAsset.hmPrimary.color)
+        thisWeekSet.circleHoleRadius = 4.0
+        thisWeekSet.circleRadius = 4.0
+        thisWeekSet.circleColors = [HealthManagerAsset.hmPrimary.color]
         
-        set2.mode = .horizontalBezier
-        set2.lineWidth = 2.5
-        set2.setColors(.gray)
-        set2.circleHoleRadius = 4.0
-        set2.circleRadius = 4.0
-        set2.circleColors = [.gray]
+        lastWeekSet.mode = .horizontalBezier
+        lastWeekSet.lineWidth = 2.5
+        lastWeekSet.setColors(.gray)
+        lastWeekSet.circleHoleRadius = 4.0
+        lastWeekSet.circleRadius = 4.0
+        lastWeekSet.circleColors = [.gray]
         
         lineChartView.data = data
         
