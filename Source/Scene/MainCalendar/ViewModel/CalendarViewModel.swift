@@ -25,7 +25,7 @@ final class CalendarViewModel: BaseViewModel {
         self.datasource.value = results.toArray()
     }
     
-    func profileBtnDidTap() {ㅎ
+    func profileBtnDidTap() {
         coordinator.navigate(to: .profileIsRequired)
     }
     
@@ -41,19 +41,16 @@ final class CalendarViewModel: BaseViewModel {
         var compoenet = Calendar.current.dateComponents([.year, .month, .day], from: Date())
         compoenet.timeZone = TimeZone(abbreviation: "UTC")
         
-        let dateWithoutTime = Calendar.current.date(from: compoenet)!
-        
         let date = Date()
+        let dateWithoutTime = Calendar.current.date(from: compoenet)!
         
         print("date \(date)")
         print(dateWithoutTime)
         
         if date == dateWithoutTime {
             inputDateAvailable.value = true
-            print("present 됨")
         } else {
             inputDateAvailable.value = false
-            print("present 안됨")
         }
     }
 }
