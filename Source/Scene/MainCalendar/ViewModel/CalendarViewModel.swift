@@ -41,17 +41,26 @@ final class CalendarViewModel: BaseViewModel {
         var compoenet = Calendar.current.dateComponents([.year, .month, .day], from: Date())
         compoenet.timeZone = TimeZone(abbreviation: "UTC")
         
-        let date = Date()
         let dateWithoutTime = Calendar.current.date(from: compoenet)!
         
+        let date = Date()
+    
+        inputDateAvailable.value = UserDefaults.standard.bool(forKey: "inputDateAvailable")
+        print("userDefaults = \(UserDefaults.standard.bool(forKey: "inputDateAvailable"))")
         print("date \(date)")
         print(dateWithoutTime)
         
         if date == dateWithoutTime {
             inputDateAvailable.value = true
+            print("present 됨")
         } else {
             inputDateAvailable.value = false
+            print("present 안됨")
         }
+    }
+    
+    func saveInputDateAvailable() {
+        UserDefaults.standard.set(false, forKey: "inputDateAvailable")
     }
 }
 // MARK: - Extension

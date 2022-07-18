@@ -18,7 +18,7 @@ final class ProfileViewModel: BaseViewModel {
         dismissBtn.value.toggle()
     }
     
-    func pushProfileVC() {
+    func pushProfileGraphVC() {
         coordinator.navigate(to: .profileGraphIsRequired)
     }
     
@@ -48,28 +48,8 @@ final class ProfileViewModel: BaseViewModel {
     }
     
     func dismiss() {
-        pushProfileVC()
+        pushProfileGraphVC()
         coordinator.nav.dismiss(animated: true)
         dismissBtnDidTap()
-    }
-    
-    func nextDate(){
-        var compoenet = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        compoenet.timeZone = TimeZone(abbreviation: "UTC")
-        
-        let dateWithoutTime = Calendar.current.date(from: compoenet)!
-        
-        let date = Date()
-        
-        print("date \(date)")
-        print(dateWithoutTime)
-        
-        if date == dateWithoutTime {
-            inputDateAvailable.value = true
-            print("present 됨")
-        } else {
-            inputDateAvailable.value = false
-            print("present 안됨")
-        }
     }
 }

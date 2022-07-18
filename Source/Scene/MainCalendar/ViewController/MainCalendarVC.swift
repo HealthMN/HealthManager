@@ -56,12 +56,12 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         self.alarmTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
         viewModel.add()
     }
-
+    
     //화면에 나타난 직후
     override func viewWillDisappear(_ animated: Bool) {
         self.alarmTableView.removeObserver(self, forKeyPath: "contentSize")
     }
-
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentSize" {
             if object is UITableView {
@@ -77,7 +77,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     @objc func profileBtnDidTap(_ sender: UIButton) {
         guard viewModel.inputDateAvailable.value else {
             viewModel.pushProfileGraphVC()
-            return 
+            return
         }
         viewModel.profileBtnDidTap()
         viewModel.nextDate()
@@ -86,7 +86,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     @objc func addAlarmBtnDidTap(_ sender: UIButton) {
         viewModel.addAlarmBtnDidTap()
     }
-
+    
     override func addView() {
         view.addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
@@ -94,6 +94,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     }
     
     override func configureVC() {
+        viewModel.saveInputDateAvailable()
         todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self
@@ -165,20 +166,19 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let realm = try! Realm()
+            let obj = realm.object(ofType: Alarm.self, forPrimaryKey: viewModel.datasource.value[indexPath.row].id) ?? .init()
             
-            if editingStyle == .delete {
-                let realm = try! Realm()
-                let obj = realm.object(ofType: Alarm.self, forPrimaryKey: viewModel.datasource.value[indexPath.row].id) ?? .init()
-                
-                try! realm.write{
-                    realm.delete(obj)
-                }
-                
-                viewModel.datasource.value.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                
+            try! realm.write{
+                realm.delete(obj)
             }
+            
+            viewModel.datasource.value.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
 }
 
 extension MainCalendarVC: AddAlarmDelegate {
