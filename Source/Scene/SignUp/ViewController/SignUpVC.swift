@@ -143,8 +143,7 @@ final class SignUpVC: BaseVC<SignUpViewModel> {
         
         warningLabel.snp.makeConstraints {
             $0.top.equalTo(signUpBtn.snp.bottom).offset(8)
-            $0.leading.equalTo(signUpBtn.snp.leading).offset(10)
-            $0.width.equalTo(checkPasswordTextField.snp.width)
+            $0.leading.trailing.equalTo(signUpBtn.snp.leading).inset(10)
         }
     }
     

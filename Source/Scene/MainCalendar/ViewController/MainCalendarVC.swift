@@ -145,6 +145,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         viewModel.datasource.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.alarmTableView.reloadData()
+                print("alarmTableView reloadData!!f")
             }
         }
     }
