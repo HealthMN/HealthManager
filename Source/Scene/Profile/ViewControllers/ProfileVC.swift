@@ -51,6 +51,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
         viewModel.saveProfileTime(time: time)
         viewModel.dismiss()
+        viewModel.inputDateAvailable.value = false
     }
     
     // MARK: - UI
