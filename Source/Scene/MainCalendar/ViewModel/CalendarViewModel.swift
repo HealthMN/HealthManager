@@ -25,10 +25,12 @@ final class CalendarViewModel: BaseViewModel {
         self.datasource.value = results.toArray()
     }
     
-    func profileBtnDidTap() {
-        if inputDateAvailable.value  {
-            coordinator.navigate(to: .profileIsRequired)
-        }
+    func profileBtnDidTap() {ㅎ
+        coordinator.navigate(to: .profileIsRequired)
+    }
+    
+    func pushProfileGraphVC() {
+        coordinator.navigate(to: .profileGraphIsRequired)
     }
     
     func addAlarmBtnDidTap() {
@@ -42,7 +44,7 @@ final class CalendarViewModel: BaseViewModel {
         let dateWithoutTime = Calendar.current.date(from: compoenet)!
         
         let date = Date()
-
+        
         print("date \(date)")
         print(dateWithoutTime)
         

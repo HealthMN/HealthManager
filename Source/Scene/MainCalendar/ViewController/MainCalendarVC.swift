@@ -75,9 +75,11 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     }
     
     @objc func profileBtnDidTap(_ sender: UIButton) {
-        if viewModel.inputDateAvailable.value {
-            viewModel.profileBtnDidTap()
+        guard viewModel.inputDateAvailable.value else {
+            viewModel.pushProfileGraphVC()
+            return 
         }
+        viewModel.profileBtnDidTap()
         viewModel.nextDate()
     }
     
