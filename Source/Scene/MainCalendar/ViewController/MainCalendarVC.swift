@@ -75,12 +75,12 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     }
     
     @objc func profileBtnDidTap(_ sender: UIButton) {
-        guard viewModel.inputDateAvailable.value else {
+        
+        guard viewModel.isInputDateValid() else {
             viewModel.pushProfileGraphVC()
             return
         }
         viewModel.profileBtnDidTap()
-        viewModel.nextDate()
     }
     
     @objc func addAlarmBtnDidTap(_ sender: UIButton) {
@@ -94,7 +94,6 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     }
     
     override func configureVC() {
-        viewModel.saveInputDateAvailable()
         todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self

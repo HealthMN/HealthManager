@@ -6,6 +6,7 @@ final class CalendarViewModel: BaseViewModel {
     var datasource = Observable([Alarm]())
     
     var inputDateAvailable = Observable(true)
+    
     // MARK: - Method
     func getTodayTime() -> String {
         let date = Date()
@@ -27,6 +28,7 @@ final class CalendarViewModel: BaseViewModel {
     
     func profileBtnDidTap() {
         coordinator.navigate(to: .profileIsRequired)
+        saveTodayMidnight()
     }
     
     func pushProfileGraphVC() {
@@ -36,33 +38,27 @@ final class CalendarViewModel: BaseViewModel {
     func addAlarmBtnDidTap() {
         coordinator.navigate(to: .addAlarmIsRequired)
     }
-    
-    func nextDate(){
-        var compoenet = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        compoenet.timeZone = TimeZone(abbreviation: "UTC")
-        
-        let dateWithoutTime = Calendar.current.date(from: compoenet)!
-        
-        let date = Date()
-    
-        inputDateAvailable.value = UserDefaults.standard.bool(forKey: "inputDateAvailable")
-        print("userDefaults = \(UserDefaults.standard.bool(forKey: "inputDateAvailable"))")
-        print("date \(date)")
-        print(dateWithoutTime)
-        
-        if date == dateWithoutTime {
-            inputDateAvailable.value = true
-            print("present 됨")
-        } else {
-            inputDateAvailable.value = false
-            print("present 안됨")
-        }
+
+    func saveTodayMidnight() {
+        UserDefaults.standard.set(Calendar.current.startOfDay(for: Date()), forKey: "inputDate")
     }
     
-    func saveInputDateAvailable() {
-        UserDefaults.standard.set(false, forKey: "inputDateAvailable")
+
+    func isInputDateValid() -> Bool{
+        UserDefaults.standard.object(forKey: "inputDate") as? Date != Calendar.current.startOfDay(for: Date())
     }
+
+//
+//    func saveDate() {
+//        UserDefaults.standard.set(Date() - 1, forKey: "yesterdayDate")
+//        print("ㅁㅁㅁㅁㅁㅁ\(UserDefaults.standard.string(forKey: "yesterdayDate"))")
+//    }
+//    func isInputdateValid() {
+//        inputDateAvailable.value = UserDefaults.standard.bool(forKey: "inputDateValue")
+//        print("userdefaults = \(UserDefaults.standard.bool(forKey: "inputDateValue"))")
+//    }
 }
+
 // MARK: - Extension
 extension Results {
     func toArray() -> [Element] {
