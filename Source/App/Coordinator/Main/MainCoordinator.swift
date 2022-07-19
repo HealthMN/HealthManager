@@ -5,6 +5,7 @@ final class MainCoordinator: baseCoordinator {
     override func start() {
         let vm = LoginViewModel(coordinator: self)
         let vc = LoginVC(viewModel: vm)
+        
         self.nav.setViewControllers([vc], animated: true)
     }
     // MARK: - Navigate

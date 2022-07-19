@@ -3,6 +3,8 @@ import Then
 import UIKit
 
 final class ProfileVC: BaseVC<ProfileViewModel> {
+    
+    // MARK: - Properties
     private let contextView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -43,7 +45,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
     }
     
     // MARK: - method
-    @objc func okayBtnDidTap(_ sender: UIButton) {
+    @objc private func okayBtnDidTap(_ sender: UIButton) {
         guard let hoursTimerTF = hoursTimerTextField.text else { return }
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
@@ -51,6 +53,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
         viewModel.dismiss()
     }
     
+    // MARK: - UI
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
         hoursTimerTextField.delegate = self
@@ -104,6 +107,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
     }
 }
 
+// MARK: - Extension
 extension ProfileVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         

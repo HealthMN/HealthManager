@@ -4,6 +4,9 @@ import RealmSwift
 final class CalendarViewModel: BaseViewModel {
     // MARK: - Properties
     var datasource = Observable([Alarm]())
+    
+    var inputDateAvailable = Observable(true)
+    
     // MARK: - Method
     func getTodayTime() -> String {
         let date = Date()
@@ -24,13 +27,27 @@ final class CalendarViewModel: BaseViewModel {
     }
     
     func profileBtnDidTap() {
+        coordinator.navigate(to: .profileIsRequired)
+        saveTodayMidnight()
+    }
+    
+    func pushProfileGraphVC() {
         coordinator.navigate(to: .profileGraphIsRequired)
     }
     
     func addAlarmBtnDidTap() {
         coordinator.navigate(to: .addAlarmIsRequired)
     }
+
+    func saveTodayMidnight() {
+        UserDefaults.standard.set(Calendar.current.startOfDay(for: Date()), forKey: "inputDate")
+    }
+
+    func isInputDateValid() -> Bool{
+        UserDefaults.standard.object(forKey: "inputDate") as? Date != Calendar.current.startOfDay(for: Date())
+    }
 }
+
 // MARK: - Extension
 extension Results {
     func toArray() -> [Element] {

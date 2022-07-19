@@ -6,7 +6,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
+        
+        print("hehe \(Calendar.current.startOfDay(for: Date()))")
         guard let windowScence = (scene as? UIWindowScene) else { return }
         
         let nav = UINavigationController()
