@@ -156,7 +156,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         joggingImg.snp.makeConstraints {
             $0.top.equalTo(profileTableView.snp.bottom).inset(-30)
             $0.trailing.equalToSuperview().inset(-13)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.width.equalTo(138)
             $0.height.equalTo(101)
         }
