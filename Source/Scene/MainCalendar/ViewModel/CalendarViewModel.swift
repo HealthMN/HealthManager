@@ -42,21 +42,10 @@ final class CalendarViewModel: BaseViewModel {
     func saveTodayMidnight() {
         UserDefaults.standard.set(Calendar.current.startOfDay(for: Date()), forKey: "inputDate")
     }
-    
 
     func isInputDateValid() -> Bool{
         UserDefaults.standard.object(forKey: "inputDate") as? Date != Calendar.current.startOfDay(for: Date())
     }
-
-//
-//    func saveDate() {
-//        UserDefaults.standard.set(Date() - 1, forKey: "yesterdayDate")
-//        print("ㅁㅁㅁㅁㅁㅁ\(UserDefaults.standard.string(forKey: "yesterdayDate"))")
-//    }
-//    func isInputdateValid() {
-//        inputDateAvailable.value = UserDefaults.standard.bool(forKey: "inputDateValue")
-//        print("userdefaults = \(UserDefaults.standard.bool(forKey: "inputDateValue"))")
-//    }
 }
 
 // MARK: - Extension
