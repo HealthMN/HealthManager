@@ -179,10 +179,3 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
-extension MainCalendarVC: AddAlarmDelegate {
-    func dataCreated() {
-        viewModel.add()
-        alarmTableView.reloadData()
-    }
-}
