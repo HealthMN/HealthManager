@@ -69,13 +69,10 @@ final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
-        print(dateFormatter.string(from: datepickerView.date))
     }
     
     @objc func clickCancelBtn(_ sender: UIButton) {
-            self.dismiss(animated: true) { [weak self] in
-            self?.delegate?.dataCreated()
-        }
+        viewModel.dismiss()
     }
     
     @objc func clickSelectBtn(_ sender: UIButton) {
@@ -83,9 +80,7 @@ final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
         
         if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[segmentedButton.selectedIndex])", week: cells[indexPath ?? 0], index: segmentedButton.selectedIndex)) {
-            self.dismiss(animated: true) { [weak self] in
-                self?.delegate?.dataCreated()
-            }
+            viewModel.dismiss()
         } else {
             descriptionTextField.shake()
         }
