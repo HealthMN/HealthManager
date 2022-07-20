@@ -15,14 +15,16 @@ final class MainCoordinator: baseCoordinator {
             navigateToLogin()
         case .signUpIsRequired:
             navigateToSignUp()
-        case .mainCalendarIsRequired:
-            navigateToMainCalendar()
-        case .addAlarmIsRequired:
-            navigateToAddAlarm()
+        case let .mainCalendarIsRequired(closure):
+            navigateToMainCalendar(closure: closure)
+        case let .addAlarmIsRequired(closure):
+            navigateToAddAlarm(closure: closure)
         case .profileGraphIsRequired:
             navigateToProfileGraph()
         case .profileIsRequired:
             navigateToProfile()
+        case let .dismiss(closure):
+            dismiss(closure: closure)
         }
     }
 }
@@ -38,13 +40,13 @@ private extension MainCoordinator {
         let vc = SignUpVC(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
     }
-    func navigateToMainCalendar() {
+    func navigateToMainCalendar(closure: () -> ()) {
         let vm = CalendarViewModel(coordinator: self)
         let vc = MainCalendarVC(viewModel: vm)
         self.nav.setViewControllers([vc], animated: true)
     }
-    func navigateToAddAlarm() {
-        let vm = AddAlarmViewModel(coordinator: self)
+    func navigateToAddAlarm(closure: @escaping () -> ()) {
+        let vm = AddAlarmViewModel(coordinator: self, closure: closure)
         let vc = AddAlarmVC(viewModel: vm)
         self.nav.visibleViewController?.present(vc, animated: true)
     }
@@ -58,5 +60,8 @@ private extension MainCoordinator {
         let vc = ProfileVC(viewModel: vm)
         vc.modalPresentationStyle = .fullScreen
         self.nav.visibleViewController?.present(vc, animated: true)
+    }
+    func dismiss(closure: @escaping () -> Void) {
+        self.nav.visibleViewController?.dismiss(animated: true, completion: closure)
     }
 }
