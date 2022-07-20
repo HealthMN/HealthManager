@@ -36,7 +36,12 @@ final class CalendarViewModel: BaseViewModel {
     }
     
     func addAlarmBtnDidTap() {
-        coordinator.navigate(to: .addAlarmIsRequired)
+        coordinator.navigate(to: .addAlarmIsRequired({
+            let realm = try! Realm()
+            let results = realm.objects(Alarm.self)
+            
+            self.datasource.value = results.toArray()
+        }))
     }
 
     func saveTodayMidnight() {
