@@ -1,4 +1,3 @@
-import Foundation
 import RealmSwift
 import UIKit
 
@@ -30,7 +29,5 @@ final class AddAlarmViewModel: BaseViewModel {
         coordinator.navigate(to: .dismiss({ [weak self] in
             self?.closure()
         }))
-        
     }
-    
 }
