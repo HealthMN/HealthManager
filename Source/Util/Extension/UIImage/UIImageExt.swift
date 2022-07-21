@@ -11,9 +11,6 @@ extension UIImage {
             self.draw(in: CGRect(origin: .zero, size: size))
         }
         
-        print("화면 배율: \(UIScreen.main.scale)")// 배수
-        print("origin: \(self), resize: \(renderImage)")
-        
         return renderImage
     }
 }

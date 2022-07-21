@@ -145,7 +145,6 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         viewModel.datasource.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.alarmTableView.reloadData()
-                print("alarmTableView reloadData!!f")
             }
         }
     }
@@ -177,12 +176,5 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
             viewModel.datasource.value.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-    }
-}
-
-extension MainCalendarVC: AddAlarmDelegate {
-    func dataCreated() {
-        viewModel.add()
-        alarmTableView.reloadData()
     }
 }

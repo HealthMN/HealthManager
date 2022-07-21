@@ -16,7 +16,9 @@ final class LoginViewModel: BaseViewModel {
     func signInFetch(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if result != nil {
-                self?.coordinator.navigate(to: .mainCalendarIsRequired)
+                self?.coordinator.navigate(to: .mainCalendarIsRequired({
+                    
+                }))
             } else {
                 self?.warningLabelisVisible.value = true
             }
