@@ -3,7 +3,7 @@ import Then
 import SnapKit
 
 final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
-    // MARK: - Properties    
+    // MARK: - Properties
     private let icons = ["⏰", "👟", "🍖", "💊", "💪🏻"]
     
     private let cells = ["반복 없음","일요일마다","월요일마다", "화요일마다", "수요일마다", "목요일마다", "금요일마다","토요일마다"]

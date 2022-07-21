@@ -40,12 +40,12 @@ private extension MainCoordinator {
         let vc = SignUpVC(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
     }
-    func navigateToMainCalendar(closure: () -> ()) {
+    func navigateToMainCalendar(closure: () -> Void) {
         let vm = CalendarViewModel(coordinator: self)
         let vc = MainCalendarVC(viewModel: vm)
         self.nav.setViewControllers([vc], animated: true)
     }
-    func navigateToAddAlarm(closure: @escaping () -> ()) {
+    func navigateToAddAlarm(closure: @escaping () -> Void) {
         let vm = AddAlarmViewModel(coordinator: self, closure: closure)
         let vc = AddAlarmVC(viewModel: vm)
         self.nav.visibleViewController?.present(vc, animated: true)
