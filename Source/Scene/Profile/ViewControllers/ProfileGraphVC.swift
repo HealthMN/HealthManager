@@ -7,7 +7,7 @@ import UIKit
 final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     // MARK: - Properties
-    private let cells = ["운동시간 수정", "설정", "회원 탈퇴"]
+    private let cells = ["운동시간 수정", "회원 탈퇴"]
     
     private let contentScrollView = UIScrollView()
     private let contentView = UIView()

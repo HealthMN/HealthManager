@@ -1,0 +1,3 @@
+class EditTimeViewModel: BaseViewModel {
+    
+}
