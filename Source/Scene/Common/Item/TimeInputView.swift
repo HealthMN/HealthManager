@@ -5,6 +5,8 @@ import UIKit
 final class TimeInputView: UIView {
     
     // MARK: - Properties
+    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: TimeInputView.self, action: #selector(okayBtnDidTap(_:)))
+    
     private let contextView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -51,6 +53,7 @@ final class TimeInputView: UIView {
 //        let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
 //        viewModel.saveProfileTime(time: time)
 //        viewModel.dismiss()
+        print("action")
     }
     
     // MARK: - UI
@@ -58,6 +61,7 @@ final class TimeInputView: UIView {
         super.init(frame: frame)
         addView()
         setLayout()
+        self.addGestureRecognizer(tapGesture)
 //        hoursTimerTextField.delegate = self
 //        minutesTimerTextField.delegate = self
     }
@@ -90,19 +94,21 @@ final class TimeInputView: UIView {
         
         colonLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(hoursTimerTextField.snp.top).offset(-2)
+//            $0.top.equalTo(hoursTimerTextField.snp.top).offset(-2)
             $0.height.equalTo(hoursTimerTextField.snp.height)
             $0.width.equalTo(17)
         }
         
         hoursTimerTextField.snp.makeConstraints {
             $0.top.equalTo(colonLabel.snp.top)
-            $0.leading.equalToSuperview().inset(68)
+//            $0.leading.equalToSuperview().inset(68)
+            $0.trailing.equalTo(colonLabel.snp.leading).offset(3)
         }
         
         minutesTimerTextField.snp.makeConstraints {
             $0.top.equalTo(hoursTimerTextField.snp.top)
-            $0.trailing.equalToSuperview().inset(65)
+//            $0.trailing.equalToSuperview().inset(65)
+            $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
         }
         
         okayBtn.snp.makeConstraints {
