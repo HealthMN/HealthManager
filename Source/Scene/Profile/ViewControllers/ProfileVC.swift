@@ -84,19 +84,18 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
         
         colonLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(hoursTimerTextField.snp.top).offset(-2)
             $0.height.equalTo(hoursTimerTextField.snp.height)
             $0.width.equalTo(17)
         }
         
         hoursTimerTextField.snp.makeConstraints {
             $0.top.equalTo(colonLabel.snp.top)
-            $0.leading.equalToSuperview().inset(68)
+            $0.trailing.equalTo(colonLabel.snp.leading).offset(3)
         }
         
         minutesTimerTextField.snp.makeConstraints {
             $0.top.equalTo(hoursTimerTextField.snp.top)
-            $0.trailing.equalToSuperview().inset(65)
+            $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
         }
         
         okayBtn.snp.makeConstraints {
