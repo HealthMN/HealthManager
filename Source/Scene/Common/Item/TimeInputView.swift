@@ -2,10 +2,10 @@ import SnapKit
 import Then
 import UIKit
 
-final class TimeInputView: UIView {
+class TimeInputView: UIView {
     
     // MARK: - Properties
-    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: TimeInputView.self, action: #selector(okayBtnDidTap(_:)))
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(okayBtnDidTap(_:)))
     
     private let contextView = UIView().then {
         $0.backgroundColor = .white
@@ -43,25 +43,32 @@ final class TimeInputView: UIView {
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 8
-        $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
+//        $0.isUserInteractionEnabled = true
+//        $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
     // MARK: - method
-    @objc private func okayBtnDidTap(_ sender: UIButton) {
-        guard let hoursTimerTF = hoursTimerTextField.text else { return }
-        guard let minutesTimerTF = minutesTimerTextField.text else { return }
+    @objc func okayBtnDidTap(_ sender: UITapGestureRecognizer) {
+        print("action")
+//        guard let hoursTimerTF = hoursTimerTextField.text else { return }
+//        guard let minutesTimerTF = minutesTimerTextField.text else { return }
 //        let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
 //        viewModel.saveProfileTime(time: time)
 //        viewModel.dismiss()
-        print("action")
     }
-    
+
     // MARK: - UI
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         addView()
         setLayout()
-        self.addGestureRecognizer(tapGesture)
+        
+        tapGesture.numberOfTapsRequired = 1
+        
+        okayBtn.isUserInteractionEnabled = true
+        okayBtn.addGestureRecognizer(tapGesture)
+        
 //        hoursTimerTextField.delegate = self
 //        minutesTimerTextField.delegate = self
     }
@@ -70,9 +77,13 @@ final class TimeInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(#function)
+    }
+    
     func addView() {
         self.addSubview(contextView)
-        contextView.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
+        self.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
     }
     
     func setLayout() {
