@@ -5,17 +5,12 @@ import UIKit
 
 class EditTimeViewController: BaseVC<EditTimeViewModel> {
     
-    private let tapGesture = UITapGestureRecognizer(target: self, action: #selector(timeEditViewDidTap(_:)))
-    
-    private let timeEditView = TimeInputView()
-    
-    @objc func timeEditViewDidTap(_ sender: UITapGestureRecognizer) {
-        print("gesture!!")
+    private let timeEditView = TimeInputView().then {
+        $0.layer.cornerRadius = 8
     }
     
     override func configureVC() {
         view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
-        timeEditView.addGestureRecognizer(tapGesture)
     }
     
     override func addView() {
@@ -25,6 +20,8 @@ class EditTimeViewController: BaseVC<EditTimeViewModel> {
     override func setLayout() {
         timeEditView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+            $0.size.equalTo(330)
+            $0.top.equalToSuperview().inset(173)
         }
     }
 }

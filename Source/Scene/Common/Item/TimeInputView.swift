@@ -5,7 +5,7 @@ import UIKit
 class TimeInputView: UIView {
     
     // MARK: - Properties
-    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(okayBtnDidTap(_:)))
+//    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(okayBtnDidTap(_:)))
     
     private let contextView = UIView().then {
         $0.backgroundColor = .white
@@ -43,37 +43,29 @@ class TimeInputView: UIView {
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
         $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 8
-//        $0.isUserInteractionEnabled = true
-//        $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
     // MARK: - method
-    @objc func okayBtnDidTap(_ sender: UITapGestureRecognizer) {
+    @objc func okayBtnDidTap(_ sender: UIButton) {
         print("action")
-//        guard let hoursTimerTF = hoursTimerTextField.text else { return }
-//        guard let minutesTimerTF = minutesTimerTextField.text else { return }
-//        let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
-//        viewModel.saveProfileTime(time: time)
-//        viewModel.dismiss()
     }
 
     // MARK: - UI
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         
         addView()
         setLayout()
-        
-        tapGesture.numberOfTapsRequired = 1
-        
-        okayBtn.isUserInteractionEnabled = true
-        okayBtn.addGestureRecognizer(tapGesture)
+//        okayBtn.addGestureRecognizer(tapGesture)
         
 //        hoursTimerTextField.delegate = self
 //        minutesTimerTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
+        super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -82,16 +74,16 @@ class TimeInputView: UIView {
     }
     
     func addView() {
-        self.addSubview(contextView)
+//        self.addSubview(contextView)
         self.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
     }
     
     func setLayout() {
-        contextView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(330)
-            $0.top.equalToSuperview().inset(173)
-        }
+//        contextView.snp.makeConstraints {
+//            $0.centerX.equalToSuperview()
+//            $0.size.equalTo(330)
+//            $0.top.equalToSuperview().inset(173)
+//        }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(35)

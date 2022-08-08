@@ -9,6 +9,9 @@ final class MainCoordinator: baseCoordinator {
         let vm = EditTimeViewModel(coordinator: self)
         let vc = EditTimeViewController(viewModel: vm)
         
+//        let vm = CalendarViewModel(coordinator: self)
+//        let vc = MainCalendarVC(viewModel: vm)
+        
         self.nav.setViewControllers([vc], animated: true)
     }
     // MARK: - Navigate
