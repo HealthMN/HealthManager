@@ -5,8 +5,6 @@ import UIKit
 class TimeInputView: UIView {
     
     // MARK: - Properties
-//    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(okayBtnDidTap(_:)))
-    
     private let contextView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -47,7 +45,11 @@ class TimeInputView: UIView {
     }
     
     // MARK: - method
-    @objc func okayBtnDidTap(_ sender: UIButton) {
+    func changedTitleLabel(text: String) {
+        self.titleLabel.text = text
+    }
+    
+    @objc private func okayBtnDidTap(_ sender: UIButton) {
         print("action")
     }
 
@@ -58,10 +60,6 @@ class TimeInputView: UIView {
         
         addView()
         setLayout()
-//        okayBtn.addGestureRecognizer(tapGesture)
-        
-//        hoursTimerTextField.delegate = self
-//        minutesTimerTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -73,18 +71,11 @@ class TimeInputView: UIView {
         print(#function)
     }
     
-    func addView() {
-//        self.addSubview(contextView)
+    private func addView() {
         self.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
     }
     
-    func setLayout() {
-//        contextView.snp.makeConstraints {
-//            $0.centerX.equalToSuperview()
-//            $0.size.equalTo(330)
-//            $0.top.equalToSuperview().inset(173)
-//        }
-        
+    private func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(35)
             $0.centerX.equalToSuperview()

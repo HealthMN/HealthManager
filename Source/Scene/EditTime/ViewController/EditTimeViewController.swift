@@ -7,6 +7,7 @@ class EditTimeViewController: BaseVC<EditTimeViewModel> {
     
     private let timeEditView = TimeInputView().then {
         $0.layer.cornerRadius = 8
+        $0.changedTitleLabel(text: "운동시간 기록을 수정할 수 있어요.")
     }
     
     override func configureVC() {
