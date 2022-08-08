@@ -3,7 +3,7 @@ import SnapKit
 import UIKit
 
 
-class EditTimeViewController: BaseVC<EditTimeViewModel> {
+final class EditTimeViewController: BaseVC<EditTimeViewModel> {
     
     private let timeEditView = TimeInputView().then {
         $0.layer.cornerRadius = 8

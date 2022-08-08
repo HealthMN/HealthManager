@@ -2,7 +2,7 @@ import SnapKit
 import Then
 import UIKit
 
-class TimeInputView: UIView {
+final class TimeInputView: UIView {
     
     // MARK: - Properties
     private let contextView = UIView().then {
@@ -60,6 +60,9 @@ class TimeInputView: UIView {
         
         addView()
         setLayout()
+        
+        hoursTimerTextField.delegate = self
+        minutesTimerTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -99,7 +102,7 @@ class TimeInputView: UIView {
         
         minutesTimerTextField.snp.makeConstraints {
             $0.top.equalTo(hoursTimerTextField.snp.top)
-            $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
+            $0.leading.equalTo(colonLabel.snp.trailing).offset(13)
         }
         
         okayBtn.snp.makeConstraints {
@@ -108,5 +111,25 @@ class TimeInputView: UIView {
             $0.bottom.equalToSuperview().inset(20)
             $0.height.equalTo(54)
         }
+    }
+}
+
+// MARK: - Extension
+extension TimeInputView: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
+            minutesTimerTextField.text = "59"
+        }
+        
+        if Int(hoursTimerTextField.text ?? "") ?? 0 >= 24 {
+            hoursTimerTextField.text = "23"
+        }
+        
+        guard textField.text?.count ?? 0 >= 2 else {
+            return
+        }
+        
+        textField.resignFirstResponder()
     }
 }
