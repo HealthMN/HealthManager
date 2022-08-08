@@ -3,14 +3,8 @@ import UIKit
 final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
-//        let vm = LoginViewModel(coordinator: self)
-//        let vc = LoginVC(viewModel: vm)
-        
-        let vm = EditTimeViewModel(coordinator: self)
-        let vc = EditTimeViewController(viewModel: vm)
-        
-//        let vm = CalendarViewModel(coordinator: self)
-//        let vc = MainCalendarVC(viewModel: vm)
+        let vm = LoginViewModel(coordinator: self)
+        let vc = LoginVC(viewModel: vm)
         
         self.nav.setViewControllers([vc], animated: true)
     }
