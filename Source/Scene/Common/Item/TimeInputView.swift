@@ -115,6 +115,7 @@ class TimeInputView: UIView {
             $0.top.equalTo(hoursTimerTextField.snp.bottom).offset(84)
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().inset(20)
+            $0.height.equalTo(54)
         }
     }
 }
