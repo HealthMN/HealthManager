@@ -21,8 +21,7 @@ final class EditTimeViewController: BaseVC<EditTimeViewModel> {
         timeEditView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.size.equalTo(330)
-//            $0.top.equalToSuperview().inset(173)
-            $0.top.equalTo(173)
+            $0.top.equalToSuperview().inset(173)
         }
     }
 }

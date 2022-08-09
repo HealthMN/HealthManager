@@ -3,10 +3,8 @@ import UIKit
 final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
-//        let vm = LoginViewModel(coordinator: self)
-//        let vc = LoginVC(viewModel: vm)
-        
-        let vc = EditTimeViewController(viewModel: .init(coordinator: self))
+        let vm = LoginViewModel(coordinator: self)
+        let vc = LoginVC(viewModel: vm)
         
         self.nav.setViewControllers([vc], animated: true)
     }
