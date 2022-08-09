@@ -6,7 +6,6 @@ import UIKit
 final class EditTimeViewController: BaseVC<EditTimeViewModel> {
     
     private let timeEditView = TimeInputView().then {
-        $0.layer.cornerRadius = 8
         $0.changedTitleLabel(text: "운동시간 기록을 수정할 수 있어요.")
     }
     
@@ -22,7 +21,8 @@ final class EditTimeViewController: BaseVC<EditTimeViewModel> {
         timeEditView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.size.equalTo(330)
-            $0.top.equalToSuperview().inset(173)
+//            $0.top.equalToSuperview().inset(173)
+            $0.top.equalTo(173)
         }
     }
 }

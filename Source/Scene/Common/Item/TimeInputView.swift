@@ -56,7 +56,8 @@ final class TimeInputView: UIView {
     // MARK: - UI
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        self.layer.cornerRadius = 8
+        self.backgroundColor = .white
         
         addView()
         setLayout()
