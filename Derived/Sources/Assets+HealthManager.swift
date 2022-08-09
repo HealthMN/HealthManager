@@ -21,6 +21,7 @@ public enum HealthManagerAsset {
   public static let eyeIcon = HealthManagerImages(name: "EyeIcon")
   public static let eyeIconBlack = HealthManagerImages(name: "EyeIconBlack")
   public static let hmPrimary = HealthManagerColors(name: "HM_Primary")
+  public static let splashImg = HealthManagerImages(name: "SplashImg")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
