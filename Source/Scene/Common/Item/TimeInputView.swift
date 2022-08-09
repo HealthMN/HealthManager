@@ -2,7 +2,7 @@ import SnapKit
 import Then
 import UIKit
 
-final class ProfileVC: BaseVC<ProfileViewModel> {
+final class TimeInputView: UIView {
     
     // MARK: - Properties
     private let contextView = UIView().then {
@@ -45,33 +45,41 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
     }
     
     // MARK: - method
-    @objc private func okayBtnDidTap(_ sender: UIButton) {
-        guard let hoursTimerTF = hoursTimerTextField.text else { return }
-        guard let minutesTimerTF = minutesTimerTextField.text else { return }
-        let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
-        viewModel.saveProfileTime(time: time)
-        viewModel.dismiss()
+    func changedTitleLabel(text: String) {
+        self.titleLabel.text = text
     }
     
+    @objc private func okayBtnDidTap(_ sender: UIButton) {
+        print("action")
+    }
+
     // MARK: - UI
-    override func configureVC() {
-        view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.layer.cornerRadius = 8
+        self.backgroundColor = .white
+        
+        addView()
+        setLayout()
+        
         hoursTimerTextField.delegate = self
         minutesTimerTextField.delegate = self
     }
     
-    override func addView() {
-        view.addSubview(contextView)
-        contextView.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override func setLayout() {
-        contextView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(330)
-            $0.top.equalToSuperview().inset(173)
-        }
-        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(#function)
+    }
+    
+    private func addView() {
+        self.addSubviews(titleLabel, hoursTimerTextField, minutesTimerTextField, colonLabel, okayBtn)
+    }
+    
+    private func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(35)
             $0.centerX.equalToSuperview()
@@ -95,19 +103,20 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
         
         minutesTimerTextField.snp.makeConstraints {
             $0.top.equalTo(hoursTimerTextField.snp.top)
-            $0.leading.equalTo(colonLabel.snp.trailing).offset(3)
+            $0.leading.equalTo(colonLabel.snp.trailing).offset(13)
         }
         
         okayBtn.snp.makeConstraints {
             $0.top.equalTo(hoursTimerTextField.snp.bottom).offset(84)
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().inset(20)
+            $0.height.equalTo(54)
         }
     }
 }
 
 // MARK: - Extension
-extension ProfileVC: UITextFieldDelegate {
+extension TimeInputView: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
         if Int(minutesTimerTextField.text ?? "") ?? 0 >= 60 {
