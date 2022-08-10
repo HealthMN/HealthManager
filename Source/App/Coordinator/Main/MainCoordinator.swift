@@ -27,6 +27,8 @@ final class MainCoordinator: baseCoordinator {
             dismiss(closure: closure)
         case .editTimeIsRequired:
             navigateToEditTime()
+        case .withdrawalIsRequired:
+            navigateToWithdrawal
         }
     }
 }
@@ -69,6 +71,11 @@ private extension MainCoordinator {
     func navigateToEditTime() {
         let vm = EditTimeViewModel(coordinator: self)
         let vc = EditTimeViewController(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
+    }
+    func navigateToWithdrawal() {
+        let vm = WithdrawalViewModel(coordinator: self)
+        let vc = WithdrawalViewController(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
     }
 }

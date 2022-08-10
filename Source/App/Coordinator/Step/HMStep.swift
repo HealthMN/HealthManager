@@ -14,4 +14,5 @@ enum HMStep {
     // MARK: Profile
     case profileGraphIsRequired
     case editTimeIsRequired
+    case withdrawalIsRequired
 }
