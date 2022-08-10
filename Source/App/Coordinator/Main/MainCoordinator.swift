@@ -3,8 +3,8 @@ import UIKit
 final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
-        let vm = CalendarViewModel(coordinator: self)
-        let vc = MainCalendarVC(viewModel: vm)
+        let vm = LoginViewModel(coordinator: self)
+        let vc = LoginVC(viewModel: vm)
         
         self.nav.setViewControllers([vc], animated: true)
     }
@@ -75,7 +75,7 @@ private extension MainCoordinator {
     }
     func navigateToWithdrawal() {
         let vm = WithdrawalViewModel(coordinator: self)
-        let vc = WithdrawalViewController(viewModel: vm)
+        let vc = WithdrawalVC(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
     }
 }
