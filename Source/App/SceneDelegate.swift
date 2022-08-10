@@ -1,5 +1,4 @@
 import UIKit
-import Inject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -7,17 +6,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coordinator: MainCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
+        
         guard let windowScence = (scene as? UIWindowScene) else { return }
         
         let nav = UINavigationController()
         
-        coordinator = MainCoordinator(nav: nav)
-        coordinator?.start()
-        
         window = UIWindow(windowScene: windowScence)
         window?.windowScene = windowScence
         window?.rootViewController = nav
+        coordinator = MainCoordinator(nav: nav)
+        coordinator?.start()
         
         window?.makeKeyAndVisible()
     }

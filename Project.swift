@@ -12,7 +12,9 @@ let project = Project(
         .Inject,
         .FirebaseAuth,
         .FirebaseMessaging,
-        .FSCalendar
+        .FSCalendar,
+        .RealmSwift,
+        .Charts
     ],
     targets: [
         Target(
@@ -30,7 +32,9 @@ let project = Project(
                 .SPM.Inject,
                 .SPM.FirebaseAuth,
                 .SPM.FirebaseMessaging,
-                .SPM.FSCalendar
+                .SPM.FSCalendar,
+                .SPM.RealmSwift,
+                .SPM.Charts
             ]
         )
     ]
