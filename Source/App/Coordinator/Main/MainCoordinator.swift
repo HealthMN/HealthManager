@@ -33,7 +33,6 @@ class MainCoordinator: Coordinator {
         let vc = LoginVC(viewModel: .init(coordinator: MainCoordinator(nav: nav)))
         vc.coordinator =  self
         nav.popViewController(animated: true)
-                         
     }
     
     func pushSignUpVC() {
