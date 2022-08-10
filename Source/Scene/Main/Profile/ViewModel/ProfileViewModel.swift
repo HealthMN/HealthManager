@@ -52,4 +52,14 @@ final class ProfileViewModel: BaseViewModel {
         coordinator.nav.dismiss(animated: true)
         dismissBtnDidTap()
     }
+    
+    func cellDidSelect(index: IndexPath.Index) -> Void{
+        
+        switch index{
+        case 0: coordinator.navigate(to: .editTimeIsRequired)
+        case 1: coordinator.navigate(to: .withdrawalIsRequired)
+        default:
+            return
+        }
+    }
 }

@@ -28,7 +28,7 @@ final class MainCoordinator: baseCoordinator {
         case .editTimeIsRequired:
             navigateToEditTime()
         case .withdrawalIsRequired:
-            navigateToWithdrawal
+            navigateToWithdrawal()
         }
     }
 }
