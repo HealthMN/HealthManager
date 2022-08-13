@@ -6,12 +6,13 @@ class EditTimeViewModel: BaseViewModel {
     // MARK: - properties
     let realm = try! Realm()
     
+    // MARK: - Method
     func editTimeRecord(time: Int) {
-        let realm = try! Realm()
         var editExerciseRecord = realm.objects(ProfileModel.self).toArray()
 
         let exerciseRecord = ProfileModel(time: time)
         
         editExerciseRecord[editExerciseRecord.count - 1] = exerciseRecord
+        print("edit")
     }
 }
