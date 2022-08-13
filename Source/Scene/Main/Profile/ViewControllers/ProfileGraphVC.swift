@@ -72,6 +72,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     override func configureVC() {
         view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
         profileTableView.dataSource = self
+        profileTableView.delegate = self
         
         viewModel.readThisWeekData()
     }
@@ -182,7 +183,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
 }
 
 // MARK: - Extension
-extension ProfileGraphVC: UITableViewDataSource {
+extension ProfileGraphVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells.count
     }
@@ -193,5 +194,9 @@ extension ProfileGraphVC: UITableViewDataSource {
         cell.titleTextLabel.text = cells[indexPath.row]
         cell.accessoryType = .disclosureIndicator
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.cellDidSelect(index: indexPath.row)
     }
 }
