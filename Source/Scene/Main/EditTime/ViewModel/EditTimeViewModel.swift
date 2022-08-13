@@ -13,6 +13,7 @@ class EditTimeViewModel: BaseViewModel {
         let exerciseRecord = ProfileModel(time: time)
         
         editExerciseRecord[editExerciseRecord.count - 1] = exerciseRecord
+        print(editExerciseRecord[editExerciseRecord.count - 1])
         print("edit")
     }
 }
