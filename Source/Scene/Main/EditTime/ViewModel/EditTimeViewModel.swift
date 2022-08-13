@@ -8,9 +8,10 @@ class EditTimeViewModel: BaseViewModel {
     
     func editTimeRecord(time: Int) {
         let realm = try! Realm()
-        let editExerciseRecord = realm.objects(ProfileModel.self).toArray()
+        var editExerciseRecord = realm.objects(ProfileModel.self).toArray()
 
-        var exerciseRecord = ProfileModel(time: time)
-        let timeRecordLastIndex = editExerciseRecord.count - 1
+        let exerciseRecord = ProfileModel(time: time)
+        
+        editExerciseRecord[editExerciseRecord.count - 1] = exerciseRecord
     }
 }
