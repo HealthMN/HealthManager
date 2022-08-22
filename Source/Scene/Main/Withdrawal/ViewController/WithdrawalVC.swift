@@ -31,7 +31,6 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     
     private let phrasesTextField = UITextField().then {
         $0.font = HealthManagerFontFamily.AppleSDGothicNeoB00.bold.font(size: 16)
-        $0.placeholder = "회원탈퇴"
         $0.textColor = .init(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
         $0.backgroundColor = .init(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
         $0.layer.cornerRadius = 8
@@ -49,14 +48,12 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     
     // MARK: - method
     @objc private func okayBtnDidTap(_ sender: UIButton) {
-        print("action")
+        viewModel.okayBtnDidTap(phrases: phrasesLabel.text!, userText: phrasesTextField.text ?? "")
     }
     
-    
     // MARK: - UI
-    
     override func setup() {
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
     }
     
     override func addView() {
@@ -65,7 +62,6 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     }
     
     override func setLayout() {
-        
         contextView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.size.equalTo(330)
