@@ -31,6 +31,10 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     
     private let phrasesTextField = UITextField().then {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "회원탈퇴",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)]
+        )
         $0.textColor = .black
         $0.backgroundColor = .init(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
         $0.layer.cornerRadius = 8
@@ -46,11 +50,8 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
         $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
-    private let warningView = UILabel().then {
-        $0.textColor = .init(red: 1, green: 0.37, blue: 0.37, alpha: 1)
-        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-        $0.text = "아래의 문구를 똑같이 입력해주세요"
-        $0.textAlignment = .center
+    private let warningView = WarningView().then {
+        $0.setWarningLabel(text: "아래의 문구를 똑같이 입력해주세요")
         $0.isHidden = true
     }
     
@@ -99,7 +100,7 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
 
         warningView.snp.makeConstraints {
             $0.top.equalTo(phrasesTextField.snp.bottom).offset(16)
-            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(77)
         }
         
         okayBtn.snp.makeConstraints {

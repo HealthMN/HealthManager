@@ -10,13 +10,8 @@ final class WithdrawalViewModel: BaseViewModel {
             sameTextFieldText.value = false
         }
         else {
-            do {
-                try Auth.auth().signOut()
-                Auth.auth().currentUser?.delete()
-                coordinator.navigate(to: .loginIsRequired)
-            } catch {
-                print(error.localizedDescription)
-            }
+            Auth.auth().currentUser?.delete()
+            coordinator.navigate(to: .loginIsRequired)
         }
     }
     
