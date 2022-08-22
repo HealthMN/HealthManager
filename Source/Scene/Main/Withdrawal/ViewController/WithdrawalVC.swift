@@ -46,6 +46,14 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
         $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
+    private let warningView = UILabel().then {
+        $0.textColor = .init(red: 1, green: 0.37, blue: 0.37, alpha: 1)
+        $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        $0.text = "아래의 문구를 똑같이 입력해주세요"
+        $0.textAlignment = .center
+        $0.isHidden = true
+    }
+    
     // MARK: - method
     @objc private func okayBtnDidTap(_ sender: UIButton) {
         viewModel.okayBtnDidTap(phrases: phrasesLabel.text!, userText: phrasesTextField.text ?? "")
@@ -58,7 +66,7 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     
     override func addView() {
         view.addSubviews(contextView)
-        contextView.addSubviews(withdrawalTitleLabel, withdrawalDescriptionLabel, phrasesLabel, phrasesTextField, okayBtn)
+        contextView.addSubviews(withdrawalTitleLabel, withdrawalDescriptionLabel, phrasesLabel, phrasesTextField, warningView, okayBtn)
     }
     
     override func setLayout() {
@@ -88,11 +96,26 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
             $0.leading.trailing.equalToSuperview().inset(37)
             $0.height.equalTo(51)
         }
+
+        warningView.snp.makeConstraints {
+            $0.top.equalTo(phrasesTextField.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
         
         okayBtn.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().inset(20)
             $0.height.equalTo(54)
+        }
+    }
+    
+    // MARK: - bind
+    
+    override func bindVM() {
+        viewModel.sameTextFieldText.bind { [weak self] visible in
+            DispatchQueue.main.async {
+                self?.warningView.isHidden = visible ? true : false
+            }
         }
     }
 }

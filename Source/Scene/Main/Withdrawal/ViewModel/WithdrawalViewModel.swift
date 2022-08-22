@@ -1,14 +1,13 @@
 import UIKit
-import Firebase
 import FirebaseAuth
 
 final class WithdrawalViewModel: BaseViewModel {
     
-    var warningView = WarningView()
+    var sameTextFieldText = Observable(true)
     
     func okayBtnDidTap(phrases: String, userText: String) {
         if phrases != userText {
-            WarningView().setWarningLabel(text: "asdf")
+            sameTextFieldText.value = false
         }
         else {
             do {
