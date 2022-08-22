@@ -73,8 +73,6 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
         profileTableView.dataSource = self
         profileTableView.delegate = self
-        
-//        viewModel.readThisWeekData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -110,6 +108,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         
         viewModel.readThisWeekData()
         
+        print("hihi")
     }
     
     //화면에 나타난 직후
@@ -177,10 +176,10 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     }
     
     override func bindVM() {
-        viewModel.dismissBtn.bind { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.lineChartView.reloadInputViews()
-            }
+        DispatchQueue.main.async {
+            self.lineChartView.reloadInputViews()
+            self.lineChartView.notifyDataSetChanged()
+            print("lineChartViewReload")
         }
     }
 }

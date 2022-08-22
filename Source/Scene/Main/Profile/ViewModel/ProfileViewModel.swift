@@ -14,9 +14,9 @@ final class ProfileViewModel: BaseViewModel {
     var inputDateAvailable = Observable(true)
     
     // MARK: - method
-    func dismissBtnDidTap() {
-        dismissBtn.value.toggle()
-    }
+//    func dismissBtnDidTap() {
+//        dismissBtn.value.toggle()
+//    }
     
     func pushProfileGraphVC() {
         coordinator.navigate(to: .profileGraphIsRequired)
@@ -35,7 +35,6 @@ final class ProfileViewModel: BaseViewModel {
         let list = realm.objects(ProfileModel.self).toArray()
         
         if list.count >= 14 {
-            
             for i in list.count - 7..<list.count {
                 entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
                 entries2.append(ChartDataEntry(x: Double(i), y: Double(list[i - 7].time)))
@@ -45,14 +44,13 @@ final class ProfileViewModel: BaseViewModel {
                 entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
             }
         }
-        
         print("list = \(list)")
     }
     
     func dismiss() {
         pushProfileGraphVC()
         coordinator.nav.dismiss(animated: true)
-        dismissBtnDidTap()
+//        dismissBtnDidTap()
     }
     
     func cellDidSelect(index: IndexPath.Index) {

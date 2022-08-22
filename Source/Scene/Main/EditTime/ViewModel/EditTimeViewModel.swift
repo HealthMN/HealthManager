@@ -5,7 +5,7 @@ class EditTimeViewModel: BaseViewModel {
     
     // MARK: - properties
     let realm = try! Realm()
-    
+
     // MARK: - Method
     func editTimeRecord(time: Int) {
         let editExerciseRecord = realm.objects(ProfileModel.self).last
@@ -14,5 +14,7 @@ class EditTimeViewModel: BaseViewModel {
         try! realm.write {
             editExerciseRecord?.time = exerciseRecord
         }
+        
+        coordinator.nav.popViewController(animated: true)
     }
 }
