@@ -17,8 +17,8 @@
 // swiftlint:disable identifier_name line_length type_body_length
 public enum HealthManagerFontFamily {
   public enum AppleSDGothicNeoB00 {
-    public static let bold = HealthManagerFontConvertible(name: "AppleSDGothicNeoB00", family: "AppleSDGothicNeoB00", path: "AppleSDGothicNeoB.ttf")
-    public static let all: [HealthManagerFontConvertible] = [bold]
+    public static let regular = HealthManagerFontConvertible(name: "AppleSDGothicNeoB00", family: "AppleSDGothicNeoB00", path: "AppleSDGothicNeo-Bold.ttf")
+    public static let all: [HealthManagerFontConvertible] = [regular]
   }
   public static let allCustomFonts: [HealthManagerFontConvertible] = [AppleSDGothicNeoB00.all].flatMap { $0 }
   public static func registerAllCustomFonts() {
