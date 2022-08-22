@@ -5,11 +5,6 @@ import UIKit
 final class TimeInputView: UIView {
     
     // MARK: - Properties
-    private let contextView = UIView().then {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 8
-    }
-    
     private let titleLabel = UILabel().then {
         $0.text = "오늘 하루 운동시간을 기록해보세요."
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
