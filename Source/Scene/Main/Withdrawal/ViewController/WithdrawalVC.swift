@@ -31,7 +31,7 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     
     private let phrasesTextField = UITextField().then {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-        $0.textColor = .init(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
+        $0.textColor = .black
         $0.backgroundColor = .init(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
         $0.layer.cornerRadius = 8
         $0.textAlignment = .center
