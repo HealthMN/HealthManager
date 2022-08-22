@@ -74,7 +74,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         profileTableView.dataSource = self
         profileTableView.delegate = self
         
-        viewModel.readThisWeekData()
+//        viewModel.readThisWeekData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,6 +107,9 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.profileTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        
+        viewModel.readThisWeekData()
+        
     }
     
     //화면에 나타난 직후

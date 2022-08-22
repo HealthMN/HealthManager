@@ -45,6 +45,8 @@ final class ProfileViewModel: BaseViewModel {
                 entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
             }
         }
+        
+        print("list = \(list)")
     }
     
     func dismiss() {
