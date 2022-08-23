@@ -177,7 +177,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
     
     override func bindVM() {
         DispatchQueue.main.async {
-            self.lineChartView.reloadInputViews()
+//            self.lineChartView.reloadInputViews()
             self.lineChartView.notifyDataSetChanged()
             print("lineChartViewReload")
         }
