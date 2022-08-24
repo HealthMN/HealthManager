@@ -88,6 +88,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         lastWeekSet.circleRadius = 4.0
         lastWeekSet.circleColors = [.gray]
         
+        
         lineChartView.data = data
         
         changeIntroduceProjectFont()
