@@ -52,7 +52,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.contentMode = .scaleAspectFill
     }
     
-    // MARK: - method
+    // MARK: - Method
     private func changeIntroduceProjectFont() {
         guard let introduceText = introduceProjectLabel.text else { return }
         guard let staffEmailtext = staffEmailLabel.text else { return }
@@ -68,8 +68,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         staffEmailLabel.attributedText = staffEmailAttribute
     }
     
-    // MARK: - UI
-    func setCharat() {
+    private func setCharat() {
         let thisWeekSet = LineChartDataSet(entries: viewModel.entries, label: "이번 주")
         let lastWeekSet = LineChartDataSet(entries: viewModel.entries2, label: "저번 주")
         
@@ -93,6 +92,8 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         
         changeIntroduceProjectFont()
     }
+    
+    // MARK: - UI
     override func configureVC() {
         view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
         profileTableView.dataSource = self

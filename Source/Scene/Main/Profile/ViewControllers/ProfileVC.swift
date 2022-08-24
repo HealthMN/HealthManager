@@ -44,7 +44,7 @@ final class ProfileVC: BaseVC<ProfileViewModel> {
         $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
-    // MARK: - method
+    // MARK: - Method
     @objc private func okayBtnDidTap(_ sender: UIButton) {
         guard let hoursTimerTF = hoursTimerTextField.text else { return }
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
