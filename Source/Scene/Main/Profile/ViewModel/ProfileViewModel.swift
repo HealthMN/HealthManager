@@ -13,10 +13,13 @@ final class ProfileViewModel: BaseViewModel {
     
     var inputDateAvailable = Observable(true)
     
+    var refreshData = Observable(false)
+    
     // MARK: - method
-//    func dismissBtnDidTap() {
-//        dismissBtn.value.toggle()
-//    }
+    
+    func refreshDataOnClick() {
+        refreshData.value.toggle()
+    }
     
     func pushProfileGraphVC() {
         coordinator.navigate(to: .profileGraphIsRequired)
@@ -44,13 +47,12 @@ final class ProfileViewModel: BaseViewModel {
                 entries.append(ChartDataEntry(x: Double(i), y: Double(list[i].time)))
             }
         }
-        print("list = \(list)")
+//        print("list = \(list)")
     }
     
     func dismiss() {
         pushProfileGraphVC()
         coordinator.nav.dismiss(animated: true)
-//        dismissBtnDidTap()
     }
     
     func cellDidSelect(index: IndexPath.Index) {

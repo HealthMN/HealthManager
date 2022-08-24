@@ -2,14 +2,13 @@ import Then
 import SnapKit
 import UIKit
 
-
 final class EditTimeViewController: BaseVC<EditTimeViewModel>, saveTimeDelegate {
 
     // MARK: - Properties
     private let timeEditView = TimeInputView().then {
         $0.changedTitleLabel(text: "운동시간 기록을 수정할 수 있어요.")
     }
-    
+
     // MARK: - Method
     func saveTime(time: Int) {
         viewModel.editTimeRecord(time: time)
