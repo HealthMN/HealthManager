@@ -52,7 +52,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         $0.contentMode = .scaleAspectFill
     }
     
-    // MARK: - method
+    // MARK: - Method
     private func changeIntroduceProjectFont() {
         guard let introduceText = introduceProjectLabel.text else { return }
         guard let staffEmailtext = staffEmailLabel.text else { return }
@@ -68,17 +68,7 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         staffEmailLabel.attributedText = staffEmailAttribute
     }
     
-    // MARK: - UI
-    override func configureVC() {
-        view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
-        profileTableView.dataSource = self
-        profileTableView.delegate = self
-        
-        viewModel.readThisWeekData()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
+    private func setCharat() {
         let thisWeekSet = LineChartDataSet(entries: viewModel.entries, label: "이번 주")
         let lastWeekSet = LineChartDataSet(entries: viewModel.entries2, label: "저번 주")
         
@@ -103,10 +93,28 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         changeIntroduceProjectFont()
     }
     
+    // MARK: - UI
+    override func configureVC() {
+        view.backgroundColor = .init(red: 0.98, green: 0.98, blue: 1, alpha: 1)
+        profileTableView.dataSource = self
+        profileTableView.delegate = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        setCharat()
+    }
+    
     //뷰가 나타나기 직전
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.profileTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        
+        viewModel.entries = []
+        viewModel.entries2 = []
+        
+        viewModel.readThisWeekData()
+        setCharat()
+        lineChartView.animate(xAxisDuration: 0.5)
     }
     
     //화면에 나타난 직후
@@ -170,14 +178,6 @@ final class ProfileGraphVC: BaseVC<ProfileViewModel> {
         staffEmailLabel.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalTo(introduceProjectLabel.snp.leading)
-        }
-    }
-    
-    override func bindVM() {
-        viewModel.dismissBtn.bind { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.lineChartView.reloadInputViews()
-            }
         }
     }
 }

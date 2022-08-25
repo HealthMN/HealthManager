@@ -2,9 +2,20 @@ import SnapKit
 import Then
 import UIKit
 
+protocol saveTimeDelegate: AnyObject {
+    func saveTime(time: Int)
+}
+
 final class TimeInputView: UIView {
     
     // MARK: - Properties
+    weak var delegate: saveTimeDelegate?
+    
+    private let contextView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 8
+    }
+    
     private let titleLabel = UILabel().then {
         $0.text = "오늘 하루 운동시간을 기록해보세요."
         $0.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
@@ -45,7 +56,10 @@ final class TimeInputView: UIView {
     }
     
     @objc private func okayBtnDidTap(_ sender: UIButton) {
-        print("action")
+        guard let hoursTimerTF = hoursTimerTextField.text else { return }
+        guard let minutesTimerTF = minutesTimerTextField.text else { return }
+        let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
+        delegate?.saveTime(time: time)
     }
 
     // MARK: - UI
