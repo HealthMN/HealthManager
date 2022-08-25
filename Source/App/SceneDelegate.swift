@@ -1,5 +1,4 @@
 import UIKit
-import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,9 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nav
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
-        
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-
         
         window?.makeKeyAndVisible()
     }

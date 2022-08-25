@@ -14,6 +14,6 @@ class EditTimeViewModel: BaseViewModel {
         try! realm.write {
             editExerciseRecord?.time = exerciseRecord
         }
-        self.coordinator.nav.popViewController(animated: true)
+        coordinator.nav.popViewController(animated: true)
     }
 }

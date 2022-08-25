@@ -56,7 +56,6 @@ final class TimeInputView: UIView {
     }
     
     @objc private func okayBtnDidTap(_ sender: UIButton) {
-        print("action")
         guard let hoursTimerTF = hoursTimerTextField.text else { return }
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
