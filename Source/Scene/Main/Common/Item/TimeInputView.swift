@@ -60,6 +60,10 @@ final class TimeInputView: UIView {
         guard let minutesTimerTF = minutesTimerTextField.text else { return }
         let time = ((Int(hoursTimerTF) ?? 0) * 60) + (Int(minutesTimerTF) ?? 30)
         delegate?.saveTime(time: time)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "테스트"
+        content.body = "테스트용 문구"
     }
 
     // MARK: - UI

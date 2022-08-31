@@ -3,6 +3,7 @@ import SnapKit
 import Then
 import FSCalendar
 import RealmSwift
+import UserNotifications
 
 final class MainCalendarVC: BaseVC<CalendarViewModel> {
     
@@ -94,6 +95,10 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     }
     
     override func configureVC() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (result, error) in
+            print(result)
+        }
+        
         todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self
@@ -119,6 +124,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         }
         
         profileBtn.snp.makeConstraints {
+            
             $0.top.equalTo(smallTitleLabel.snp.top)
             $0.trailing.equalToSuperview().inset(24)
         }
