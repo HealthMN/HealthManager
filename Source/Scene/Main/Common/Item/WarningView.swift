@@ -14,7 +14,7 @@ final class WarningView: UIView {
         addSubview(warningLabel)
         
         warningLabel.snp.makeConstraints {
-            $0.width.equalTo(170)
+            $0.width.equalTo(200)
             $0.height.equalTo(16)
         }
     }
