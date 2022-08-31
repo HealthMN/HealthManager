@@ -5,8 +5,7 @@ final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
         
-        if let user = Auth.auth().currentUser {
-            print("user = \(user)")
+        if Auth.auth().currentUser != nil {
             navigate(to: .mainCalendarIsRequired { })
         } else {
             navigate(to: .loginIsRequired)
