@@ -1,11 +1,15 @@
 import UIKit
+import FirebaseAuth
+
 final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
-        let vm = LoginViewModel(coordinator: self)
-        let vc = LoginVC(viewModel: vm)
         
-        self.nav.setViewControllers([vc], animated: true)
+        if Auth.auth().currentUser != nil {
+            navigate(to: .mainCalendarIsRequired { })
+        } else {
+            navigate(to: .loginIsRequired)
+        }
     }
     // MARK: - Navigate
     override func navigate(to step: HMStep) {
