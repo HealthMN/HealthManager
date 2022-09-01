@@ -51,7 +51,7 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     }
     
     private let warningView = WarningView().then {
-        $0.changedTextalgin()
+        $0.changedTextalign()
         $0.setWarningLabel(text: "문구를 정확히 입력해주세요")
         $0.isHidden = true
     }
