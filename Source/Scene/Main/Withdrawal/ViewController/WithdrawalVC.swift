@@ -25,14 +25,14 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     
     private let phrasesLabel = UILabel().then {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-        $0.text = "회원탈퇴"
+        $0.text = "탈퇴할게요"
         $0.textColor = .red
     }
     
     private let phrasesTextField = UITextField().then {
         $0.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
         $0.attributedPlaceholder = NSAttributedString(
-            string: "회원탈퇴",
+            string: "탈퇴할게요",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)]
         )
         $0.textColor = .black
@@ -42,16 +42,17 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
     }
     
     private lazy var okayBtn = UIButton().then {
-        $0.setTitle("확인", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setTitle("탈퇴하기", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
-        $0.backgroundColor = .init(red: 0.95, green: 0.96, blue: 1, alpha: 1)
+        $0.backgroundColor = .init(red: 1, green: 0.33, blue: 0.33, alpha: 1)
         $0.layer.cornerRadius = 8
         $0.addTarget(self, action: #selector(okayBtnDidTap(_:)), for: .touchUpInside)
     }
     
     private let warningView = WarningView().then {
-        $0.setWarningLabel(text: "아래의 문구를 똑같이 입력해주세요")
+        $0.changedTextalign()
+        $0.setWarningLabel(text: "문구를 정확히 입력해주세요")
         $0.isHidden = true
     }
     
@@ -100,13 +101,13 @@ final class WithdrawalVC: BaseVC<WithdrawalViewModel> {
 
         warningView.snp.makeConstraints {
             $0.top.equalTo(phrasesTextField.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().inset(77)
+            $0.centerX.equalToSuperview()
         }
         
         okayBtn.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview().inset(20)
-            $0.height.equalTo(54)
+            $0.height.equalTo(50)
         }
     }
     
