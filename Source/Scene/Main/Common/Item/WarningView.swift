@@ -26,4 +26,12 @@ final class WarningView: UIView {
     func setWarningLabel(text: String) {
         warningLabel.text = text
     }
+    
+    func changedTextalign() {
+        warningLabel.textAlignment = .center
+
+        warningLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+        }
+    }
 }
