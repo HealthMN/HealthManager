@@ -32,6 +32,8 @@ final class MainCoordinator: baseCoordinator {
             navigateToEditTime()
         case .withdrawalIsRequired:
             navigateToWithdrawal()
+        case .popVC:
+            navigatePopVC()
         }
     }
 }
@@ -41,6 +43,9 @@ private extension MainCoordinator {
         let vm = LoginViewModel(coordinator: self)
         let vc = LoginVC(viewModel: vm)
         self.nav.setViewControllers([vc], animated: true)
+    }
+    func navigatePopVC() {
+        self.nav.popViewController(animated: true)
     }
     func navigateToSignUp() {
         let vm = SignUpViewModel(coordinator: self)
