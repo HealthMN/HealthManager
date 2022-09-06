@@ -95,10 +95,6 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     }
     
     override func configureVC() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (result, error) in
-            print(result)
-        }
-        
         todayDateLabel.text = viewModel.getTodayTime()
         alarmTableView.delegate = self
         alarmTableView.dataSource = self
