@@ -27,7 +27,7 @@ final class SignUpViewModel: BaseViewModel {
                 //success
                 if result != nil {
                     self?.warninglabelIsVisible.value = false
-                    self?.coordinator.navigate(to: .loginIsRequired)
+                    self?.coordinator.navigate(to: .popVC)
                 }
                 
                 //error
