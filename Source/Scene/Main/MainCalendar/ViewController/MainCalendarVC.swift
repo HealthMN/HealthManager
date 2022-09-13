@@ -139,7 +139,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
             $0.top.equalTo(addBtn.snp.bottom).offset(10)
             $0.bottom.equalToSuperview().inset(3)
             $0.height.equalTo(100)
-            $0.leading.trailing.equalToSuperview().inset(0)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     override func bindVM() {
