@@ -37,36 +37,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         
-        if #available(iOS 10.0, *) {
-            
-            UNUserNotificationCenter.current().getNotificationSettings { settings in
-                
-                if settings.authorizationStatus == UNAuthorizationStatus.authorized {
-                    
-                    let nContent = UNMutableNotificationContent()
-                    
-                    nContent.title = "jl"
-                    nContent.body = "sadfda"
-                    
-                    var date = DateComponents()
-                    date.hour = 14
-                    date.minute = 23
-                    
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
-                    // 알림 요청 객체
-                    let request = UNNotificationRequest(identifier: "wakeup", content: nContent, trigger: trigger)
-                    // NotificationCenter에 추가
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    
-                } else {
-                    NSLog("User not agree")
-                }
-                
-            }
-        }  else {
-            NSLog("User iOS Version lower than 13.0. please update your iOS version")
-        }
-        
         
         func sceneWillEnterForeground(_ scene: UIScene) {
             // Called as the scene transitions from the background to the foreground.
