@@ -75,7 +75,7 @@ final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
         
         let indexPath = repeatDaytableView.indexPathForSelectedRow?.row
         
-        if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[segmentedButton.selectedIndex])", week: cells[indexPath ?? 0], index: segmentedButton.selectedIndex)) {
+        if(viewModel.selectButtonDidTap(date: datepickerView.date, title: descriptionTextField.text ?? "", icon: "\(icons[segmentedButton.selectedIndex])", week: cells[indexPath ?? 0], index: segmentedButton.selectedIndex, isOn: false)) {
             viewModel.dismiss()
         } else {
             descriptionTextField.shake()

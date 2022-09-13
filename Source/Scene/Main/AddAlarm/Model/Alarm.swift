@@ -8,8 +8,9 @@ final class Alarm: Object {
     @Persisted var icon: String
     @Persisted var week: String
     @Persisted var index: Int
+    @Persisted var isOn: Bool
     
-    convenience init(date: Date, title: String, icon: String, week: String, index: Int) {
+    convenience init(date: Date, title: String, icon: String, week: String, index: Int, isOn: Bool) {
         self.init()
         self.id = UUID().uuidString
         self.date = date
@@ -17,5 +18,6 @@ final class Alarm: Object {
         self.icon = icon
         self.week = week
         self.index = index
+        self.isOn = isOn
     }
 }
