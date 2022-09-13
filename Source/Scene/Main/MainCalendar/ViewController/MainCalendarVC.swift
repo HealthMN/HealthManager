@@ -48,6 +48,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
     private let alarmTableView = UITableView().then {
         $0.register(AlarmCell.self, forCellReuseIdentifier: "AlarmCell")
         $0.rowHeight = 80
+        $0.separatorStyle = .none
     }
     
     //뷰가 나타나기 직전
@@ -131,14 +132,14 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         
         addBtn.snp.makeConstraints {
             $0.top.equalTo(fsCalendar.snp.bottom).offset(13)
-            $0.trailing.equalTo(alarmTableView.snp.trailing)
+            $0.trailing.equalTo(alarmTableView.snp.trailing).offset(-28)
         }
         
         alarmTableView.snp.makeConstraints {
             $0.top.equalTo(addBtn.snp.bottom).offset(10)
             $0.bottom.equalToSuperview().inset(3)
             $0.height.equalTo(100)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     override func bindVM() {
