@@ -63,7 +63,7 @@ final class AlarmCell: UITableViewCell {
     func setLayout() {
         emojiCircleLabel.snp.makeConstraints {
             $0.size.equalTo(56)
-            $0.leading.equalTo(30)
+            $0.leading.equalTo(24)
             $0.top.equalTo(14)
         }
         
