@@ -1,4 +1,3 @@
-
 import ProjectDescription
 
 extension TargetDependency{
@@ -14,7 +13,6 @@ public extension TargetDependency.SPM {
     static let FSCalendar = TargetDependency.package(product: "FSCalendar")
     static let RealmSwift = TargetDependency.package(product: "RealmSwift")
     static let Charts = TargetDependency.package(product: "Charts")
-    
 }
 
 public extension Package {
