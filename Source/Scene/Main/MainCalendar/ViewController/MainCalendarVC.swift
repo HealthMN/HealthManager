@@ -5,7 +5,11 @@ import FSCalendar
 import RealmSwift
 import UserNotifications
 
-final class MainCalendarVC: BaseVC<CalendarViewModel> {
+final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
+    func switchBtnDidTap() {
+        
+    }
+    
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
