@@ -3,7 +3,13 @@ import SnapKit
 import Then
 import RealmSwift
 
+protocol switchDidTapProtocol: Object {
+    func switchBtnDidTap()
+}
+
 final class AlarmCell: UITableViewCell {
+    
+    var delegate: switchDidTapProtocol?
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }
@@ -41,7 +47,7 @@ final class AlarmCell: UITableViewCell {
     }
     
     @objc func switchDidTap(_ sender: UISwitch) {
-        
+        delegate?.switchBtnDidTap()
     }
     
     func bind(_ model: Alarm) {
