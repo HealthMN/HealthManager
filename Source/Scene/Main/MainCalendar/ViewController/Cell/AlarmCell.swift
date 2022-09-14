@@ -40,6 +40,10 @@ final class AlarmCell: UITableViewCell {
         setLayout()
     }
     
+    @objc func switchDidTap(_ sender: UISwitch) {
+        
+    }
+    
     func bind(_ model: Alarm) {
         
         let date = DateFormatter()
