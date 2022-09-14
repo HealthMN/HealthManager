@@ -3,7 +3,7 @@ import SnapKit
 import Then
 import RealmSwift
 
-protocol switchDidTapProtocol: Object {
+protocol switchDidTapProtocol: AnyObject {
     func switchBtnDidTap()
 }
 
