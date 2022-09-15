@@ -51,6 +51,9 @@ final class AlarmCell: UITableViewCell {
         print("AlarmCell!!")
         switchLabel.isOn = sender.isOn
         print(switchLabel.isOn)
+        UserDefaults.standard.set(switchLabel.isOn, forKey: "\(model?.id)")
+        
+        
         delegate?.switchBtnDidTap()
     }
     

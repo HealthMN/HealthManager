@@ -17,6 +17,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nav
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
+        
+        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+                let realmURLs = [
+                    realmURL,
+                    realmURL.appendingPathExtension("lock"),
+                    realmURL.appendingPathExtension("note"),
+                    realmURL.appendingPathExtension("management")
+                ]
+                for URL in realmURLs {
+                    do {
+                        try FileManager.default.removeItem(at: URL)
+                    } catch {
+                        // handle error
+                    }
+                }
 
         
         print("realm = \(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
