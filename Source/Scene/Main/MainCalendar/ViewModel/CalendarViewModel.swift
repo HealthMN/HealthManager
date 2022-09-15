@@ -51,6 +51,10 @@ final class CalendarViewModel: BaseViewModel {
     func isInputDateValid() -> Bool{
         UserDefaults.standard.object(forKey: "inputDate") as? Date != Calendar.current.startOfDay(for: Date())
     }
+    
+    func setSwitchBtnIsOn() {
+        
+    }
 }
 
 // MARK: - Extension

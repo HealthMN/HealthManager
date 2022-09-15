@@ -9,7 +9,7 @@ protocol switchDidTapProtocol: AnyObject {
 
 final class AlarmCell: UITableViewCell {
     
-    var delegate: switchDidTapProtocol?
+    weak var delegate: switchDidTapProtocol?
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }
@@ -34,9 +34,10 @@ final class AlarmCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 18)
     }
     
-    private let switchLabel = UISwitch().then {
+    private lazy var switchLabel = UISwitch().then {
         $0.onTintColor = HealthManagerAsset.hmPrimary.color
         $0.setSwitch(width: 60, height: 34)
+        $0.addTarget(self, action: #selector(switchDidTap(_:)), for: .touchUpInside)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -47,6 +48,7 @@ final class AlarmCell: UITableViewCell {
     }
     
     @objc func switchDidTap(_ sender: UISwitch) {
+        print("AlarmCell!!")
         delegate?.switchBtnDidTap()
     }
     

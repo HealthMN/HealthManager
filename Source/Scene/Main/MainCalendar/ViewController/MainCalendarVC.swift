@@ -53,6 +53,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
     }
     
     func switchBtnDidTap() {
+        print("mainCalendarVC@@")
         viewModel.add()
     }
     
@@ -160,6 +161,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
 extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? AlarmCell
+        cell?.delegate = self
         cell?.selectionStyle = .none
         cell?.model = viewModel.datasource.value[indexPath.row]
         
