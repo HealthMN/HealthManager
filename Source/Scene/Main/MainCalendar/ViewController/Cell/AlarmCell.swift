@@ -49,6 +49,8 @@ final class AlarmCell: UITableViewCell {
     
     @objc func switchDidTap(_ sender: UISwitch) {
         print("AlarmCell!!")
+        switchLabel.isOn = sender.isOn
+        print(switchLabel.isOn)
         delegate?.switchBtnDidTap()
     }
     
