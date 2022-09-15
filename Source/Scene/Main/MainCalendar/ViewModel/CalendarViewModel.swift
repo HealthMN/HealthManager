@@ -58,6 +58,7 @@ final class CalendarViewModel: BaseViewModel {
         try? realm.write {
             realm.add(results, update: .modified)
             print("update~")
+            print(results)
         }
     }
     

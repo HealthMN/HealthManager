@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nav
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
+
         
         print("realm = \(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
         
