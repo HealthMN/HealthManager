@@ -10,9 +10,9 @@ final class AddAlarmViewModel: BaseViewModel {
         super.init(coordinator: coordinator)
     }
         
-    func selectButtonDidTap(date: Date, title: String, icon: String, week: String, index: Int, isOn: Bool) -> Bool {
+    func selectButtonDidTap(date: Date, title: String, icon: String, week: String, index: Int) -> Bool {
         let realm = try! Realm()
-        let model = Alarm(date: date, title: title, icon: icon, week: week, index: index, isOn: isOn)
+        let model = Alarm(date: date, title: title, icon: icon, week: week, index: index)
         
         if model.title.isEmpty {
             return false
