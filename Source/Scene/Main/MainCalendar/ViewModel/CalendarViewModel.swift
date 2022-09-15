@@ -53,7 +53,12 @@ final class CalendarViewModel: BaseViewModel {
     }
     
     func setSwitchBtnIsOn() {
-        
+        let realm = try! Realm()
+        let results = realm.objects(Alarm.self)
+        try? realm.write {
+            realm.add(results, update: .modified)
+            print("update~")
+        }
     }
     
     func selectButtonDidTap(date: Date, title: String, icon: String, week: String, index: Int, isOn: Bool) -> Bool {

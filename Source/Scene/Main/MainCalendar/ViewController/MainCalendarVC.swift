@@ -54,7 +54,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
     
     func switchBtnDidTap() {
         print("mainCalendarVC@@")
-        viewModel.add()
+        viewModel.setSwitchBtnIsOn()
     }
     
     @objc func profileBtnDidTap(_ sender: UIButton) {
