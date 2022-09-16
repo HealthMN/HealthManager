@@ -3,13 +3,7 @@ import SnapKit
 import Then
 import RealmSwift
 
-protocol switchDidTapProtocol: AnyObject {
-    func switchBtnDidTap()
-}
-
 final class AlarmCell: UITableViewCell {
-    
-    weak var delegate: switchDidTapProtocol?
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }
@@ -43,18 +37,18 @@ final class AlarmCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        configure()
         addView()
         setLayout()
     }
     
     @objc func switchDidTap(_ sender: UISwitch) {
         print("AlarmCell!!")
-        switchLabel.isOn = sender.isOn
-        print(switchLabel.isOn)
-        UserDefaults.standard.set(switchLabel.isOn, forKey: "\(model?.id)")
+//        switchLabel.isOn = sender.isOn
+        print("switch is On = \(switchLabel.isOn)  id is \(model?.id)")
+        UserDefaults.standard.set(sender.isOn, forKey: "\(model?.id)")
         
-        
-        delegate?.switchBtnDidTap()
+        print("userDefaults key Value is = \(UserDefaults.standard.bool(forKey: "\(model?.id)"))")
     }
     
     func bind(_ model: Alarm) {
@@ -71,6 +65,12 @@ final class AlarmCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure() {
+        switchLabel.isOn = UserDefaults.standard.bool(forKey: "\(model?.id)")
+        
+
     }
     
     func addView() {

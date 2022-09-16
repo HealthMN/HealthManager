@@ -5,7 +5,7 @@ import FSCalendar
 import RealmSwift
 import UserNotifications
 
-final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
+final class MainCalendarVC: BaseVC<CalendarViewModel> {
     
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -50,11 +50,6 @@ final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
         $0.register(AlarmCell.self, forCellReuseIdentifier: "AlarmCell")
         $0.rowHeight = 80
         $0.separatorStyle = .none
-    }
-    
-    func switchBtnDidTap() {
-        print("mainCalendarVC@@")
-        viewModel.setSwitchBtnIsOn()
     }
     
     @objc func profileBtnDidTap(_ sender: UIButton) {
@@ -161,7 +156,6 @@ final class MainCalendarVC: BaseVC<CalendarViewModel>, switchDidTapProtocol {
 extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? AlarmCell
-        cell?.delegate = self
         cell?.selectionStyle = .none
         cell?.model = viewModel.datasource.value[indexPath.row]
         
