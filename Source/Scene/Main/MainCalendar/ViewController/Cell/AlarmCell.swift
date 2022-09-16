@@ -37,18 +37,14 @@ final class AlarmCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        configure()
         addView()
         setLayout()
     }
     
     @objc func switchDidTap(_ sender: UISwitch) {
-        print("AlarmCell!!")
-//        switchLabel.isOn = sender.isOn
-        print("switch is On = \(switchLabel.isOn)  id is \(model?.id)")
-        UserDefaults.standard.set(sender.isOn, forKey: "\(model?.id)")
-        
-        print("userDefaults key Value is = \(UserDefaults.standard.bool(forKey: "\(model?.id)"))")
+        print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
+        UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
+        print("switchDidTap - UserDefaults Value is = \(UserDefaults.standard.bool(forKey: "\(String(describing: model!.id))"))")
     }
     
     func bind(_ model: Alarm) {
@@ -61,16 +57,15 @@ final class AlarmCell: UITableViewCell {
         timeLabel.text = "\(date.string(from: model.date))"
         descriptionLabel.text = "\(model.title)"
         emojiCircleLabel.backgroundColor = HealthColor(rawValue: "\(model.index)")?.display ?? .red
+        
+        switchLabel.isOn = UserDefaults.standard.bool(forKey: "\(model.id)")
+        print("bind model id is = \(model.id) \n")
+        print("UserDefaults Value is = \(UserDefaults.standard.bool(forKey: "\(model.id)"))\n")
+        print("switchlabel isOn of value = \(switchLabel.isOn)")
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure() {
-        switchLabel.isOn = UserDefaults.standard.bool(forKey: "\(model?.id)")
-        
-
     }
     
     func addView() {
