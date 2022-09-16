@@ -59,9 +59,6 @@ final class AlarmCell: UITableViewCell {
         emojiCircleLabel.backgroundColor = HealthColor(rawValue: "\(model.index)")?.display ?? .red
         
         switchLabel.isOn = UserDefaults.standard.bool(forKey: "\(model.id)")
-        print("bind model id is = \(model.id) \n")
-        print("UserDefaults Value is = \(UserDefaults.standard.bool(forKey: "\(model.id)"))\n")
-        print("switchlabel isOn of value = \(switchLabel.isOn)")
     }
     
     required init?(coder: NSCoder) {
