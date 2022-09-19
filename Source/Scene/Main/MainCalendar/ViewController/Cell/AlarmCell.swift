@@ -51,11 +51,11 @@ final class AlarmCell: UITableViewCell {
         print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
         
         if sender.isOn {
-            print("alert = \(results[sender.tag])")
-            userNotificationCenter.addNotificationRequest(by: results[sender.tag])
+            print("alert = \(results[model!.index])")
+            userNotificationCenter.addNotificationRequest(by: results[model!.index])
         } else {
-            print("alert = \(results[sender.tag])")
-            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results[sender.tag].id])
+            print("alert = \(results[model!.index])")
+            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results[model!.index].id])
         }
         
         UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
