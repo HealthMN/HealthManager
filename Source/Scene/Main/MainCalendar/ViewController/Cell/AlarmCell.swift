@@ -2,8 +2,11 @@ import UIKit
 import SnapKit
 import Then
 import RealmSwift
+import UserNotifications
 
 final class AlarmCell: UITableViewCell {
+    
+    let userNotificationCenter = UNUserNotificationCenter.current()
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }
@@ -42,7 +45,19 @@ final class AlarmCell: UITableViewCell {
     }
     
     @objc func switchDidTap(_ sender: UISwitch) {
+        let realm = try! Realm()
+        let results = realm.objects(Alarm.self)
+        
         print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
+        
+        if sender.isOn {
+            print("alert = \(results[sender.tag])")
+            userNotificationCenter.addNotificationRequest(by: results[sender.tag])
+        } else {
+            print("alert = \(results[sender.tag])")
+            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results[sender.tag].id])
+        }
+        
         UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
         print("switchDidTap - UserDefaults Value is = \(UserDefaults.standard.bool(forKey: "\(String(describing: model!.id))"))")
     }
