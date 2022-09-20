@@ -159,6 +159,9 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
         cell?.selectionStyle = .none
         cell?.model = viewModel.datasource.value[indexPath.row]
         
+        print(indexPath)
+        print("\n")
+        
         return cell ?? AlarmCell.init()
     }
     

@@ -11,10 +11,10 @@ import UserNotifications
 import SwiftUI
 
 extension UNUserNotificationCenter {
-    func addNotificationRequest(by alert: Alarm) {
+    func addNotificationRequest(by alert: Alarm, body: String) {
         let content = UNMutableNotificationContent()
         content.title = "HealthManager"
-        content.body = "헬스가기"
+        content.body = body
         content.sound = .default
         content.badge = 1
         

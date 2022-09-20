@@ -48,11 +48,11 @@ final class AlarmCell: UITableViewCell {
         let realm = try! Realm()
         let results = realm.objects(Alarm.self)
         
-        print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
+        print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.index))")
         
         if sender.isOn {
             print("alert = \(results[model!.index])")
-            userNotificationCenter.addNotificationRequest(by: results[model!.index])
+            userNotificationCenter.addNotificationRequest(by: results[model!.index], body: model!.title)
         } else {
             print("alert = \(results[model!.index])")
             userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results[model!.index].id])
