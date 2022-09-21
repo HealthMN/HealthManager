@@ -46,16 +46,16 @@ final class AlarmCell: UITableViewCell {
     
     @objc func switchDidTap(_ sender: UISwitch) {
         let realm = try! Realm()
-        let results = realm.objects(Alarm.self)
+        let results = realm.object(ofType: Alarm.self, forPrimaryKey: model?.id ?? "")!
         
         print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.index))")
         
         if sender.isOn {
-            print("alert = \(results[model!.index])")
-            userNotificationCenter.addNotificationRequest(by: results[model!.index], body: model!.title)
+            print("alert = \(results)")
+            userNotificationCenter.addNotificationRequest(by: results, body: model!.title)
         } else {
-            print("alert = \(results[model!.index])")
-            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results[model!.index].id])
+            print("alert = \(results)")
+            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results.id])
         }
         
         UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
