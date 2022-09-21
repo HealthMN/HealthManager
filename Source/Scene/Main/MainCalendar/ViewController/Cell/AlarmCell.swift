@@ -4,13 +4,7 @@ import Then
 import RealmSwift
 import UserNotifications
 
-protocol switchBtnDidTapProtocol: AnyObject {
-    func getCellIndex() -> Int
-}
-
 final class AlarmCell: UITableViewCell {
-    
-    weak var delegate: switchBtnDidTapProtocol?
 
     let userNotificationCenter = UNUserNotificationCenter.current()
     
@@ -53,24 +47,15 @@ final class AlarmCell: UITableViewCell {
     @objc func switchDidTap(_ sender: UISwitch) {
         let realm = try! Realm()
         let results = realm.object(ofType: Alarm.self, forPrimaryKey: model?.id ?? "")!
-        
-        let r = delegate?.getCellIndex()
+
         print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
         
         if sender.isOn {
-<<<<<<< HEAD
-//            print("alert = \(results[model!.index])")
-            userNotificationCenter.addNotificationRequest(by: results[model!.index], body: model!.title)
-        } else {
-//            print("alert = \(results[model!.index])")
-            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results[model!.index].id])
-=======
             print("alert = \(results)")
             userNotificationCenter.addNotificationRequest(by: results, body: model!.title)
         } else {
             print("alert = \(results)")
             userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results.id])
->>>>>>> ef6cd0a64c1f5659e546b2a8ab0efd4caf717d39
         }
         
         UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
