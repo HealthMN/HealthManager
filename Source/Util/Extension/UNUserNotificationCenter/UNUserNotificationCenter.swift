@@ -1,14 +1,5 @@
-//
-//  UNUserNotificationCenter.swift
-//  HealthManager
-//
-//  Created by 민도현 on 2022/09/13.
-//  Copyright © 2022 com.dohyeon. All rights reserved.
-//
-
 import Foundation
 import UserNotifications
-import SwiftUI
 
 extension UNUserNotificationCenter {
     func addNotificationRequest(by alert: Alarm, body: String) {
@@ -22,7 +13,6 @@ extension UNUserNotificationCenter {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: true)
         
-
         let request = UNNotificationRequest(identifier: alert.id, content: content, trigger: trigger)
         self.add(request, withCompletionHandler: nil)
         print("add!")
