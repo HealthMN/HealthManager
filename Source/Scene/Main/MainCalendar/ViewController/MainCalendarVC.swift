@@ -3,7 +3,6 @@ import SnapKit
 import Then
 import FSCalendar
 import RealmSwift
-import UserNotifications
 
 final class MainCalendarVC: BaseVC<CalendarViewModel>{
 
