@@ -48,7 +48,9 @@ final class AlarmCell: UITableViewCell {
         let realm = try! Realm()
         let results = realm.objects(Alarm.self)
         
-        print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.index))")
+        print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
+        
+        print("model index = \(model!.index)")
         
         if sender.isOn {
             print("alert = \(results[model!.index])")

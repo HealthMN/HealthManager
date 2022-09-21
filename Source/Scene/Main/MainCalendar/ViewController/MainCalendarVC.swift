@@ -158,9 +158,7 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? AlarmCell
         cell?.selectionStyle = .none
         cell?.model = viewModel.datasource.value[indexPath.row]
-        
-        print(indexPath)
-        print("\n")
+        print("Cell = \(cell?.tag)")
         
         return cell ?? AlarmCell.init()
     }
