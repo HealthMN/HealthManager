@@ -4,8 +4,8 @@ import Then
 import FSCalendar
 import RealmSwift
 
-final class MainCalendarVC: BaseVC<CalendarViewModel> {
-    
+final class MainCalendarVC: BaseVC<CalendarViewModel>{
+
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -51,6 +51,19 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         $0.separatorStyle = .none
     }
     
+    @objc func profileBtnDidTap(_ sender: UIButton) {
+        
+        guard viewModel.isInputDateValid() else {
+            viewModel.pushProfileGraphVC()
+            return
+        }
+        viewModel.profileBtnDidTap()
+    }
+    
+    @objc func addAlarmBtnDidTap(_ sender: UIButton) {
+        viewModel.addAlarmBtnDidTap()
+    }
+    
     //뷰가 나타나기 직전
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -73,19 +86,6 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
                 }
             }
         }
-    }
-    
-    @objc func profileBtnDidTap(_ sender: UIButton) {
-        
-        guard viewModel.isInputDateValid() else {
-            viewModel.pushProfileGraphVC()
-            return
-        }
-        viewModel.profileBtnDidTap()
-    }
-    
-    @objc func addAlarmBtnDidTap(_ sender: UIButton) {
-        viewModel.addAlarmBtnDidTap()
     }
     
     override func addView() {
@@ -120,6 +120,7 @@ final class MainCalendarVC: BaseVC<CalendarViewModel> {
         }
         
         profileBtn.snp.makeConstraints {
+            
             $0.top.equalTo(smallTitleLabel.snp.top)
             $0.trailing.equalToSuperview().inset(24)
         }

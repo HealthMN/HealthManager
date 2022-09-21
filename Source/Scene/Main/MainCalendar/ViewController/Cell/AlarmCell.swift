@@ -2,8 +2,11 @@ import UIKit
 import SnapKit
 import Then
 import RealmSwift
+import UserNotifications
 
 final class AlarmCell: UITableViewCell {
+
+    let userNotificationCenter = UNUserNotificationCenter.current()
     
     var model: Alarm? {
         didSet { if let model = model { bind(model) } }
@@ -28,9 +31,10 @@ final class AlarmCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 18)
     }
     
-    private let switchLabel = UISwitch().then {
+    private lazy var switchLabel = UISwitch().then {
         $0.onTintColor = HealthManagerAsset.hmPrimary.color
         $0.setSwitch(width: 60, height: 34)
+        $0.addTarget(self, action: #selector(switchDidTap(_:)), for: .touchUpInside)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,6 +42,19 @@ final class AlarmCell: UITableViewCell {
 
         addView()
         setLayout()
+    }
+    
+    @objc func switchDidTap(_ sender: UISwitch) {
+        let realm = try! Realm()
+        let results = realm.object(ofType: Alarm.self, forPrimaryKey: model?.id ?? "")!
+        
+        if sender.isOn {
+            userNotificationCenter.addNotificationRequest(by: results, body: model!.title)
+        } else {
+            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results.id])
+        }
+        
+        UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
     }
     
     func bind(_ model: Alarm) {
@@ -50,6 +67,8 @@ final class AlarmCell: UITableViewCell {
         timeLabel.text = "\(date.string(from: model.date))"
         descriptionLabel.text = "\(model.title)"
         emojiCircleLabel.backgroundColor = HealthColor(rawValue: "\(model.index)")?.display ?? .red
+        
+        switchLabel.isOn = UserDefaults.standard.bool(forKey: "\(model.id)")
     }
     
     required init?(coder: NSCoder) {
