@@ -15,6 +15,5 @@ extension UNUserNotificationCenter {
         
         let request = UNNotificationRequest(identifier: alert.id, content: content, trigger: trigger)
         self.add(request, withCompletionHandler: nil)
-        print("add!")
     }
 }

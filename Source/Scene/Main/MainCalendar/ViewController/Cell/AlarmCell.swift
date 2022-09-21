@@ -47,19 +47,14 @@ final class AlarmCell: UITableViewCell {
     @objc func switchDidTap(_ sender: UISwitch) {
         let realm = try! Realm()
         let results = realm.object(ofType: Alarm.self, forPrimaryKey: model?.id ?? "")!
-
-        print("switch is On = \(switchLabel.isOn)  id is \(String(describing: model!.id))")
         
         if sender.isOn {
-            print("alert = \(results)")
             userNotificationCenter.addNotificationRequest(by: results, body: model!.title)
         } else {
-            print("alert = \(results)")
             userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [results.id])
         }
         
         UserDefaults.standard.set(sender.isOn, forKey: "\(String(describing: model!.id))")
-        print("switchDidTap - UserDefaults Value is = \(UserDefaults.standard.bool(forKey: "\(String(describing: model!.id))"))")
     }
     
     func bind(_ model: Alarm) {
