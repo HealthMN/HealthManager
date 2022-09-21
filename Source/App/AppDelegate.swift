@@ -28,11 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-        
-        // 메세징 델리겟
-        Messaging.messaging().delegate = self
-        
-        
+    
         // 푸시 포그라운드 설정
         UNUserNotificationCenter.current().delegate = self
         
@@ -43,16 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
     }
-    
-}
-
-extension AppDelegate : MessagingDelegate {
-    
-    // fcm 등록 토큰을 받았을 때
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("AppDelegate - get firebase token.")
-        print("AppDelegate - Firebase registration token: \(String(describing: fcmToken))")
-    }
 }
 
 extension AppDelegate : UNUserNotificationCenterDelegate {
@@ -61,10 +47,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        let userInfo = notification.request.content.userInfo
-        
-        print("willPresent: userInfo: ", userInfo)
         
         if #available(iOS 14.0, *) {
             completionHandler([.banner, .sound, .badge])
@@ -77,9 +59,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        print("didReceive: userInfo: ", userInfo)
         completionHandler()
     }
-    
 }

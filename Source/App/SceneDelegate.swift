@@ -18,8 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = MainCoordinator(nav: nav)
         coordinator?.start()
         
-        print("realm! = \(Realm.Configuration.defaultConfiguration.fileURL!)")
-        
         window?.makeKeyAndVisible()
     }
     
