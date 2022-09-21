@@ -5,8 +5,8 @@ import FSCalendar
 import RealmSwift
 import UserNotifications
 
-final class MainCalendarVC: BaseVC<CalendarViewModel> {
-    
+final class MainCalendarVC: BaseVC<CalendarViewModel>{
+
     private let contentView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -158,7 +158,6 @@ extension MainCalendarVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell", for: indexPath) as? AlarmCell
         cell?.selectionStyle = .none
         cell?.model = viewModel.datasource.value[indexPath.row]
-        print("Cell = \(cell?.tag)")
         
         return cell ?? AlarmCell.init()
     }
