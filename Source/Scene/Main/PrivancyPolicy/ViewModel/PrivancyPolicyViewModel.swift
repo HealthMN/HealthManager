@@ -16,7 +16,7 @@ class PrivancyPolicyViewModel: BaseViewModel {
         guard path != nil else { return }
         
         do {
-            result = try String(contentsOfFile: "PrivancyPolicy.txt", encoding: .utf8)
+            result = try String(contentsOfFile: path!, encoding: .utf8)
         } catch (let error as NSError) {
             return print(error.localizedDescription)
         }

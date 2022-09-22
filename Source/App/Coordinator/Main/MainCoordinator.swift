@@ -80,6 +80,8 @@ private extension MainCoordinator {
         self.nav.pushViewController(vc, animated: true)
     }
     func navigateToPrivancyPolicy() {
-        
+        let vm = PrivancyPolicyViewModel(coordinator: self)
+        let vc = PrivancyPolicyViewController(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
     }
 }

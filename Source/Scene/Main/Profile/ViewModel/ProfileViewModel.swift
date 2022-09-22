@@ -56,7 +56,8 @@ final class ProfileViewModel: BaseViewModel {
     func cellDidSelect(index: IndexPath.Index) {
         switch index{
         case 0: coordinator.navigate(to: .editTimeIsRequired)
-        case 1: coordinator.navigate(to: .withdrawalIsRequired)
+        case 1: coordinator.navigate(to: .privancyPolicyRequired)
+        case 2: coordinator.navigate(to: .withdrawalIsRequired)
         default:
             return
         }
