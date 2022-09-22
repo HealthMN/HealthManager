@@ -20,7 +20,7 @@ final class AddAlarmViewModel: BaseViewModel {
         
         try! realm.write{
             realm.add(model)
-        }        
+        }
         return true
         
     }

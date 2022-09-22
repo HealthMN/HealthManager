@@ -1,6 +1,7 @@
 enum HMStep {
     // MARK: - Global
     case dismiss(() -> Void)
+    case popVC
     
     // MARK: Login
     case loginIsRequired

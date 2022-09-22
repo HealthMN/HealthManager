@@ -63,6 +63,7 @@ final class AddAlarmVC: BaseVC<AddAlarmViewModel> {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
+        dateFormatter.date(from: "kr")
     }
     
     @objc func clickCancelBtn(_ sender: UIButton) {

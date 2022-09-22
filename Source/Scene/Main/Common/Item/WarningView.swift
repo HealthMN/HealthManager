@@ -14,7 +14,7 @@ final class WarningView: UIView {
         addSubview(warningLabel)
         
         warningLabel.snp.makeConstraints {
-            $0.width.equalTo(170)
+            $0.width.equalTo(200)
             $0.height.equalTo(16)
         }
     }
@@ -25,5 +25,13 @@ final class WarningView: UIView {
     
     func setWarningLabel(text: String) {
         warningLabel.text = text
+    }
+    
+    func changedTextalign() {
+        warningLabel.textAlignment = .center
+
+        warningLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+        }
     }
 }

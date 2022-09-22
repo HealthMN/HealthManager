@@ -38,12 +38,6 @@ final class LoginVC: BaseVC<LoginViewModel> {
         $0.addTarget(self, action: #selector(passwordEyeIconButtonDidTap(_:)), for: .touchUpInside)
     }
     
-    private let findPaaswordBtn = UIButton().then {
-        $0.setTitle("비밀번호를 잊으셨나요?", for: .normal)
-        $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
-        $0.setTitleColor(.gray, for: .normal)
-    }
-    
     private lazy var loginBtn = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 14)
@@ -82,7 +76,7 @@ final class LoginVC: BaseVC<LoginViewModel> {
     
     override func addView() {
         view.addSubviews(loginTitleLabel, emailTextLabel, emailTextField, passwordTextLabel,
-                         passwordTextField, passwordEyeIcon, findPaaswordBtn, loginBtn, notAccountBtn, warningLabel)
+                         passwordTextField, passwordEyeIcon, loginBtn, notAccountBtn, warningLabel)
     }
     
     override func setLayout() {
@@ -114,11 +108,6 @@ final class LoginVC: BaseVC<LoginViewModel> {
         passwordEyeIcon.snp.makeConstraints {
             $0.top.equalTo(passwordTextField.snp.top)
             $0.trailing.equalTo(passwordTextField.snp.trailing)
-        }
-        
-        findPaaswordBtn.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(15)
-            $0.leading.equalTo(passwordTextField.snp.leading)
         }
         
         loginBtn.snp.makeConstraints {

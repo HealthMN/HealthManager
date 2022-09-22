@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let projectName = "HealthManager"
-let organizationName = "com.tm"
+let organizationName = "com.dohyeon"
 
 let project = Project(
     name: projectName,

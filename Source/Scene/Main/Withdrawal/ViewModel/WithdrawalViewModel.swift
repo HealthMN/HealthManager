@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 import FirebaseAuth
 
 final class WithdrawalViewModel: BaseViewModel {
@@ -11,6 +12,11 @@ final class WithdrawalViewModel: BaseViewModel {
         }
         else {
             Auth.auth().currentUser?.delete()
+            let realm = try! Realm()
+            
+            try! realm.write {
+                realm.deleteAll()
+            }
             coordinator.navigate(to: .loginIsRequired)
         }
     }
