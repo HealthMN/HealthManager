@@ -28,6 +28,8 @@ final class MainCoordinator: baseCoordinator {
             navigateToEditTime()
         case .withdrawalIsRequired:
             navigateToWithdrawal()
+        case .privancyPolicyRequired:
+            navigateToPrivancyPolicy()
         }
     }
 }
@@ -76,5 +78,8 @@ private extension MainCoordinator {
         let vm = WithdrawalViewModel(coordinator: self)
         let vc = WithdrawalVC(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
+    }
+    func navigateToPrivancyPolicy() {
+        
     }
 }

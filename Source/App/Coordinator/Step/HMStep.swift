@@ -15,4 +15,5 @@ enum HMStep {
     case profileGraphIsRequired
     case editTimeIsRequired
     case withdrawalIsRequired
+    case privancyPolicyRequired
 }
