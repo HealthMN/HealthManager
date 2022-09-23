@@ -4,6 +4,7 @@ import SnapKit
 
 class PrivancyPolicyViewController: BaseVC<PrivancyPolicyViewModel> {
     
+    // MARK: - Properties
     private let titleLabel = UILabel().then {
         $0.text = "개인정보처리방침"
         $0.font = .boldSystemFont(ofSize: 20)
@@ -14,6 +15,7 @@ class PrivancyPolicyViewController: BaseVC<PrivancyPolicyViewModel> {
         $0.isEditable = false
     }
     
+    // MARK: - Method
     override func addView() {
         view.addSubviews(titleLabel, privancyPolicyLabel)
     }
