@@ -9,8 +9,9 @@
 import Foundation
 
 class PrivancyPolicyViewModel: BaseViewModel {
+    var result = ""
+    
     func readTxtFile() {
-        var result = ""
         
         let path = Bundle.main.path(forResource: "PrivancyPolicy.txt", ofType: nil)
         guard path != nil else { return }
