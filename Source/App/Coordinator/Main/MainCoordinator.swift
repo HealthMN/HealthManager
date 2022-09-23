@@ -34,6 +34,8 @@ final class MainCoordinator: baseCoordinator {
             navigateToWithdrawal()
         case .popVC:
             navigatePopVC()
+        case .privancyPolicyRequired:
+            navigateToPrivancyPolicy()
         }
     }
 }
@@ -84,6 +86,11 @@ private extension MainCoordinator {
     func navigateToWithdrawal() {
         let vm = WithdrawalViewModel(coordinator: self)
         let vc = WithdrawalVC(viewModel: vm)
+        self.nav.pushViewController(vc, animated: true)
+    }
+    func navigateToPrivancyPolicy() {
+        let vm = PrivancyPolicyViewModel(coordinator: self)
+        let vc = PrivancyPolicyViewController(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
     }
 }
