@@ -36,6 +36,5 @@ class PrivancyPolicyViewController: BaseVC<PrivancyPolicyViewModel> {
     override func configureVC() {
         viewModel.readTxtFile()
         privancyPolicyLabel.text = viewModel.result
-        print(viewModel.readTxtFile())
     }
 }

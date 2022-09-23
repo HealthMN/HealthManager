@@ -21,7 +21,5 @@ class PrivancyPolicyViewModel: BaseViewModel {
         } catch (let error as NSError) {
             return print(error.localizedDescription)
         }
-        
-        print("result = \(result)")
     }
 }
