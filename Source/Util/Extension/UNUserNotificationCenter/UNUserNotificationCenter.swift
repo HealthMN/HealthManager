@@ -4,7 +4,7 @@ import UserNotifications
 extension UNUserNotificationCenter {
     func addNotificationRequest(by alert: Alarm, body: String) {
         let content = UNMutableNotificationContent()
-        content.title = "HealthManager"
+        content.title = "헬쓰"
         content.body = body
         content.sound = .default
         content.badge = 1
