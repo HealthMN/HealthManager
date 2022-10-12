@@ -11,12 +11,21 @@ final class WithdrawalViewModel: BaseViewModel {
             sameTextFieldText.value = false
         }
         else {
-            Auth.auth().currentUser?.delete()
+            let firebase = Auth.auth()
+            firebase.currentUser?.delete()
             let realm = try! Realm()
             
             try! realm.write {
                 realm.deleteAll()
             }
+            
+            do {
+                try firebase.signOut()
+            } catch let error as NSError {
+                print("error signing out: %@", error)
+            }
+            
+            
             coordinator.navigate(to: .loginIsRequired)
         }
     }
