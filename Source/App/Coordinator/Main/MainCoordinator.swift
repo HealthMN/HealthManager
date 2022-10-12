@@ -11,10 +11,7 @@ final class MainCoordinator: baseCoordinator {
 //            navigate(to: .loginIsRequired)
 //        }
         
-        Auth.auth().addStateDidChangeListener { [weak self](auth, user) in
-            print("user = \(user)")
-            print("currentUser = \(auth.currentUser)")
-            print("user.email = \(user?.email)")
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             if auth.currentUser != nil {
                 self?.navigate(to: .mainCalendarIsRequired { } )
             } else {

@@ -7,11 +7,12 @@ final class WithdrawalViewModel: BaseViewModel {
     var sameTextFieldText = Observable(true)
     
     func okayBtnDidTap(phrases: String, userText: String) {
+        let firebase = Auth.auth()
+        
         if phrases != userText {
             sameTextFieldText.value = false
         }
         else {
-            let firebase = Auth.auth()
             firebase.currentUser?.delete()
             let realm = try! Realm()
             
@@ -25,9 +26,7 @@ final class WithdrawalViewModel: BaseViewModel {
                 print("error signing out: %@", error)
             }
             
-            
             coordinator.navigate(to: .loginIsRequired)
         }
     }
-    
 }
