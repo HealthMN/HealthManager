@@ -4,11 +4,12 @@ import FirebaseAuth
 final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
-        
-        if Auth.auth().currentUser != nil {
-            navigate(to: .mainCalendarIsRequired { })
-        } else {
-            navigate(to: .loginIsRequired)
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if auth.currentUser != nil {
+                self?.navigate(to: .mainCalendarIsRequired { } )
+            } else {
+                self?.navigate(to: .loginIsRequired)
+            }
         }
     }
     // MARK: - Navigate
