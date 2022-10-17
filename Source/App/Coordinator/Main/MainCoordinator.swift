@@ -39,6 +39,8 @@ final class MainCoordinator: baseCoordinator {
             navigatePopVC()
         case .privancyPolicyRequired:
             navigateToPrivancyPolicy()
+        case .logoutIsRequired:
+            presentToLogoutAlert()
         }
     }
 }
