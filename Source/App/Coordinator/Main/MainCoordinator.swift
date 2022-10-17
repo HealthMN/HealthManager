@@ -5,6 +5,8 @@ final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            print("user = \(auth.currentUser?.email)")
+            
             if auth.currentUser != nil {
                 self?.navigate(to: .mainCalendarIsRequired { } )
             } else {
@@ -22,7 +24,7 @@ final class MainCoordinator: baseCoordinator {
         case let .mainCalendarIsRequired(closure):
             navigateToMainCalendar(closure: closure)
         case let .addAlarmIsRequired(closure):
-            navigateToAddAlarm(closure: closure)
+            presentToAlarm(closure: closure)
         case .profileGraphIsRequired:
             navigateToProfileGraph()
         case .profileIsRequired:
@@ -60,7 +62,7 @@ private extension MainCoordinator {
         let vc = MainCalendarVC(viewModel: vm)
         self.nav.setViewControllers([vc], animated: true)
     }
-    func navigateToAddAlarm(closure: @escaping () -> Void) {
+    func presentToAlarm(closure: @escaping () -> Void) {
         let vm = AddAlarmViewModel(coordinator: self, closure: closure)
         let vc = AddAlarmVC(viewModel: vm)
         self.nav.visibleViewController?.present(vc, animated: true)
@@ -93,5 +95,13 @@ private extension MainCoordinator {
         let vm = PrivancyPolicyViewModel(coordinator: self)
         let vc = PrivancyPolicyViewController(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
+    }
+    func presentToLogoutAlert() {
+        let sheet = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+        
+        sheet.addAction(UIAlertAction(title: "네", style: .destructive))
+        sheet.addAction(UIAlertAction(title: "아니오", style: .cancel))
+        
+        self.nav.present(sheet, animated: true)
     }
 }
