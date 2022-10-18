@@ -7,17 +7,15 @@ class LogoutViewModel: BaseViewModel {
         
         sheet.addAction(UIAlertAction(title: "네", style: .destructive, handler: { [weak self] value in
             if value.isEnabled {
-                print("ok")
                 do {
                     try Auth.auth().signOut()
                 } catch(let error as NSError) {
                     print("error = \(error)")
                 }
-
                 self?.coordinator.nav.popToRootViewController(animated: true)
             }
         }))
-        sheet.addAction(UIAlertAction(title: "아니오", style: .cancel))
+        sheet.addAction(UIAlertAction(title: "아니요", style: .cancel))
         
         coordinator.nav.present(sheet, animated: true)
     }
