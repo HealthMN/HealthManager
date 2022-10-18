@@ -100,7 +100,6 @@ private extension MainCoordinator {
     }
     func presentToLogoutAlert() {
         let vm = LogoutViewModel(coordinator: self)
-        let vc = LogoutViewController(viewModel: vm)
         
         vm.presentToLogoutAlert()
     }
