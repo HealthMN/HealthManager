@@ -5,7 +5,6 @@ final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            print("user = \(auth.currentUser?.email)")
             
             if auth.currentUser != nil {
                 self?.navigate(to: .mainCalendarIsRequired { } )
