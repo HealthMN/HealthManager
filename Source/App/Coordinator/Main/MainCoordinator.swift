@@ -99,11 +99,9 @@ private extension MainCoordinator {
         self.nav.pushViewController(vc, animated: true)
     }
     func presentToLogoutAlert() {
-        let sheet = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+        let vm = LogoutViewModel(coordinator: self)
+        let vc = LogoutViewController(viewModel: vm)
         
-        sheet.addAction(UIAlertAction(title: "네", style: .destructive))
-        sheet.addAction(UIAlertAction(title: "아니오", style: .cancel))
-        
-        self.nav.present(sheet, animated: true)
+        vm.presentToLogoutAlert()
     }
 }
