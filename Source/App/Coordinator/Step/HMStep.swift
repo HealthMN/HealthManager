@@ -17,4 +17,5 @@ enum HMStep {
     case editTimeIsRequired
     case withdrawalIsRequired
     case privancyPolicyRequired
+    case logoutIsRequired
 }

@@ -22,7 +22,7 @@ final class MainCoordinator: baseCoordinator {
         case let .mainCalendarIsRequired(closure):
             navigateToMainCalendar(closure: closure)
         case let .addAlarmIsRequired(closure):
-            navigateToAddAlarm(closure: closure)
+            presentToAlarm(closure: closure)
         case .profileGraphIsRequired:
             navigateToProfileGraph()
         case .profileIsRequired:
@@ -37,6 +37,8 @@ final class MainCoordinator: baseCoordinator {
             navigatePopVC()
         case .privancyPolicyRequired:
             navigateToPrivancyPolicy()
+        case .logoutIsRequired:
+            presentToLogoutAlert()
         }
     }
 }
@@ -60,7 +62,7 @@ private extension MainCoordinator {
         let vc = MainCalendarVC(viewModel: vm)
         self.nav.setViewControllers([vc], animated: true)
     }
-    func navigateToAddAlarm(closure: @escaping () -> Void) {
+    func presentToAlarm(closure: @escaping () -> Void) {
         let vm = AddAlarmViewModel(coordinator: self, closure: closure)
         let vc = AddAlarmVC(viewModel: vm)
         self.nav.visibleViewController?.present(vc, animated: true)
@@ -93,5 +95,9 @@ private extension MainCoordinator {
         let vm = PrivancyPolicyViewModel(coordinator: self)
         let vc = PrivancyPolicyViewController(viewModel: vm)
         self.nav.pushViewController(vc, animated: true)
+    }
+    func presentToLogoutAlert() {
+        let vm = LogoutViewModel(coordinator: self)
+        vm.presentToLogoutAlert()
     }
 }
