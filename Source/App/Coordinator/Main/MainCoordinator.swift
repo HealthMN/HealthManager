@@ -5,7 +5,6 @@ final class MainCoordinator: baseCoordinator {
     // MARK: - Start
     override func start() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            
             if auth.currentUser != nil {
                 self?.navigate(to: .mainCalendarIsRequired { } )
             } else {
@@ -99,7 +98,6 @@ private extension MainCoordinator {
     }
     func presentToLogoutAlert() {
         let vm = LogoutViewModel(coordinator: self)
-        
         vm.presentToLogoutAlert()
     }
 }
