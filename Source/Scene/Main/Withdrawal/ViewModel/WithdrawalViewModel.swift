@@ -27,7 +27,6 @@ final class WithdrawalViewModel: BaseViewModel {
             }
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-            print("Delete All alarm")
             
             coordinator.navigate(to: .loginIsRequired)
         }

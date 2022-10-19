@@ -15,6 +15,10 @@ class LogoutViewModel: BaseViewModel {
                 UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 
+                for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                    UserDefaults.standard.removeObject(forKey: key.description)
+                }
+                
                 self?.coordinator.nav.popToRootViewController(animated: true)
             }
         }))

@@ -40,5 +40,4 @@ public extension Package {
     static let Charts = Package.remote(
         url: "https://github.com/danielgindi/Charts",
         requirement: .upToNextMajor(from: "4.1.0"))
-    
 }
