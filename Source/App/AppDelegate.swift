@@ -25,12 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        
+
         application.registerForRemoteNotifications()
-        
+
         // 푸시 포그라운드 설정
         UNUserNotificationCenter.current().delegate = self
-        
+
         return true
     }
     
