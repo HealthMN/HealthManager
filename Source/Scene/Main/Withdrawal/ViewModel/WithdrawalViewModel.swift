@@ -25,6 +25,8 @@ final class WithdrawalViewModel: BaseViewModel {
             } catch let error as NSError {
                 print("error signing out: %@", error)
             }
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
             
             coordinator.navigate(to: .loginIsRequired)
         }

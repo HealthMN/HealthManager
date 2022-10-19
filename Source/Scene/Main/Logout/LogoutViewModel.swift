@@ -1,5 +1,5 @@
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class LogoutViewModel: BaseViewModel {
     func presentToLogoutAlert() {
@@ -12,6 +12,13 @@ class LogoutViewModel: BaseViewModel {
                 } catch(let error as NSError) {
                     print("error = \(error)")
                 }
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+                
+                for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                    UserDefaults.standard.removeObject(forKey: key.description)
+                }
+                
                 self?.coordinator.nav.popToRootViewController(animated: true)
             }
         }))
