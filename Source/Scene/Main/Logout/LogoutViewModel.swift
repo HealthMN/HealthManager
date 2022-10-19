@@ -1,5 +1,5 @@
 import UIKit
-import Firebase
+import FirebaseAuth
 
 class LogoutViewModel: BaseViewModel {
     func presentToLogoutAlert() {
@@ -13,6 +13,12 @@ class LogoutViewModel: BaseViewModel {
                     print("error = \(error)")
                 }
                 self?.coordinator.nav.popToRootViewController(animated: true)
+                
+                //알림 삭제
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+                print("Delete All alarm")
+
             }
         }))
         sheet.addAction(UIAlertAction(title: "아니요", style: .cancel))

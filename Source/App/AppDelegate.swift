@@ -7,7 +7,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        // Use Firebase library to configure APIs
         // 파이어베이스 설정
         FirebaseApp.configure()
         
@@ -28,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-    
+        
         // 푸시 포그라운드 설정
         UNUserNotificationCenter.current().delegate = self
         
