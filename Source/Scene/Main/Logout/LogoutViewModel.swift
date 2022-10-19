@@ -12,13 +12,11 @@ class LogoutViewModel: BaseViewModel {
                 } catch(let error as NSError) {
                     print("error = \(error)")
                 }
-                self?.coordinator.nav.popToRootViewController(animated: true)
-                
                 //알림 삭제
                 UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-                print("Delete All alarm")
-
+                
+                self?.coordinator.nav.popToRootViewController(animated: true)
             }
         }))
         sheet.addAction(UIAlertAction(title: "아니요", style: .cancel))

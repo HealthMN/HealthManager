@@ -26,6 +26,11 @@ final class WithdrawalViewModel: BaseViewModel {
                 print("error signing out: %@", error)
             }
             
+            //알림 삭제
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            print("Delete All alarm")
+            
             coordinator.navigate(to: .loginIsRequired)
         }
     }
