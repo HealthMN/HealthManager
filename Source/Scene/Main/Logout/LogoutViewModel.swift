@@ -12,7 +12,6 @@ class LogoutViewModel: BaseViewModel {
                 } catch(let error as NSError) {
                     print("error = \(error)")
                 }
-                //알림 삭제
                 UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
                 

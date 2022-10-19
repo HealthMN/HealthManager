@@ -25,8 +25,6 @@ final class WithdrawalViewModel: BaseViewModel {
             } catch let error as NSError {
                 print("error signing out: %@", error)
             }
-            
-            //알림 삭제
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
             print("Delete All alarm")

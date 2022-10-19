@@ -14,7 +14,7 @@ let project = Project(
         .FirebaseMessaging,
         .FSCalendar,
         .RealmSwift,
-        .Charts
+        .Charts,
     ],
     targets: [
         Target(
@@ -34,7 +34,7 @@ let project = Project(
                 .SPM.FirebaseMessaging,
                 .SPM.FSCalendar,
                 .SPM.RealmSwift,
-                .SPM.Charts
+                .SPM.Charts,
             ]
         )
     ]
